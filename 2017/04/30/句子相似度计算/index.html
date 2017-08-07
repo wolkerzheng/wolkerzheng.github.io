@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>句子相似度计算 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="相似度计算方法：
+Cosine,Jaccard和Shingling 1.分词 2.去停用词 3.stem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="句子相似度计算">
+<meta property="og:url" content="http://yoursite.com/2017/04/30/句子相似度计算/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="相似度计算方法：
+Cosine,Jaccard和Shingling 1.分词 2.去停用词 3.stem">
+<meta property="og:image" content="http://yoursite.com/img/句子相似度_1.png">
+<meta property="og:image" content="http://yoursite.com/img/句子相似度_3.png">
+<meta property="og:image" content="http://yoursite.com/img/句子相似度_4.png">
+<meta property="og:image" content="http://yoursite.com/img/句子相似度_2.png">
+<meta property="og:updated_time" content="2017-08-06T07:54:53.038Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="句子相似度计算">
+<meta name="twitter:description" content="相似度计算方法：
+Cosine,Jaccard和Shingling 1.分词 2.去停用词 3.stem">
+<meta name="twitter:image" content="http://yoursite.com/img/句子相似度_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-句子相似度计算" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/30/句子相似度计算/" class="article-date">
+  <time datetime="2017-04-30T02:45:42.000Z" itemprop="datePublished">2017-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      句子相似度计算
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>相似度计算方法：</p>
+<h2 id="Cosine-Jaccard和Shingling"><a href="#Cosine-Jaccard和Shingling" class="headerlink" title="Cosine,Jaccard和Shingling"></a>Cosine,Jaccard和Shingling</h2><p> 1.分词<br> 2.去停用词<br> 3.stem<br><a id="more"></a></p>
+<h3 id="余弦相似度"><a href="#余弦相似度" class="headerlink" title="余弦相似度"></a>余弦相似度</h3><p>将文档表示为向量空间模型，常用方法：<br>（1）使用TF-IDF算法，找出两篇文章的关键词；<br>（2）每篇文章各取出若干个关键词（比如20个），合并成一个集合，计算每篇文章对于这个集合中的词的词频（为了避免文章长度的差异，可以使用相对词频）；<br>（3）生成两篇文章各自的词频向量；<br>（4）计算两个向量的余弦相似度，值越大就表示越相似。</p>
+<p>假定文档A和B是两个n维向量，A是 [A1, A2, …, An] ，B是 [B1, B2, …, Bn] ，则A与B的夹角θ的余弦等于：<br><img src="/img/句子相似度_1.png" alt=""><br>余弦值越接近1，就表明夹角越接近0度，也就是两个向量越相似，这就叫”余弦相似性”。</p>
+<h3 id="Jaccard相似度计算"><a href="#Jaccard相似度计算" class="headerlink" title="Jaccard相似度计算"></a>Jaccard相似度计算</h3><p>假设集合A = {0, 1, 2, 5, 6},B = {0, 2, 3, 5, 7, 9}<br><img src="/img/句子相似度_3.png" alt=""><br>增加聚类方法，例如：令<br>C1 = {0, 1, 2}<br>C2 = {3, 4}<br>C3 = {5, 6}<br>C4 = {7, 8, 9}<br>例如，C1表示动作类电影集合，C2表示喜剧类电影，C3表示记录片，C4表示恐怖片，然后集合A表示 A_clu = {C1, C3}, B_clu = {C1, C2, C3, C4}，则A和B的Jaccard的相似度：<br><img src="/img/句子相似度_4.png" alt=""></p>
+<h3 id="K-Shingling"><a href="#K-Shingling" class="headerlink" title="K-Shingling"></a>K-Shingling</h3><p> A k-shingle is a consecutive(连续) set of k words. So the set of all 1-shingles is exactly the bag of<br>words model. An alternative name to k-shingle is an k-gram.<br>例如：<br>D1 : I am Sam.<br>D2 : Sam I am.<br>D3 : I do not like green eggs and ham.<br>D4 : I do not like them, Sam I am.<br>The (k = 1)-shingles of D1∪D2∪D3∪D4 are: {[I], [am], [Sam], [do], [not], [like],[green], [eggs], [and], [ham], [them]}.<br>The (k = 2)-shingles of D1∪D2∪D3∪D4 are: {[I am], [am Sam], [Sam Sam], [Sam I],[am I], [I do], [do not], [not like], [like green], [green eggs], [eggs and],[and ham], [like them], [them Sam]}.<br>相关资料：<br><a href="https://www.cs.utah.edu/~jeffp/teaching/cs5955/L4-Jaccard+Shingle.pdf" target="_blank" rel="external">https://www.cs.utah.edu/~jeffp/teaching/cs5955/L4-Jaccard+Shingle.pdf</a></p>
+<h2 id="基于Wordnet的语义分析"><a href="#基于Wordnet的语义分析" class="headerlink" title="基于Wordnet的语义分析"></a>基于Wordnet的语义分析</h2><p>此部分内容待补充。<br>Wordnet是一个覆盖范围宽广的英语词汇语义网.Wordnet是一个词典。Wordnet是一个具有等级层次结构的知识库，每一个节点关联某一个概念。<br>wordnet的计算方法有很多种，有基于路径距离的方法，也有基于信息内容的方法。</p>
+<h3 id="基于路径距离的方法"><a href="#基于路径距离的方法" class="headerlink" title="基于路径距离的方法"></a>基于路径距离的方法</h3><p>基于路径距离的方法，认为如果两个概念在等级层次结构中的距离越近，其相关度越高。最简单的就是通过边的长度来决定概念间的相关度，语义距离定义为两个概念在层次结构上最短路径所包含的节点个数。</p>
+<ul>
+<li>概念c1和c2的最短路径上的节点个数</li>
+<li>概念c1和c2的最近公共祖先节点<h3 id="基于信息内容的方法"><a href="#基于信息内容的方法" class="headerlink" title="基于信息内容的方法"></a>基于信息内容的方法</h3>基于信息内容的方法认为两个概念之间的相关度与二者的信息内容是成正比<br>的。将P(c)定义为从语料库中随机选择一个词语是概念c的一个实例的概率,正常情况下,每一个词语都可能关联到WordNet的某一个概念上。给定一个概念 c,某一个词语属于该概念的一个实例的概率是P(c),不属于该概念实例的概率是1-P(c) 。由于所有的词语都是根节点的实例,所以P(root)=1 ,某一个节点在层次结构中所处的层级越低,那么它的概率就越低。<br>相关内容文档：<br><a href="http://staffwww.dcs.shef.ac.uk/people/S.Fernando/pubs/clukPaper.pdf" target="_blank" rel="external">http://staffwww.dcs.shef.ac.uk/people/S.Fernando/pubs/clukPaper.pdf</a><h2 id="传统的机器学习模型"><a href="#传统的机器学习模型" class="headerlink" title="传统的机器学习模型"></a>传统的机器学习模型</h2>例如可以使用训练数据来对逻辑回归模型，随机森林模型等来进行训练。</li>
+</ul>
+<h2 id="词向量"><a href="#词向量" class="headerlink" title="词向量"></a>词向量</h2><p>Word2Vec and CBOW, and now Doc2Vec, Paragraph2Vec, skip-thought vectors.<br>使用深度学习模型可以计算相似<br>1.CNN over Word Embeddings：<br><a href="https://aclweb.org/anthology/K15-1013" target="_blank" rel="external">https://aclweb.org/anthology/K15-1013</a><br>2.Skip-thought Vectors<br><a href="https://github.com/ryankiros/skip-thoughts" target="_blank" rel="external">https://github.com/ryankiros/skip-thoughts</a></p>
+<h2 id="Explicit-Semantic-Analysis（ESA）"><a href="#Explicit-Semantic-Analysis（ESA）" class="headerlink" title="Explicit Semantic Analysis（ESA）"></a>Explicit Semantic Analysis（ESA）</h2><p>在整个维基百科（词袋模型）中训练模型，然后将问题转换为一组概念（具有概率）。 概念概率也高，两个问题更相似。<br><a href="http://www.gabrilovich.com/resources/code/esa/esa.html" target="_blank" rel="external">http://www.gabrilovich.com/resources/code/esa/esa.html</a></p>
+<h2 id="TensorFlow-面向文本相似度检测的Deep-LSTM-siamese网络"><a href="#TensorFlow-面向文本相似度检测的Deep-LSTM-siamese网络" class="headerlink" title="(TensorFlow)面向文本相似度检测的Deep LSTM siamese网络"></a>(TensorFlow)面向文本相似度检测的Deep LSTM siamese网络</h2><p><a href="https://github.com/dhwajraj/deep-siamese-text-similarity" target="_blank" rel="external">https://github.com/dhwajraj/deep-siamese-text-similarity</a><br><img src="/img/句子相似度_2.png" alt=""></p>
+<h2 id="相关文档"><a href="#相关文档" class="headerlink" title="相关文档"></a>相关文档</h2><p><a href="https://www.aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art" target="_blank" rel="external">https://www.aclweb.org/aclwiki/index.php?title=Paraphrase_Identification_(State_of_the_art</a>)<br><a href="https://www.kaggle.com/c/quora-question-pairs/discussion/30340" target="_blank" rel="external">https://www.kaggle.com/c/quora-question-pairs/discussion/30340</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/30/句子相似度计算/" data-id="cj61ts5ke001wi0rekw5j05rz" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/07/篇章结构/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          词法、句法、语法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/19/memory-networks/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">memory networks</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

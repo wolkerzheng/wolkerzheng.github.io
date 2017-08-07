@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于相关度计算的实体关系分类 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="最近这段时间在做这个实体相关度计算,基于实体相关度值,可以计算出其关系,在用于实体关系分类,进而实现基于相关度的实体推荐.等过段时间做完这个,来补完这部分笔记.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于相关度计算的实体关系分类">
+<meta property="og:url" content="http://yoursite.com/2017/03/08/基于相关度计算的实体关系分类/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="最近这段时间在做这个实体相关度计算,基于实体相关度值,可以计算出其关系,在用于实体关系分类,进而实现基于相关度的实体推荐.等过段时间做完这个,来补完这部分笔记.">
+<meta property="og:updated_time" content="2017-08-06T07:54:53.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于相关度计算的实体关系分类">
+<meta name="twitter:description" content="最近这段时间在做这个实体相关度计算,基于实体相关度值,可以计算出其关系,在用于实体关系分类,进而实现基于相关度的实体推荐.等过段时间做完这个,来补完这部分笔记.">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-基于相关度计算的实体关系分类" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/08/基于相关度计算的实体关系分类/" class="article-date">
+  <time datetime="2017-03-08T03:06:11.000Z" itemprop="datePublished">2017-03-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于相关度计算的实体关系分类
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近这段时间在做这个实体相关度计算,基于实体相关度值,可以计算出其关系,在用于实体关系分类,进而实现基于相关度的实体推荐.<br>等过段时间做完这个,来补完这部分笔记.<br><a id="more"></a><br>算法思想描述：<br>在给定APP标签、APP应用描述信息、APP用户行为信息后，抽取关键字，用tf-idf表示APP的相关信息，例如APP_i的应用描述信息抽取关键字后可以用APP_i ={tf-idf_i1,tf-idf_i2,tf-idf_i3…,tf-idf_in}表示。<br>应用的表示为：将应用的描述信息(表示为关键词集合),应用的标签和不同用户对应用的下载安装情况(用户的行为数据)合并在一个向量中。例如,对于appi,其代表向量Aappi 由三部分组成,第一部分为由应用的描述文本中抽取的关键词形成的向量,向量的每个维度为关键词的 tf/idf 值。第二部分为由应用的标签组成的向量,类似于关键词,该向量的维度为标签的 tf/idf 值。第三部分为用户向量,其向量的维度值为 0或 1,为 0 代表该用户没有下载或安装过此应用,相对应的,为1 代表用户下载或安装了该应用。将这三部分向量拼接在一起,即形成了应用的表示向量。在用向量表示APP信息后，计算APP间的弦相似度度量来对APP间进行相似度初始化，余弦相似度主要是针对两个APP共同包含的词语越多，其相似度越高。而事实上的两个APP之间具有某个主题相关关系，例如给定一个关键词word_i和word_j,它们可能没有出现在应用APP_p,APP_q中，但word_j可能和APP_p主题相关，word_i和APP_q主题相关，APP_p,APP_q有一定的相关性，那么就可以认为单词 word i 和 word j 是具有主题相关关系的。据此，可以用词语主题相似度扩展APP向量.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/08/基于相关度计算的实体关系分类/" data-id="cj61ts5kh0022i0red05z3zd9" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/09/nltk学习笔记/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          nltk学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/06/时间序列分析学习笔记/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">时间序列分析学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

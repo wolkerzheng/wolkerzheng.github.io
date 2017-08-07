@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="郑桂东的学习地">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="郑桂东的学习地">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-推荐系统技术的简要了解" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/推荐系统技术的简要了解/" class="article-date">
+  <time datetime="2017-08-06T08:49:23.000Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="深度学习与推荐系统"><a href="#深度学习与推荐系统" class="headerlink" title="深度学习与推荐系统"></a>深度学习与推荐系统</h3><p>推荐系统技术核心：对用户历史，物品属性和上下文等信息进行建模，以推断用户兴趣，并向用户推荐感兴趣的物品。</p>
+<p>深度学习可以对数据特征进行复杂的映射，从而有效地学习出特征表示，并发现数据中蕴藏的规律。</p>
+<p>传统的推荐技术：<br>基于内容的推荐（content-Based recommendation）：<br>    在用户浏览物品时，根据当前物品属性推荐其他相似物品。</p>
+<p>用户与物品的交互历史，还有丰富的用户画像（如年龄，性别，兴趣爱好等）、物品属性（物品类别，描述，价格等）和上下文信息（如当前会话信息，位置等）。</p>
+<p>协同过滤：<br>    是指在预测一个用户对物品的喜好程度时，不仅仅依赖于该用户的历史记录，同时也要考虑其他用户的历史记录。<br>基本假设是：兴趣相投，拥有共同经验的群体未来会喜欢相似的物品。<br>协同过滤建模主要使用了用户对物品的历史交互数据，也称反馈数据；反馈数据为<br>1）    显式反馈：一般为评分，表示为物品的喜欢程度<br>2）    隐式反馈：点击，购买看视频，听音乐等行为，侧面反映用户兴趣</p>
+<p>3）    建模显式反馈时，用户物品矩阵用数字表示打分分数<br>4）    建模隐式反馈时，用户物品矩阵用0,1表示，1代表有交互过，反之为0。</p>
+<p>基于用户的协同过滤模型：<br>    可以大致分为两个部分：<br>1）    构建用户向量，计算用户之间的相似度，即找到与目标用户特征类似的所有邻居用户，组成用户集合<br>2）    利用用户集合中目标用户喜爱且目标用户没有过历史行为的项目推荐给该用户</p>
+<p>基于项目的协同过滤模型：<br>    与基于的协同过滤有很大相似性，但不同点主要在于基于用户的协同过滤模型计算用户相似性时使用用户个人评分集合，而基于项目的协同过滤模型在于计算项目相似性时采用所有用户对项目的评分。</p>
+<p>基于潜在因子的矩阵分解模型：<br>    把用户和物品表示为同一个隐空间（latent space）的向量，然后将评分预测为用户隐向量和物品隐向量的内积。<br>    矩阵分解算法主要原理是通过奇异值分解的方法（SVD），将用户对项目的评分矩阵分解为用户特征向量组成的矩阵与项目特征向量组成的矩阵相乘形式。形式如：R=PQ^{T}。R表示为m<em>n的user-item评分矩阵，P表示m</em>k的用户特征矩阵，Q表示n*k的item特征矩阵,k为特征向量的维度（超参数）。</p>
+<p>分解模型的核心是使用向量内积的方式建模用户和物品之间的交互关系，而向量内积可以表示为神经网络模型的一种单层操作。</p>
+<p>FM（分解机模型），将特征向量中的每一个特征表示成一个隐向量，在隐空间中考虑所有非零特征之间的交互。<br> <img src="/img/rs_1.png" alt=""></p>
+<p>FM基于矩阵分解的协同过滤模型。表示能力很强，通过设计不同的x，FM可以拟合出一系列多元线性模型。可以看做是一种浅层的神经网络和表征学习的方法。</p>
+<p>深度学习在推荐系统的应用：<br>1）    作为一种基于数据的表征学习的方法，深度学习技术从语义较为丰富的输入数据（语音，图片，文本等）抽取出有效的特征表示<br>2）    对数据进行多层非线性变换，可以拟合出较为复杂的预测函数。拟合用户和物品之间的交互函数（user-item interaction function）</p>
+<p>参考资料：<br>中国人工智能学会-学会通讯 2017年第7期中推荐系统中的深度学习<br>结合用户相互关注的图推荐模型研究（师兄的论文）</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/推荐系统技术的简要了解/" data-id="cj61ts5ki0025i0re63yx6z6o" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-决策树" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/决策树/" class="article-date">
+  <time datetime="2017-08-06T07:54:53.027Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#decision tree</p>
+<p>###决策树的工作原理<br>在决策树中，每个叶节点都赋予一个类标号。非终结点(non-terminal node)（包括根结点和内部结点）包含属性测试条件，以分开具有不同特性的记录。<br>一旦构造了决策树，对检验记录进行分类就相当容易了，从数的根节点开始，将测试条件用与检验记录，根据检测结果选择适当的分支。沿着该分支或者到达另一个内部结点，使用新的测试条件，或者到达一个叶节点。到达叶节点后，叶节点的类称号就被赋值给该检验记录<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/08/06/决策树/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/决策树/" data-id="cj61ts5k7001ri0rest9jgaai" class="article-share-link">Поделиться</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/hello-world/" class="article-date">
+  <time datetime="2017-08-06T07:54:52.894Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/06/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/hello-world/" data-id="cj61ts5j9000di0reouzrz3hu" class="article-share-link">Поделиться</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dataming" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/06/dataming/" class="article-date">
+  <time datetime="2017-08-06T07:54:52.869Z" itemprop="datePublished">2017-08-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#分类：基本概述、决策树与模型评估</p>
+<p>###预备知识</p>
+<pre><code>分类（classification）分类任务就是通过学习得到一个目标函数（target function）f,把每个属性集x映射到一个预先定义的类标号y
+目标函数也称为分类模型（classification model）
+</code></pre><p>分类模型的性能根据模型正确和错误预测的检验记录计数进行评估，这些计数存放在称作<em>混淆举证（confusion matrix）</em>的表格中</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/06/dataming/" data-id="cj61ts5j20005i0rep3yjuuo4" class="article-share-link">Поделиться</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-end2end-relation-extractio-lstm" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/20/end2end-relation-extractio-lstm/" class="article-date">
+  <time datetime="2017-05-20T12:23:20.000Z" itemprop="datePublished">2017-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="End-to-End-Relation-Extraction-using-LSTMs-on-Sequences-and-Tree-Structures"><a href="#End-to-End-Relation-Extraction-using-LSTMs-on-Sequences-and-Tree-Structures" class="headerlink" title="End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures"></a>End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</h2><p>文章来自ACL2016</p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>文章提出了一中端到端模型来抽取实体以及它们间的关系。模型通过双向序列（从左到右和从右到左）和双向树结构（自底而上和自上而下）的LSTM-RNN实现对单个模型中的实体和关系的联合建模。<br>模型首先识别实体，然后使用单个递增解码的NN结构提取检测到的实体之间的关系，并使用实体和关系标签共同更新NN参数。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/20/end2end-relation-extractio-lstm/" data-id="cj61ts5j30006i0reszck2uh4" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deeplearning/">deeplearning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-篇章结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/07/篇章结构/" class="article-date">
+  <time datetime="2017-05-07T06:48:47.000Z" itemprop="datePublished">2017-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/07/篇章结构/">词法、句法、语法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>note from CIPS2016</p>
+<h2 id="词法句法和语法分析"><a href="#词法句法和语法分析" class="headerlink" title="词法句法和语法分析"></a>词法句法和语法分析</h2><p>词法分析<br>  自然语言处理中的自然语言句子级分析技术，可以大致分为词法分析，句法分析和语义分析。<br>  对于词法分析（Lexical Analysis）包括了分词和词性标注。对于中文分词工作，文本中的句子以字串的形式出现，没有像英语那样明显的空格标记，对于中文，首先需要将输入的字串切分为独立的词语，然后在此基础上进行其他更高级的处理。对于词性标注，给定一个切好词的句子，词性标注的目的是为每一个词赋予一个类别，这个类别成为词性标注（Part-of-Speech tag),例如，名词（noun),动词(verb),形容词（adjective)等。属于相同词性的词，在句法中承当类似的角色。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/05/07/篇章结构/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/07/篇章结构/" data-id="cj61ts5kz002fi0rem55o2zbx" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-句子相似度计算" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/30/句子相似度计算/" class="article-date">
+  <time datetime="2017-04-30T02:45:42.000Z" itemprop="datePublished">2017-04-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/30/句子相似度计算/">句子相似度计算</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>相似度计算方法：</p>
+<h2 id="Cosine-Jaccard和Shingling"><a href="#Cosine-Jaccard和Shingling" class="headerlink" title="Cosine,Jaccard和Shingling"></a>Cosine,Jaccard和Shingling</h2><p> 1.分词<br> 2.去停用词<br> 3.stem<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/30/句子相似度计算/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/30/句子相似度计算/" data-id="cj61ts5ke001wi0rekw5j05rz" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-memory-networks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/19/memory-networks/" class="article-date">
+  <time datetime="2017-04-19T02:42:58.000Z" itemprop="datePublished">2017-04-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/19/memory-networks/">memory networks</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://blog.csdn.net/u011274209/article/details/53384232">http://blog.csdn.net/u011274209/article/details/53384232</a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>对于很多神经网络模型，缺乏了一个长时记忆的组件方便读取和写入。作为RNN，LSTM和其变种GRU使用了一定的记忆机制。在Memory Networks的作者看来，这些记忆都太小了，因为把状态（state，也就是cell的输出）及其权重全部都嵌入到一个低维空间，把这些知识压缩成一个稠密的向量，丢失了不少信息。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/19/memory-networks/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/19/memory-networks/" data-id="cj61ts5jf000oi0re65vvtjyb" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-keras-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/18/keras-note/" class="article-date">
+  <time datetime="2017-04-18T11:31:59.000Z" itemprop="datePublished">2017-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/18/keras-note/">keras_note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一些自己在平时使用Keras时候遇到的一些问题。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/18/keras-note/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/18/keras-note/" data-id="cj61ts5jb000fi0retq109iq0" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-深度学习和自然语言处理中的attention和memory" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/17/深度学习和自然语言处理中的attention和memory/" class="article-date">
+  <time datetime="2017-04-17T10:31:24.000Z" itemprop="datePublished">2017-04-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/17/深度学习和自然语言处理中的attention和memory/">深度学习和自然语言处理中的attention</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/">http://www.wildml.com/2016/01/attention-and-memory-in-deep-learning-and-nlp/</a><br><a href="http://blog.csdn.net/malefactor/article/details/50550211">http://blog.csdn.net/malefactor/article/details/50550211</a></p>
+<h2 id="Encoder-Decoder"><a href="#Encoder-Decoder" class="headerlink" title="Encoder-Decoder"></a>Encoder-Decoder</h2><p>要提文本处理领域的AM模型，就不得不先谈Encoder-Decoder框架，因为目前绝大多数文献中出现的AM模型是附着在Encoder-Decoder框架下的，当然，其实AM模型可以看作一种通用的思想，本身并不依赖于Encoder-Decoder模型，这点需要注意。<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/17/深度学习和自然语言处理中的attention和memory/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/17/深度学习和自然语言处理中的attention和memory/" data-id="cj61ts5ky002di0re7dp693iw" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

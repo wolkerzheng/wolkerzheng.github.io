@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于图方法的命名实体消歧 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="摘要
+首先对知识库的预处理，需要利用知识库中的实体关系对候选实体进行拓展，预处理从三元组的表示形式和数据集筛选两个角度进行，通过预处理，去除对消歧无用的信息，减少噪声数据三元组表示时，主要对三元组的实体表示进行缩减，并对异常编码处理数据集上，针对不同的数据集提醒进行分析，对数据集中的三元组进行过滤
+实体消歧主要步骤是生成候选实体和名实体消歧先从文本中的实体指称生成候选，基于字符串相似度的方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于图方法的命名实体消歧">
+<meta property="og:url" content="http://yoursite.com/2016/09/21/图方法命名实体消歧/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="摘要
+首先对知识库的预处理，需要利用知识库中的实体关系对候选实体进行拓展，预处理从三元组的表示形式和数据集筛选两个角度进行，通过预处理，去除对消歧无用的信息，减少噪声数据三元组表示时，主要对三元组的实体表示进行缩减，并对异常编码处理数据集上，针对不同的数据集提醒进行分析，对数据集中的三元组进行过滤
+实体消歧主要步骤是生成候选实体和名实体消歧先从文本中的实体指称生成候选，基于字符串相似度的方法">
+<meta property="og:updated_time" content="2017-08-06T07:54:53.041Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基于图方法的命名实体消歧">
+<meta name="twitter:description" content="摘要
+首先对知识库的预处理，需要利用知识库中的实体关系对候选实体进行拓展，预处理从三元组的表示形式和数据集筛选两个角度进行，通过预处理，去除对消歧无用的信息，减少噪声数据三元组表示时，主要对三元组的实体表示进行缩减，并对异常编码处理数据集上，针对不同的数据集提醒进行分析，对数据集中的三元组进行过滤
+实体消歧主要步骤是生成候选实体和名实体消歧先从文本中的实体指称生成候选，基于字符串相似度的方法">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-图方法命名实体消歧" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/21/图方法命名实体消歧/" class="article-date">
+  <time datetime="2016-09-21T11:51:22.000Z" itemprop="datePublished">2016-09-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基于图方法的命名实体消歧
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><ol>
+<li>首先对知识库的预处理，需要利用知识库中的实体关系对候选实体进行拓展，预处理从三元组的表示形式和数据集筛选两个角度进行，通过预处理，去除对消歧无用的信息，减少噪声数据<br>三元组表示时，主要对三元组的实体表示进行缩减，并对异常编码处理<br>数据集上，针对不同的数据集提醒进行分析，对数据集中的三元组进行过滤</li>
+<li>实体消歧主要步骤是生成候选实体和名实体消歧<br>先从文本中的实体指称生成候选，基于字符串相似度的方法和基于知识库的方法两个角度对实体指称生成候选，字符串相似度方法主要从候选实体的扩充和筛选两个方面，基于知识库的方法主要有基于规则的方法和基于先验概率的方法。通过对不同候选生成方法的效果进行对比，最终对几种方法进行组合。</li>
+<li><p>候选实体生成之后是名实体消歧</p>
+<ul>
+<li>利用知识库中的实体关系对候选实体进行拓展，候选实体之间形成互相连通的实体网络图</li>
+<li>在网络图上采用链接分析算法，为候选实体评分从而实现消歧<br>对实体的拓展策略设计拓展采用的实体关系，拓展的实体路径长度，上下文粒度的选择以及对实体指称进行消歧是采用同时决策还是依次进行决策。<a id="more"></a>
+名实体消歧，图方法，DBpedia，知识库<h3 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h3></li>
+</ul>
+<p>命名实体消歧：将文本中具有多个含义的实体指称去除歧义。并将其链接到知识库中的唯一实体，从而达到消歧目的。<br>名实体：主要是包括人名，地名，机构名等，在句子中往往是作为主语宾语等成分<br>名实体消歧意义：<br> 实体消歧改进搜索引擎的查询效果<br> 集成互联网信息，易于挖掘有用信息<br> 拓展知识库内容<br>维基百科中积累大量的名实体信息，大量的名实体消歧任务以及维基百科作为背景任务，将文本中的名实体与维基百科标题想对应，实体消歧也称维基化（Wikification）；实体消歧相似的另一个任务是实体链接，主要区别，实体链接除了确定名实体在知识库中对应的实体，还需要对知识库中不存在的名实体通过聚类进行处理<br>实体消歧的目的是从文本中可能具有歧义的名实体映射到某个无歧义的概念。文本中的名实体被称为实体指称(mention，通常是目标实体的缩写、简称、绰号甚至是错误拼写),是某概念在文本中的具体引用形式。而无歧义的概念使用知识库中的实体来表示。实体消歧要做的就是对文本中的所有实体指称找到知识库中与之唯一对应的目标实体。</p>
+<p>实体消歧：<br>× 根据实体指称字符串，通过候选生成算法获得该实体指称所有可能的实体（称候选实体），<br>× 通过消歧算法对候选实体进行排序，从而确定实体指称对应的目标实体</p>
+<p>DBpedia知识库，结构化的维基百科知识库，它通过语义网络技术对维基百科内容进行组织，DBpedia由RDF三元组构成，三元组包含实体以及实体之间的关系。</p>
+<p>实体消歧策略：</p>
+<ul>
+<li>局部策略 (local) ,不同的实体指称的消歧决策是相互独立，实体指称通过其所在文本中的上下文特征和每个候选实体计算匹配程度从而确定目标实体</li>
+<li>全局策略 (global)，同一文本中出现的实体是关于某个主题的，相互之间存在语义关联，具有某种程度的内聚性，同一文本中的不同实体指称的决策是相互依赖的</li>
+<li>集体策略（collective）<br>实体消歧常用特征：</li>
+</ul>
+<ol>
+<li>局部特征：</li>
+</ol>
+<ul>
+<li>上下文相似度（Context Similarity）<br>为实体指称设定一个上下文窗口，将窗口内的文本和实体对应的维基百科文本计算余弦相似度</li>
+<li>先验概率（Prior Probability）<br>p(c|m),m表示实体指称,c表示候选实体。给定一个实体指称m其对应的目标实体是c的概率。该概率通过统计所有维基百科正文中出现的锚文本超链接字符串 m 和链接所指向的维基百科页面的标题的对应关系得出。先验概率来自由维基百科志愿者编写的超链接,因此具有较高的可靠性,常被用于作为实体消歧的基线系统。</li>
+<li>实体流行度（Popularity）<br>统计每个实体的维 基 百 科 入 链 数 并 除 以 所 有 维 基 百 科 链 接 数 目 , 最 终 得 到 实 体 的 流 行 度</li>
+</ul>
+<ol>
+<li>全局特征</li>
+</ol>
+<ul>
+<li>链接重叠（Link Overlap）<br>链接重叠采用的资源主要是实体的维基百科页面中的入链集合和出链集合,该特征认为具有较多共有链接的实体之间具有较高的相关度。评估的标准有谷歌距离和 Jaccard 相似系数等。</li>
+<li>语义相关度（Semantic Relatedness）<br>利用实体的维基百科类别和信息框数据</li>
+</ul>
+</li>
+</ol>
+<h3 id="知识库数据集和预处理"><a href="#知识库数据集和预处理" class="headerlink" title="知识库数据集和预处理"></a>知识库数据集和预处理</h3><p>语义网络（Semantic Web），在互联网数据之间创造了链接，方便浏览这个网络。<br>资源描述框架（Resource Description Framework,RDF），统一资源标识符(Uniform Resource Identifiers,URIs)<br>一条RDF语句由三个URL组成的三元组（triple）表示，三元组的各个部分依次被称为主语、谓语、宾语。RDF三元组通常用于陈述某一事实。三元素之间以空格分割,使用“.”作为结束符。RDF实体一般使用缩写，dbr:通常为实体的前缀,后跟实体名。dbo:代表本体,通常做为本体类或者属性的前缀。rdfs:后跟subclass,property 等表示本体类别间的关系或者属性,通常用于描述类别。rdf:后跟 type,可以作为谓语定义实体的类别。skos:用于描述概念间的语义关系</p>
+<p>DBpedia知识库由一系列分散的数据集构成，这些数据集使用不同的DBpedia抽取器（DBpedia extractors）抽取自维基百科页面不同的部分</p>
+<pre><code>- labels_en.nt由labels抽取器抽取自维基百科页面的标题部分
+- short_abstracts_en.nt由abstract抽取器抽取自维基百科正文的首段
+- disambiguation_en.nt抽取自维基百科消歧页面
+- redirect_en.nt 抽取自维基百科的重定向页面,现实中存在同一事物具有不同别名的情况
+- page_links.nt 抽取自维基百科词条页面的链接信息。
+- article_categories_en.nt 抽取自维基百科页面底端的维基百科类别
+- skos_categories_en.nt 文件中每个三元组主语和宾语是维基百科类别实体,谓语是两个实体之间的关系
+- instance_types_en.nt 中保存的是实体和实体类别间的关系
+- mappingbased_properties_en.nt 存储的是从维基百科信息框抽取的属性信息
+- persondata_en.nt 专门从维基百科页面抽取的人物信息框中的内容
+- dbpedia_2014.owl 中存储的是本体类,定义了类别之间的关系以及每个类别的属性
+</code></pre><h3 id="候选实体生成"><a href="#候选实体生成" class="headerlink" title="候选实体生成"></a>候选实体生成</h3><ul>
+<li>基于字符串相似度的候选生成方法<br>实体指称和目标实体通常具有字符串上的相似性,实体指称往往以目标实体的简写、缩写、别称,甚至错误拼写的而形式出现。候选生成的最简单的方法是使用实体指称和实体列表中的实体之间的字符串相似度进行来生成候选。<br>首先采用简单的规则生成候选实体,目标是尽可能地提高目标实体的覆盖程度。采用的规则如下:<br>(1)对于所有字母均为大写的实体指称,往往为某实体名的缩写形式。遍历知识库数据集中的实体名称,对每个实体名,获得构成实体名的各个单词的首字母集合,并和实体指称中的字母集合进行对比,完全匹配的作为候选实体添加到候选实体列表。由于缩写中通常不带借介词,获取实体名首字母集合之前首先将 the、of 等介词去除。<br>(2)对于包含多个单词的实体指称,遍历实体名列表,从中找出同时包含这些单词的实体,并将这些实体添加到候选实体列表中。<br>(3)对于只有单个单词的实体指称,从实体名列表中找到和实体指称同名的实体或者实体名包含该实体指称的实体,添加到候选实体列表中。<br>候选实体的筛选：<br>编辑距离是衡量字符串相似度的一种方法。一个字符串经过一系列特定的操作变化为另一个字符串的最少操作数称作编辑距离,特定操作指的是对字符进行插入、删除、替换操作。</li>
+<li><p>基于知识库的候选生成方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input : mention</div><div class="line">Output : candidateList</div><div class="line">candidateList=&#123;&#125;</div><div class="line">disList=searchFromDisambiguation(mention)//从消歧页面获取候选列表</div><div class="line">redList=searchFromRedirect(mention)//从重定向页获取候选</div><div class="line">labList=searchFromLabel(mention)//从 label 中获取和 mention 同名的候选</div><div class="line">if redList!=NULL</div><div class="line">	for can in redList:</div><div class="line">		disList←disList∪searchFromDisambiguation(can) ∪ searchFromLabel(mention)</div><div class="line">candidateList= candidateList∪disList∪ redList∪ labList</div></pre></td></tr></table></figure>
+</li>
+<li><p>基于锚文本先验概率的候选生成方法<br>锚文本是维基百科页面的常见元素,一个实体的维基百科页面可以通过其正文中的锚文本跳转到另一个实体的维基百科页面。直观地讲锚文本就是在维基百科正文中以蓝色标出的超链接。锚文本的字符串往往实体实体的别称。<br>锚文本中“|”符号分隔开的左右两部分分别视为实体名和其对应的实体指称。通过收集所有维基百科页面的链接并获得锚文本,我们可以对实体和实体指称的共现进行统计。<br>例如对于所有锚文本中的实体指称 m,统计所有与之共现的实体名e1,e2,e3,…与 m 的共现次数,我们可以得出条件概率 P(ei|m)</p>
+</li>
+<li>基于先验概率和启发式规则结合的候选生成方法<br>(1)prior<em> Heuristic:以基于锚文本先验概率的方法为主体,当基于锚文本先验概率的方法产生候选数目为 0 时,采用基于启发式规则的方法进行补充。<br>(2)Heuristic </em> prior:以基于启发式规则的方法为主体,当基于启发式规则的方法生成候选数目为 0 的情况下,采用基于锚文本先验概率的方法进行补充。<br>(3)Heuristic+prior 直接合并两种方法生成候选的结果并去重.</li>
+</ul>
+<h3 id="基于实体网络的名实体消歧"><a href="#基于实体网络的名实体消歧" class="headerlink" title="基于实体网络的名实体消歧"></a>基于实体网络的名实体消歧</h3><p>通过候选生成阶段获取每个实体指称的候选实体列表之后,接下来的消歧任务就是从候选实体列表中为实体指称选择目标实体。实体消歧的方法主要有两类,其一是基于局部相似度的名实体消歧方法,这种方法将实体指称和候选实体列表中的每一个实体计算上下文相似度,然后选择相似度最高的作为目标实体;另一种称为全局方法,这种方法认为在同一文本中对不同实体指称进行的消歧决策之间具有依赖性,所以以文本为单位进行消歧,同一文本中实体指称的消歧决策受其他实体指称决策的影响。</p>
+<p>这里,我们以文本为单位,将其中所有实体指称的候选实体作为图中的节点,然后使用知识库中实体与实体之间的关系对候选实体进行拓展,从而形成候选实体构成的网络图,在此网络上使用算法对候选实体进行排序,最终选择出最有可能的目标实体。</p>
+<h4 id="实体网络图的构建"><a href="#实体网络图的构建" class="headerlink" title="实体网络图的构建"></a>实体网络图的构建</h4><p>假设一篇文档 D 中含有的所有实体指称构成集合 \(M={m_1 ,m_2 ,m_3 ,m_4 …m<em>k }\),k∈[1,K],K 为文档 D 所有的实体指称数目。对实体指称生成候选之后,对每一个实体指称 m i 存在一个候选实体集合 \(Ci={c</em>{i1} ,c<em>{i2} ,c</em>{i3} ,c<em>{i4} …c</em>{ij}},j∈[1,J]\),J 为实体指称 m<em>i 的候选实体数目。我们要以所有的候选实体为初始节点,使用知识库中的三元组进行对它们拓展,从而使候选实体相互连通形成网络图。<br>例如对于候选实体 \(c</em>{ij}\) 和 \(c<em>{mn}\),其中 i≠m,假如知识库中存在三元组(c</em>{idd ,R 1 ,e x )和(e x ,R 2 ,c mn )那么我们可以通过深度优先遍历获得长度为 2 的路径 $c_ij -&gt;e_x -&gt;c_mn$ ,并把边$(c_ij ,e_x )$和$(e_x ,c_mn )$添加到我们要构造的实体网络图中,其中 e_x 为中间实体。最终这些路径将候选实体连接成图。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">Input men_canDic,mentionLs</div><div class="line">Output G</div><div class="line">pairLs=[]</div><div class="line">for mi, mj in mentionLs, if mi!=mj:</div><div class="line">	for can1 in men_canDic[mi]:</div><div class="line">		for can2 in men_canDic[mj]:</div><div class="line">			pairLs.append([can1,can2])</div><div class="line">		end</div><div class="line">	end</div><div class="line">end</div><div class="line">for pair in pairLs:</div><div class="line">	pathLs=DFS(pair[0],pair[1])</div><div class="line">	for node in pathLs:</div><div class="line">		G.vertex.add(node)</div><div class="line">	end</div><div class="line">	for path in pathLs:</div><div class="line">		for edge in path:</div><div class="line">			G.edge.add(edge)</div><div class="line">		end</div><div class="line">	end</div><div class="line">end</div></pre></td></tr></table></figure></p>
+<p>DBpedia 中实体关系最为丰富的数据集是 page_links.nt,即网页链接数据集。<br>为了构成候选实体的子图,我们需要从每一个候选实体出发,在 DBpedia实体网络图中采用深度优先搜索,找到从本候选实体到其他候选实体的路径。然后使用这些路径构成候选实体网络。<br>为了生成实体网络,路径的深度是一个重要的参数。假设平均每个实体有n 个邻接实体,深度优先遍历的层次为 m,拓展出的实体数目为 $n^m$ 个。候选实体之间的路径长度越短,拓展出的中间节点越少,从知识库获得的信息也就越少,但是构成实体网络图的时间较快,计算复杂度较低。选实体之间的路径越长,中间节点越多,用于消歧的信息就越多,但是路径越长,路径中的中间实体和候选实体的关联会越弱,有时可能拓展出噪声实体。所以我们需要选择合适的路径长度。</p>
+<h3 id="图方法消歧"><a href="#图方法消歧" class="headerlink" title="图方法消歧"></a>图方法消歧</h3><p>图方法现在也广泛地应用于自然语言处理领域,词义消歧任务中也较早的引入了图算法.对于同一句话中不同的单词,每个单词都有不同的词义,同一句话中不同词的词义之间存在相互依赖。为每个词分配不同的词义,会使得同一个句子有不同的解释。可以将每种不同的解释构成图,图中的节点为不同单词的词义,图中的边为词义之间的相互依赖关系<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Input	G(候选实体网络图)</div><div class="line">Output	men_enDic(字典,键为实体指称,值为实体指称的目标实体)</div><div class="line"></div><div class="line"></div><div class="line">(1),对图 G 中的每个节点计算 coherence</div><div class="line">(2).除了已经确定的目标实体,获取 coherence 值最高的候选实体 en ,即 P(men=can)取最</div><div class="line">大值的候选实体</div><div class="line">(3).将 en 对应实体指称 men 的其他候选实体以及相关边从 G 中移除并在 men_enDic 中添</div><div class="line">加 men_enDic[men]=en</div><div class="line">(4). 若所有目标实体已经确定则程序结束并返回 men_enDic,否则回到(1)</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/09/21/图方法命名实体消歧/" data-id="cj61ts5kg0020i0repem24ppq" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/">note</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/07/machinecomprehensionusingmatch-lstmandanwserpointer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          machinecomprehensionusingmatch-lstmandanwserpointer
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

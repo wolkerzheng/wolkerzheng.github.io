@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>gbdt | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BoostingBoosting是彝族可将弱学习器提升为强学习器的算法.这族算法的工作机制类似:先从初始训练集训练出一个基学习器,在根据学习器的表现对训练样本分布进行调整,使得先前基学习器做错的训练样本在后续受到更多关注,然后基于调整后的样本分布来训练下一个基学习器;如此重复进行,直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行权结合.
+GBDTGBDT(Gradient Boosti">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gbdt">
+<meta property="og:url" content="http://yoursite.com/2017/01/06/gbdt/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="BoostingBoosting是彝族可将弱学习器提升为强学习器的算法.这族算法的工作机制类似:先从初始训练集训练出一个基学习器,在根据学习器的表现对训练样本分布进行调整,使得先前基学习器做错的训练样本在后续受到更多关注,然后基于调整后的样本分布来训练下一个基学习器;如此重复进行,直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行权结合.
+GBDTGBDT(Gradient Boosti">
+<meta property="og:updated_time" content="2017-08-06T07:54:52.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gbdt">
+<meta name="twitter:description" content="BoostingBoosting是彝族可将弱学习器提升为强学习器的算法.这族算法的工作机制类似:先从初始训练集训练出一个基学习器,在根据学习器的表现对训练样本分布进行调整,使得先前基学习器做错的训练样本在后续受到更多关注,然后基于调整后的样本分布来训练下一个基学习器;如此重复进行,直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行权结合.
+GBDTGBDT(Gradient Boosti">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-gbdt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/06/gbdt/" class="article-date">
+  <time datetime="2017-01-06T09:25:04.000Z" itemprop="datePublished">2017-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      gbdt
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Boosting"><a href="#Boosting" class="headerlink" title="Boosting"></a>Boosting</h2><p>Boosting是彝族可将弱学习器提升为强学习器的算法.这族算法的工作机制类似:先从初始训练集训练出一个基学习器,在根据学习器的表现对训练样本分布进行调整,使得先前基学习器做错的训练样本在后续受到更多关注,然后基于调整后的样本分布来训练下一个基学习器;如此重复进行,直至基学习器数目达到事先指定的值T,最终将这T个基学习器进行权结合.</p>
+<h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>GBDT(Gradient Boosting Decision Tree)是一种迭代的决策树算法,该算法由多棵决策树组成,通过所有树进行投票来进行分类.这是一种泛化能力(generalization)比较强的算法.<br><a id="more"></a><br>GBDT是一个加性回归模型,通过boosting迭代的构造一组弱学习器,相对LR的优势,如不需要做特征的归一化,自动进行特征选择,模型可解释性比较好,可以适应多种损失函数如,Squareloss,LogLoss等.每一次建立模型是在之前建立模型的损失函数的梯度下降方向<br>GBDT的核心在于,每一棵树学的是之前所有树结论和的残差,残差为与预测值的差值.</p>
+<p>而Gradient Boost与传统的Boost的区别是，每一次的计算是为了减少上一次的残差(residual)，而为了消除残差，我们可以在残差减少的梯度(Gradient)方向上建立一个新的模型。所以说，在Gradient Boost中，每个新的模型的简历是为了使得之前模型的残差往梯度方向减少，与传统Boost对正确、错误的样本进行加权有着很大的区别。</p>
+<h2 id="随机森林-Random-Forest"><a href="#随机森林-Random-Forest" class="headerlink" title="随机森林(Random Forest)"></a>随机森林(Random Forest)</h2><p>随机森林是Bagging的一个扩展变体.RF在以决策树为基学习器构建Bagging集成 的基础上,进一步在决策树的训练过程中引入了随机属性选择.传统决策树在选择划分属性时是在当前结点的属性集合(假定有d个属性)中选择一个最优属性;而在随机森林中,对基决策树的每个结点,先从该结点的属性集合中随机选择一个包含k个属性的子集,然后再从这个子集中选择一个最优属性用户划分.一个情况下,k=log2d</p>
+<p>行采样：使用bagging中的bootstrap aggregating方法，采用有放回的方式，假设输入样本为N个，那么采样的样本次数也是N。<br>列采样：从M个feature中，选择m个(m &lt;&lt; M)。之后就是对采样之后的数据使用完全分裂的方式建立出决策树。</p>
+<p>  随机选取训练样本集<br>  随机选取分裂属性集<br>  每棵树任其生长，不进行剪枝</p>
+<p>随机森林是一个最近比较火的算法，它有很多的优点：<br>  在数据集上表现良好<br>  在当前的很多数据集上，相对其他算法有着很大的优势<br>  它能够处理很高维度（feature很多）的数据，并且不用做特征选择<br>  在训练完后，它能够给出哪些feature比较重要<br>  在创建随机森林的时候，对generlization error使用的是无偏估计<br>  训练速度快<br>  在训练过程中，能够检测到feature间的互相影响<br>  容易做成并行化方法<br>  实现比较简单</p>
+<h3 id="回归或分类"><a href="#回归或分类" class="headerlink" title="回归或分类"></a>回归或分类</h3><p>器学习算法经常被用于预测分析。在商业中，预测分析可以用于告诉企业未来最有可能发生什么。例如，使用预测分析算法，在线 T 恤零售商可以使用当前的数据来预测下个月他们将会售出多少 T 恤。<br>预测问题分为两大类：</p>
+<ul>
+<li>回归问题（Regression Problems）：我们想要预测的变量是数字（例如，房子的价格）</li>
+<li><p>分类问题（Classification Problems）：我们想要预测的变量是「是/否」的答案（例如，某一设备是否经历设备故障）</p>
+<h4 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h4><p>线性回归，也称为「最小二乘回归（least squares regression）」，是线性模型的最标准的形式。对于回归问题（我们设法预测的变量是数字），线性回归是最简单的线性模型。</p>
+<h4 id="逻辑回归"><a href="#逻辑回归" class="headerlink" title="逻辑回归"></a>逻辑回归</h4><p>逻辑回归是为分类问题进行简单调整过的线性回归（我们设法预测的变量是「是/否」的答案）。由于其构造，逻辑回归非常适合于分类问题</p>
+<h4 id="线性回归和逻辑回归的缺点"><a href="#线性回归和逻辑回归的缺点" class="headerlink" title="线性回归和逻辑回归的缺点"></a>线性回归和逻辑回归的缺点</h4><p>线性回归和逻辑回归都有着相同的缺点。两者都具有「过拟合（overfit）」的趋势，这意味着模型太适应于数据而牺牲了推广到先前未知的数据的能力。因此，这两个模型经常需要进行规范，这意味着它们有一定的惩罚（penalty）以防止过拟合。另一个线性模型的缺点是，因为它们太简单了，所以往往不能预测更复杂的行为。</p>
+<h3 id="树型模型"><a href="#树型模型" class="headerlink" title="树型模型"></a>树型模型</h3><p>树型模型有助于探索数据集，并可视化预测的决策规则。当你听到关于树型模型的东西时，你可以将其想成是决策树或分支操作序列。树型模型高度精确、稳定且更易于解释。与线性模型相反，它们可以映射非线性关系以求解问题。</p>
+<h4 id="决策树（decision-tree）"><a href="#决策树（decision-tree）" class="headerlink" title="决策树（decision tree）"></a>决策树（decision tree）</h4></li>
+</ul>
+<p>决策树是一种使用分支方法（branching method）来显示决策的每个可能结果的图。例如，如果你想要订购莴苣、浇头和沙拉酱，决策树可以绘制出所有可能的结果（或者你可能最终得到的沙拉的品种）。</p>
+<p>为了创建或者训练决策树，我们采用我们过去训练模型的数据，并找出哪些属性可以最佳分割目标训练集。</p>
+<p>例如，我们在信用卡欺诈中使用决策树。我们可以发现最佳的欺诈风险预测的属性是消费明细（例如，有信用卡用户有非常大的消费）。这可能是第一次分割（或分支）——那些有着异常高消费的卡和没有的卡。然后我们使用第二个最佳属性（例如，经常使用的信用卡）来创建下一次分割。然后我们可以继续直到我们有足够的属性来满足我们的需要。</p>
+<h4 id="随机森林（random-forest）"><a href="#随机森林（random-forest）" class="headerlink" title="随机森林（random forest）"></a>随机森林（random forest）</h4><p>随机森林是许多决策树的平均，每个决策树都用数据的随机样本训练。森林中的每个独立的树都比一个完整的决策树弱，但是通过将它们结合，我们可以通过多样性获得更高的整体表现。</p>
+<p>随机森林是当今机器学习中非常流行的算法。它非常容易训练（或构建），且它往往表现良好。它的缺点是，相比于其他算法，其输出预测可能较慢。所以当你需要快如闪电般地预测，你也许不会使用它。</p>
+<h4 id="梯度提升（gradient-boosting）"><a href="#梯度提升（gradient-boosting）" class="headerlink" title="梯度提升（gradient boosting）"></a>梯度提升（gradient boosting）</h4><p>梯度提升和随机森林类似，都是由「弱」决策树构成的。最大的区别是，在梯度提升中树是被一个接一个相继训练的。每个随后的树主要用被先前树错误识别的数据进行训练。这使得梯度提升更少地集中在容易预测的情况并更多地集中在困难的情况。</p>
+<p>梯度提升训练速度也很快且表现非常好。然而，训练数据的小变化可以在模型中产生彻底的改变，因此它可能不会产生最可解释的结果。</p>
+<h3 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h3><p>生物学中的神经网络是互相交换信息的相互连接的神经元。这个想法现在已经适用于机器学习的世界，并被称为人工神经网络（ANN）。深度学习（deep learning）是一个经常出现的词，是指几层连续放置的人工神经网络。</p>
+<p>人工神经网络（ANN）包含了许多可以学习类似人脑的认知能力的模型。其它算法不能处理的极其复杂的任务（如图像识别），神经网络就可以办到。然而，就像人类的大脑，它需要很长时间来训练模型，且需要很多的能量</p>
+<h3 id="GBDT和xgboost"><a href="#GBDT和xgboost" class="headerlink" title="GBDT和xgboost"></a>GBDT和xgboost</h3><p>传统GBDT以CART作为基分类器，xgboost还支持线性分类器，这个时候xgboost相当于带L1和L2正则化项的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。传统GBDT在优化时只用到一阶导数信息，xgboost则对代价函数进行了二阶泰勒展开，同时用到了一阶和二阶导数。顺便提一下，xgboost工具支持自定义代价函数，只要函数可一阶和二阶求导。xgboost在代价函数里加入了正则项，用于控制模型的复杂度。正则项里包含了树的叶子节点个数、每个叶子节点上输出的score的L2模的平方和。从Bias-variance tradeoff角度来讲，正则项降低了模型的variance，使学习出来的模型更加简单，防止过拟合，这也是xgboost优于传统GBDT的一个特性。Shrinkage（缩减），相当于学习速率（xgboost中的eta）。xgboost在进行完一次迭代后，会将叶子节点的权重乘上该系数，主要是为了削弱每棵树的影响，让后面有更大的学习空间。实际应用中，一般把eta设置得小一点，然后迭代次数设置得大一点。（补充：传统GBDT的实现也有学习速率）列抽样（column subsampling）。xgboost借鉴了随机森林的做法，支持列抽样，不仅能降低过拟合，还能减少计算，这也是xgboost异于传统gbdt的一个特性。对缺失值的处理。对于特征的值有缺失的样本，xgboost可以自动学习出它的分裂方向。xgboost工具支持并行。boosting不是一种串行的结构吗?怎么并行的？注意xgboost的并行不是tree粒度的并行，xgboost也是一次迭代完才能进行下一次迭代的（第t次迭代的代价函数里包含了前面t-1次迭代的预测值）。xgboost的并行是在特征粒度上的。我们知道，决策树的学习最耗时的一个步骤就是对特征的值进行排序（因为要确定最佳分割点），xgboost在训练之前，预先对数据进行了排序，然后保存为block结构，后面的迭代中重复地使用这个结构，大大减小计算量。这个block结构也使得并行成为了可能，在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算就可以开多线程进行。可并行的近似直方图算法。树节点在进行分裂时，我们需要计算每个特征的每个分割点对应的增益，即用贪心法枚举所有可能的分割点。当数据无法一次载入内存或者在分布式情况下，贪心算法效率就会变得很低，所以xgboost还提出了一种可并行的近似直方图算法，用于高效地生成候选的分割点。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/06/gbdt/" data-id="cj61ts5j8000ai0rebr59p3nb" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/10/pythonnote/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          python学习笔记
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/05/vsm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">向量空间模型</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mlcourse-3 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="决策树信息增益![enter description here][1]
+  其中,p,n是结点node德尔正\反例个数.A要扩展结点node的属性,Pi,Ni 是C被A划分成V个子集{C1,…,Cv}的正\反例个数.
+决策树学习的常见问题
+不相关属性
+不充足属性两类例子具有相同的属性值.没有任何属性可进一步扩展决策树.哪类例子多,叶节点标为哪类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mlcourse-3">
+<meta property="og:url" content="http://yoursite.com/2017/01/05/mlcourse-3/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="决策树信息增益![enter description here][1]
+  其中,p,n是结点node德尔正\反例个数.A要扩展结点node的属性,Pi,Ni 是C被A划分成V个子集{C1,…,Cv}的正\反例个数.
+决策树学习的常见问题
+不相关属性
+不充足属性两类例子具有相同的属性值.没有任何属性可进一步扩展决策树.哪类例子多,叶节点标为哪类">
+<meta property="og:updated_time" content="2017-08-06T07:54:52.943Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mlcourse-3">
+<meta name="twitter:description" content="决策树信息增益![enter description here][1]
+  其中,p,n是结点node德尔正\反例个数.A要扩展结点node的属性,Pi,Ni 是C被A划分成V个子集{C1,…,Cv}的正\反例个数.
+决策树学习的常见问题
+不相关属性
+不充足属性两类例子具有相同的属性值.没有任何属性可进一步扩展决策树.哪类例子多,叶节点标为哪类">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mlcourse-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/05/mlcourse-3/" class="article-date">
+  <time datetime="2017-01-05T11:25:28.000Z" itemprop="datePublished">2017-01-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mlcourse-3
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><h3 id="信息增益"><a href="#信息增益" class="headerlink" title="信息增益"></a>信息增益</h3><pre><code>![enter description here][1]
+</code></pre><p>  其中,p,n是结点node德尔正\反例个数.A要扩展结点node的属性,Pi,Ni 是C被A划分成V个子集{C1,…,Cv}的正\反例个数.</p>
+<h3 id="决策树学习的常见问题"><a href="#决策树学习的常见问题" class="headerlink" title="决策树学习的常见问题"></a>决策树学习的常见问题</h3><ul>
+<li>不相关属性</li>
+<li>不充足属性<br>两类例子具有相同的属性值.没有任何属性可进一步扩展决策树.哪类例子多,叶节点标为哪类<a id="more"></a></li>
+<li>未知属性值<ul>
+<li>最通常值方法</li>
+<li>决策树方法:把未知属性作为”类”,原来的类作为”属性”</li>
+<li>bayesian方法</li>
+<li>按比例将未知属性值例子分配到各子集中:属性A由v个值{A1,….,Av},A值等于Ai的例子数Pi和ni,未知属性值例子数分别为Pu和Nu,在生成决策树时Ai的例子数Pi+pu·ratio   ni+nu·ratio</li>
+</ul>
+</li>
+</ul>
+<h2 id="规则学习算法"><a href="#规则学习算法" class="headerlink" title="规则学习算法"></a>规则学习算法</h2><p>一个例子e = <v1,...,vn> 满足选择子(公式,规则)的条件,也称作选择子(公式,规则)覆盖该例子.</v1,...,vn></p>
+<p>普化(generalize):减少规则的约束,使其覆盖更多的训练例子叫普化</p>
+<p>特化(specialize):增加规则的约束,使其覆盖训练例子较少叫特化</p>
+<p>一致:只覆盖正例不覆盖反例的规则被称为是一致的</p>
+<p>完备:覆盖所有正例的规则被称为完备的</p>
+<h2 id="gs算法"><a href="#gs算法" class="headerlink" title="gs算法"></a>gs算法</h2><p>GS算法<br>输入:例子集<br>输出:规则<br>原则:(a)从所有属性中选出覆盖正例最多的属性<br>        (b)在覆盖正例数相同的情况下,优先选择覆盖反例少的属性值</p>
+<p>设PE,NE是正例，反例的集合。 PE’,NE’是临时正，反例集。CPX表示公式，F表示规则（概念描述）。<br>(1) F←false;<br>(2) PE’ ←PE, NE’ ←NE, CPX←true;<br>(3) 按上述(a) (b)两原则选出一个属性值V 0 , 设V 0 为第j0个属性的取值，CPX←CPX∧ [Xj0=V0]<br>(4) PE’ ← CPX覆盖的正例，NE’ ← CPX覆盖的反例，如果NE’不为空，转(3);<br>            否则，继续执行(5);<br>(5) PE←PE\PE’, F ←F ∨CPX, 如果PE =∅   ,停止，否则转(2);</p>
+<h2 id="AQ算法"><a href="#AQ算法" class="headerlink" title="AQ算法"></a>AQ算法</h2><p>输入:例子集,参数#SQL,#CONS.Star的容量m,优化标准<br>输出:规则</p>
+<p>1) Pos和NEG分布代表正例和反例的集合<br>    ①从Pos中随机地选择一例子<br>    ② 生成例子e相对于反例集NEG的一个约束Star(reduced star),G(e|NEG,m) , 其中元素不多于m个。<br>    ③ 在得到的star中，根据设定的优化标准LEF找出一个最优的公式D。<br>    ④ 若公式D完全覆盖集合Pos,则转⑥<br>    ⑤ 否则，减少Pos的元素使其只包含不被D覆盖的例子。从步骤①开始重复整个过程。<br>    ⑥ 生成所有公式D的析取，它是一个完备且一致的概念描述。<br>2) Star生成: Induce方法<br>    ① 例子e的各个选择符被放入PS(partial star)中,将ps中的元素按照各种标准排序.<br>    ②在ps中保留最优的m个选择符.<br>    ③对ps中的选择符进行完备性和一致性检查,从ps中取出完备一致的描述放入SOLUTION表中,若SOLUTION表的大小大于等于参数#SOL,则转⑤.一致但不完备的描述从ps中取出放入表CONSISTENT中,若CONSISTENT表的大小大于等于参数#COS,则转⑤;<br>    ④对每个表达式进行特殊化处理,所有得到的表达式根据优化标准排列,仅保留m个最优的.重复步骤③, ④.<br>    ⑤得到的一般化描述按优先标准排序,保留m个最优的表达式构成约束Star(e|NEG,m).</p>
+<h3 id="扩张矩阵"><a href="#扩张矩阵" class="headerlink" title="扩张矩阵"></a>扩张矩阵</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/01/05/mlcourse-3/" data-id="cj61ts5jl000vi0reuydj9a8j" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/01/05/vsm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          向量空间模型
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/29/crf/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">crf</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

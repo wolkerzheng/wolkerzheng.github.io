@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>模式识别课件 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="模式识别过程输入→数据采集→预处理→特征提取→分类器→分类结果
+！
+识别方法分类：
+产生式模型  假设不同类别的样本满足不同的概率分布，根据样本属于不同类别的概率识别样本。（贝叶斯分类器，GMM，ＨＭＭ，…）
+鉴别模型：  利用判别函数对特征空间进行划分，不同区域对应不同的类别。（线性分类器，神经网络分类器，SVM）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模式识别课件">
+<meta property="og:url" content="http://yoursite.com/2016/12/17/贝叶斯定理/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="模式识别过程输入→数据采集→预处理→特征提取→分类器→分类结果
+！
+识别方法分类：
+产生式模型  假设不同类别的样本满足不同的概率分布，根据样本属于不同类别的概率识别样本。（贝叶斯分类器，GMM，ＨＭＭ，…）
+鉴别模型：  利用判别函数对特征空间进行划分，不同区域对应不同的类别。（线性分类器，神经网络分类器，SVM）">
+<meta property="og:updated_time" content="2017-08-06T07:54:53.084Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模式识别课件">
+<meta name="twitter:description" content="模式识别过程输入→数据采集→预处理→特征提取→分类器→分类结果
+！
+识别方法分类：
+产生式模型  假设不同类别的样本满足不同的概率分布，根据样本属于不同类别的概率识别样本。（贝叶斯分类器，GMM，ＨＭＭ，…）
+鉴别模型：  利用判别函数对特征空间进行划分，不同区域对应不同的类别。（线性分类器，神经网络分类器，SVM）">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-贝叶斯定理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/17/贝叶斯定理/" class="article-date">
+  <time datetime="2016-12-17T07:57:24.000Z" itemprop="datePublished">2016-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      模式识别课件
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="模式识别过程"><a href="#模式识别过程" class="headerlink" title="模式识别过程"></a>模式识别过程</h3><p>输入→数据采集→预处理→特征提取→分类器→分类结果</p>
+<p>！<a href="/img/bayes_1.png"></a></p>
+<h5 id="识别方法分类："><a href="#识别方法分类：" class="headerlink" title="识别方法分类："></a>识别方法分类：</h5><ul>
+<li>产生式模型<br>  假设不同类别的样本满足不同的概率分布，根据样本属于不同类别的概率识别样本。（贝叶斯分类器，GMM，ＨＭＭ，…）</li>
+<li><p>鉴别模型：<br>  利用判别函数对特征空间进行划分，不同区域对应不同的类别。（线性分类器，神经网络分类器，SVM）</p>
+<a id="more"></a>
+<h3 id="各种概率及其关系"><a href="#各种概率及其关系" class="headerlink" title="各种概率及其关系"></a>各种概率及其关系</h3><p>  先验概率：　P(Wi)<br>  后验概率：　P(Wi|X)<br>  类条件概率：P(X｜Wi)<br>  贝叶斯公式：P(Wi|X)=P(X｜Wi)P(Wi)/P(X)</p>
+</li>
+</ul>
+<p>判别准则：<br>    i = argmaxP(Wi|X), 则X∈Wi　<br>    P(Wj|X)=P(X｜Wj)P(Wj)/P(X)<br>    Gj(X)=P(X｜Wj)P(Wj)<br>    i = argmaxGj(X) ,则X∈Wi<br>贝叶斯分类器的错误估计：<br>！<a href="/img/bayes_2.png"></a></p>
+<h3 id="朴素贝叶斯进行的文本分类"><a href="#朴素贝叶斯进行的文本分类" class="headerlink" title="朴素贝叶斯进行的文本分类"></a>朴素贝叶斯进行的文本分类</h3><p>伪代码：<br>    计算每个类别中的文档数目<br>    对每篇训练文档：<br>    　　对每个类别：<br>    　　　　如果词条出现在文档中→增加该词条的计数值<br>    　　　　增加所由词条的计数值<br>    　　对每个类别：<br>    　　　　对每个词条<br>    　　　　　　该词条的数目除以总词条数目得到条件概率<br>    返回每个类别的条件概率</p>
+<h3 id="HMM隐马尔科夫模型"><a href="#HMM隐马尔科夫模型" class="headerlink" title="HMM隐马尔科夫模型"></a>HMM隐马尔科夫模型</h3><p>应用领域：识别对象存在着先后次序信息，如语音识别，手势识别，唇读系统等<br>马尔科夫假设：模型在时刻t处于状态wj的概率完全由t-1时刻的状态wi决定，而且与时刻t无关，即：P(w(t)|wT) = P(w(t)|w(t-1))<br>隐Markov模型中，状态是不可见的，在每一个时刻t，模型当前的隐状态输出一个观察值</p>
+<p>隐马尔科夫工作原理：<br>    观察序列的产生过程：HMM的内部状态转移过程同Markov模型相同，在每次状态转移之后，由该状态输出一个观察值，只是状态转移过程无法观察到，只能观察到输出的观察值序列<br>    输出概率： 以离散的HMM为例，隐状态可能输出的观察值集合为{v1, v2, …, vK}，第i个隐状态输出第k个观察值的概率为bik。</p>
+<p>HMM的三个核心问题：<br>    估值问题：已有一个HMM模型，其参数已知，计算这个模型输出特定的观察序列VT的概率；<br>    解码问题：已有一个HMM模型，其参数已知，计算最有可能输出特定的观察序列VT的隐状态转移序列WT<br>    学习问题：已知一个HMM模型的结构，其参数未知，根据一组训练序列对参数进行训练</p>
+<h3 id="似然函数"><a href="#似然函数" class="headerlink" title="似然函数"></a>似然函数</h3><p>概率是给定参数后，预测即将发生的事件的可能性<br>而似然概率与此过程相反，已知发生了某些事，据此来估计参数<br>最大似然概率，就算在已知观测序列的数据的前提下，找到使得似然概率最大的参数值<br>求最大似然函数估计值的步骤为：<br>（1）写出似然函数<br>（2) 对似然函数取对数，并整理<br>（3) 求导数，令导数为0,得到似然方程<br>（4) 解似然方程，得到似然函数参数</p>
+<h3 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h3>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/12/17/贝叶斯定理/" data-id="cj61ts5l1002ji0rekk5p8zy8" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/17/knn/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          knn
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/15/ufldl-softmax/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">ufldl_softmax</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

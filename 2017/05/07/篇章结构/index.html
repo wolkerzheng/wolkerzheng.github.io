@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>词法、句法、语法 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="note from CIPS2016
+词法句法和语法分析词法分析  自然语言处理中的自然语言句子级分析技术，可以大致分为词法分析，句法分析和语义分析。  对于词法分析（Lexical Analysis）包括了分词和词性标注。对于中文分词工作，文本中的句子以字串的形式出现，没有像英语那样明显的空格标记，对于中文，首先需要将输入的字串切分为独立的词语，然后在此基础上进行其他更高级的处理。对于词性标注，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="词法、句法、语法">
+<meta property="og:url" content="http://yoursite.com/2017/05/07/篇章结构/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="note from CIPS2016
+词法句法和语法分析词法分析  自然语言处理中的自然语言句子级分析技术，可以大致分为词法分析，句法分析和语义分析。  对于词法分析（Lexical Analysis）包括了分词和词性标注。对于中文分词工作，文本中的句子以字串的形式出现，没有像英语那样明显的空格标记，对于中文，首先需要将输入的字串切分为独立的词语，然后在此基础上进行其他更高级的处理。对于词性标注，">
+<meta property="og:image" content="http://yoursite.com/img/word_syn_sen_1.png.png">
+<meta property="og:updated_time" content="2017-08-06T07:54:53.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="词法、句法、语法">
+<meta name="twitter:description" content="note from CIPS2016
+词法句法和语法分析词法分析  自然语言处理中的自然语言句子级分析技术，可以大致分为词法分析，句法分析和语义分析。  对于词法分析（Lexical Analysis）包括了分词和词性标注。对于中文分词工作，文本中的句子以字串的形式出现，没有像英语那样明显的空格标记，对于中文，首先需要将输入的字串切分为独立的词语，然后在此基础上进行其他更高级的处理。对于词性标注，">
+<meta name="twitter:image" content="http://yoursite.com/img/word_syn_sen_1.png.png">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-篇章结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/07/篇章结构/" class="article-date">
+  <time datetime="2017-05-07T06:48:47.000Z" itemprop="datePublished">2017-05-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      词法、句法、语法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>note from CIPS2016</p>
+<h2 id="词法句法和语法分析"><a href="#词法句法和语法分析" class="headerlink" title="词法句法和语法分析"></a>词法句法和语法分析</h2><p>词法分析<br>  自然语言处理中的自然语言句子级分析技术，可以大致分为词法分析，句法分析和语义分析。<br>  对于词法分析（Lexical Analysis）包括了分词和词性标注。对于中文分词工作，文本中的句子以字串的形式出现，没有像英语那样明显的空格标记，对于中文，首先需要将输入的字串切分为独立的词语，然后在此基础上进行其他更高级的处理。对于词性标注，给定一个切好词的句子，词性标注的目的是为每一个词赋予一个类别，这个类别成为词性标注（Part-of-Speech tag),例如，名词（noun),动词(verb),形容词（adjective)等。属于相同词性的词，在句法中承当类似的角色。<br>  <a id="more"></a><br>  主要分词方法：<br>    基于词典的最大匹配分词方法：据方向不同,最大匹配方法又可以分为前向和后向最大匹配方法两种。最大匹配方法是最有代表性的一种基于词典和规则的方法,其缺点是严重依赖词典,无法很好地处理分词歧义和未登录词。<br>    全切分路径选择方法:思想是所有可能的切分表示为一个有向无环图,每一个可能的切分词语作为图中的一个节点。有向图中任何一个从起点到终点的路径构成一个句子的词语切分,路径数目随着句子的长度指数增长。这种方法的目标是从指数级搜索空间中求解出一条最优路径。<br>    基于字序列标注的方法:对句子中的每个字进行标记,如四符号标记{B,I, E, S},分别表示当前字是一个字的开始、中间、结尾,以及独立成词。最大熵、SVM、结构化感知器、CRF 等<br>    基于转移的分词方法：这种方法借鉴了基于转移的依存句法分析的思路,从左到右扫描句子中的每一个字,将分词过程转化为一个动作{append, separate}序列,使用柱搜索获得最优动作序列。<br>句法分析（Syntactic parsing)<br>  对输入的文本句子进行分析以得到句子的句法结构的处理过程。语义分析通常以句法分析的输出结果作为输入以便获得更多的指示信息。句法结构的表示形式不同，又可以分为</p>
+<p>  短语结构句法分析(phrase-structure syntactic parsing ),该任务也被称作成分句法分析(constituent syntactic parsing)作用是识别出句子中的短语结构以及短语之间的层次句法关系;</p>
+<p>  依存句法分析(dependency syntactic parsing),作用是识别句子中词汇与词汇之间的相互依存关系;依存句法分析的形式化目标是针对给定输入句子x = w 0 w 1 … w i … w n ,寻找分值(或概率)最大的依存树d ∗ :<br>              d ∗ = argmax d∈Y(x) Score(x, d; θ)<br>  其中,Y(x)表示输入句子x对应的合法依存树集合,即搜索空间;θ 为模型参数,即特征权重向量。</p>
+<p>  深层文法句法分析，即利用深层文法,例如词汇化树邻接文法(Lexicalized Tree Adjoining Grammar,LTAG)、词汇功能文法(Lexical Functional Grammar,LFG)、组合范畴文法(Combinatory Categorial Grammar,CCG)等,对句子进行深层的句法以及语义分。<br>语义分析(semantic parsing)<br>  语义分析的最终目的是理解句子表达的真实语义。但是,语义应该采用什么表示形式，这个问题也没有一个统一的答案。语义角色标注(semantic role labeling)是目前比较成熟的浅层语义分析技术。<br>  -浅层语义分析<br>    语义角色标注(Semantic Role Labeling,简称 SRL)是一种浅层的语义分析。给定一个<br>    句子,SRL 的任务是找出句子中谓词的相应语义角色成分,包括核心语义角色(如施事者、受事者等)和附属语义角色(如地点、时间、方式、原因等)。根据谓词类别的不同,又可以将现有的 SRL 分为动词性谓词 SRL 和名词性谓词 SRL。<br>  -深层语义分析<br>    浅层语义分析主要围绕着句子中的谓词,为每个谓词找到相应的语义角色。给定一个句子,深层的语义分析(有时直接称为语义分析,Semantic Parsing)不再以谓词为中心,而是将整个句子转化为某种形式化表示,例如:谓词逻辑表达式(包括 lambda 演算表达式)、基于依存的组合式语义表达式(dependency-based compositional semantic<br>representation)等。<br><img src="/img/word_syn_sen_1.png.png" alt=""><br>在图 1 中,把词、词性、类别标签等原子特征表示为向量,然后利用多层网络进行特征提取。深度学习在特征表示方面有如下优点:1)只需要原子特征。这些原子特征以前是通过人工的自由组合形成最终的一元特征、二元特征、三元特征、四元特征甚至更多元的组合。这种人工组合最后取得较好的效果,但是事实上我们不知道怎么组合能形成最佳的特征集合。深度学习将所有的原子特征向量化之后,直接采用向量乘法以及非线性等各种运算从理论上能实现任意元的特征组合。 2)能使用更多的原子特征。比如基于图的模型中,在建立弧时,不仅仅使用左边第一个词、右边第一个词等原子特征,还可以使用左边整个词序列、右边整个词序列的特征。研究人员把这种基于深度学习的特征表示方法分别应用在基于图的句法分析模型和基于转移的句法分析模型上,实验结果表明深度学习方法开始在句法中发挥作用。</p>
+<h2 id="篇章级语义分析"><a href="#篇章级语义分析" class="headerlink" title="篇章级语义分析"></a>篇章级语义分析</h2><p>  篇章是指由一些裂连续的子句、句子或语段构成的语言整体单位，在一个篇章中，子句、句子或语段间具有一定的层次结构和语义关系，篇章结构分析旨在分析出其中的层次结构和语义关系。具体来说,给定一段文本,其任务是自动识别出该文本中的所有篇章结构,其中每个篇章结构由连接词,两个相应的论元,以及篇章关系类别构成。篇章结构可进一步分为显式和隐式,显式篇章关系指连接词存在于文本中,而隐式篇章关系指连接词不存在于文本中,但可以根据上下文语境推导出合适的连接词。对于显式篇章关系类别,连接词为判断篇章关系类别提供了重要依据,关系识别准确率较高;但对于隐式篇章关系,由于连接词未知,系类别判定较为困难,也是篇章分析中的一个重要研究内容和难点。</p>
+<p>目前主流的语义分析方法也是基于统计学的，该方法以信息论和数理统计为理论基础，以大规模语料库为驱动，通过机器学习技术自动获取语义只是。<br>  语义消歧方法大致有：</p>
+<pre><code>- 基于词典的语义消歧
+  给定某个待消解词及其上下文,该工作的思想是计算语义词典中各个词义的定义与上下文之间的覆盖度,选择覆盖度最大的作为待消解词在其上下文下的正确词义。但由于词典中词义的定义通常比较简洁,这使得与待消解词的上下文得到的覆盖度为0,造成消歧性能不高。
+- 有监督语义消歧
+  有监督的消歧方法使用词义标注语料来建立消歧模型,研究的重点在于特征的表示。上下文特征可以归纳为三个类型:
+    (1)词汇特征通常指待消解词上下窗口内出现的词及其词性;
+    (2)句法特征利用待消解词在上下文中的句法关系特征,如动-宾关系、是否带主/宾语、主/宾语组块类型、主/宾语中心词等;
+    (3)语义特征在句法关系的基础上添加了语义类信息,如主/宾语中心词的语义类,甚至还可以是语义角色标注类信息。
+深度学习算法自动的提取分类需要的低层次或者高层次特征,避免了很多特征工程方面的工作量
+- 无监督和半监督语义消歧
+    半监督或无监督方法仅需要少量或不需要人工标注语料。
+</code></pre><p>句子级的深层语义分析<br>  1)基于知识库的语义分析<br>  该类型的语义分析利用的资源只有知识库(如 DBpedia、Freebase、Yoga 等),而没有人工标注的语义分析语料。知识库中通过三元组等形式记录了一系列的事实。对某个给定的句子,语义分析通过某种转换技术,将句子分析为一系列知识库中已定义的元组,并构成一个实体关系图。<br>  2)有监督语义分析<br>  有监督的语义分析需要人工标注的语义分析语料支持。在人工标注的语义分析语料中,为每个自然语言句子人工标注了其语义表达式。常见的有监督语义分析方法包括采用同步上下文无关文法(Synchronous Context-Free Grammar,简称 SCFG)和 CCG 文法(Combinatory Categorical Grammar)<br>  3)半监督或无监督语义分析<br>  无监督的语义分析方法不需要利用人工标注的语义分析语料,仅利用知识库(或数据库)中的实体名/关系名等,也不利用知识库中的记录的事实。无监督的语义分析方法虽然不使用人工标注的语料,但通常会采用 EM 算法,在每轮算法迭代中,对句子进行语义分析,并且选择置信度高的句子及其语义分析结果作为自训练数据集。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/07/篇章结构/" data-id="cj61ts5kz002fi0rem55o2zbx" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/05/20/end2end-relation-extractio-lstm/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/30/句子相似度计算/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">句子相似度计算</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

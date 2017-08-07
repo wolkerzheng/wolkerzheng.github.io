@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>mlcourse-5 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Artificial Neural NetworksPerceptron:感知机">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mlcourse-5">
+<meta property="og:url" content="http://yoursite.com/2017/03/20/mlcourse-5/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="Artificial Neural NetworksPerceptron:感知机">
+<meta property="og:image" content="http://yoursite.com/img/mlcourse-5_1.png">
+<meta property="og:image" content="http://yoursite.com/img/mlcourse-5_2.png">
+<meta property="og:updated_time" content="2017-08-06T07:54:52.946Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mlcourse-5">
+<meta name="twitter:description" content="Artificial Neural NetworksPerceptron:感知机">
+<meta name="twitter:image" content="http://yoursite.com/img/mlcourse-5_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mlcourse-5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/03/20/mlcourse-5/" class="article-date">
+  <time datetime="2017-03-20T06:55:51.000Z" itemprop="datePublished">2017-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mlcourse-5
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Artificial-Neural-Networks"><a href="#Artificial-Neural-Networks" class="headerlink" title="Artificial Neural Networks"></a>Artificial Neural Networks</h2><h3 id="Perceptron-感知机"><a href="#Perceptron-感知机" class="headerlink" title="Perceptron:感知机"></a>Perceptron:感知机</h3><p><img src="/img/mlcourse-5_1.png" alt=""><br><a id="more"></a><br>输入为实例的特征向量,输出为实例的类别,取+1和-1;<br>感知机对应于输入空间中将实例划分为正负两类的分离超平面,属于判别模型<br>导入基于误分类的损失函数<br>利用梯度下降法对损失函数进行极小化.<br>输入空间到输出空间的函数：<br>f(x) = sign(w*x+b)<br>模型参数：w，x,内积，权值向量，偏置<br>符号函数：sign(x) = +1 ,if x&gt;= 0<br>        sign(x) = -1 ,if x&lt;0</p>
+<p>训练规则：<br>Wi &lt;——  Wi + ΔWi<br>ΔWi = η(t-o)Xi<br>t为目标值，o为感知机输出之，η为学习率<br>训练线性单元的梯度下降算法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">GRADIENT-DESCENT(training_examples, η )</div><div class="line">training_examples 中每一训练样例形式为序偶&lt;x,t&gt;,其中 x 式输入向量,t 是目标输出值, η 是学习速率(例如 0.05)</div><div class="line">初始化每个 wi 为某个小的随机值</div><div class="line">遇到终止条件之前,做以下操作:</div><div class="line">    初始化每个Δwi 为 0</div><div class="line">    对于训练样例 training_examples 中的每个&lt;x,t&gt;,做:</div><div class="line">          把实例 x 输入到此单元,计算输出 o</div><div class="line">          对于线性单元的每个权 wi,做</div><div class="line">                Δwi←Δwi+ η (t-o)xi</div><div class="line">    对于线性单元的每个权 wi,做</div><div class="line">          wi←wi+Δwis</div></pre></td></tr></table></figure>
+<p>感知机想要成功的分类，需要要求<br>训练数据线性可分<br>学习率足够小<br>线性单元的训练规则是梯度下降：<br>    收敛于最小的误差平方<br>    …</p>
+<p>随机梯度下降：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Incremental (Stochastic) Gradient Descent</div><div class="line">Batch mode Gradient Descent:</div><div class="line">Do until satisied</div><div class="line">1. Compute the gradient ▽E_D [w]</div><div class="line">2. w &lt;——  w - η▽E_D [w]</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Incremental mode Gradient Descent:</div></pre></td></tr></table></figure>
+<h3 id="Multilayer-Networks-of-Sigmoid-Units：Sigmoid多层神经网络"><a href="#Multilayer-Networks-of-Sigmoid-Units：Sigmoid多层神经网络" class="headerlink" title="Multilayer Networks of Sigmoid Units：Sigmoid多层神经网络"></a>Multilayer Networks of Sigmoid Units：Sigmoid多层神经网络</h3><p><img src="/img/mlcourse-5_2.png" alt=""></p>
+<p>误差反向传播算法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">BACPROPAGATION(training_examples, η ,n in , n out ,n hidden )</div><div class="line">        training_examples中每一训练样例形式为序偶&lt;x,t&gt;,其中x式输入向量,t是目标输出值, η 是学习速率(例如 0.05)。n_in 是网络输入的数量,n_hidden</div><div class="line">        是隐藏层单元数,n_out 是输出单元数。从单元 i 到单元 j 的输入表示为 xji,单元 i 到单元 j 的权值表示为 wji。</div><div class="line">  •创建具有n in 个输入,n hidden 个隐藏单元,n out 个输出单元的网络</div><div class="line">  •初始化所有的网络权值为小的随机值(例如-0.05 和 0.05 之间的数)</div><div class="line">  •在遇到终止条件前:</div><div class="line">      •对于训练样例 training_examples 中的每个 &lt; x , t &gt; :</div><div class="line">      把输入沿网络前向传播ss</div><div class="line">          1. 把实例x输入网络,并计算网络中每个单元u的输出o_u使误差沿网络反向传播</div><div class="line">          2. 对于网络的每个输出单元k,计算它的误差项δ_k</div><div class="line">              δ_k ←o_k (1-o_k )(t_k -o_k )</div><div class="line">          3. 对于网络的每个隐藏单元h,计算它的误差项δ_h</div><div class="line">              δ_h← o_h ( 1 − o_h )*sum&#123;w_kh * δ_k&#125;</div><div class="line">          4. 更新每个网络权值 wji</div><div class="line">              wji←wji+Δwji</div><div class="line">              其中</div><div class="line">              Δwji= η * δ_j * x_ji</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/03/20/mlcourse-5/" data-id="cj61ts5jm000yi0rekxrkg7oe" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/23/tensorflow-note5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          tensorflow note5
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/03/20/随机梯度下降/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">随机梯度下降</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

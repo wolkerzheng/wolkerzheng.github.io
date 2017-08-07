@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>tensorflow学习笔记 | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="综述Tensorflow:
+
+使用图(graph)来表示计算
+在被称之为会话(session)的上下文(context)中执行图
+使用tensor表示数据
+通过变量(variable)维护状态
+使用feed和fetch可以为任意的操作(arbitrary operation)赋值或者从其中获取数据">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tensorflow学习笔记">
+<meta property="og:url" content="http://yoursite.com/2017/02/21/tensorflow学习笔记/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="综述Tensorflow:
+
+使用图(graph)来表示计算
+在被称之为会话(session)的上下文(context)中执行图
+使用tensor表示数据
+通过变量(variable)维护状态
+使用feed和fetch可以为任意的操作(arbitrary operation)赋值或者从其中获取数据">
+<meta property="og:updated_time" content="2017-08-06T07:54:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="tensorflow学习笔记">
+<meta name="twitter:description" content="综述Tensorflow:
+
+使用图(graph)来表示计算
+在被称之为会话(session)的上下文(context)中执行图
+使用tensor表示数据
+通过变量(variable)维护状态
+使用feed和fetch可以为任意的操作(arbitrary operation)赋值或者从其中获取数据">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tensorflow学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/21/tensorflow学习笔记/" class="article-date">
+  <time datetime="2017-02-21T11:51:22.000Z" itemprop="datePublished">2017-02-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      tensorflow学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><p>Tensorflow:</p>
+<ul>
+<li>使用图(graph)来表示计算</li>
+<li>在被称之为会话(session)的上下文(context)中执行图</li>
+<li>使用tensor表示数据</li>
+<li>通过变量(variable)维护状态</li>
+<li>使用feed和fetch可以为任意的操作(arbitrary operation)赋值或者从其中获取数据<a id="more"></a>
+Tensorflow是一个编程系统,使用图来表示计算任务,图中的节点op(operation)的简写.<br>一个op获得0个或多个tensor.执行计算,产生0个或者多个Tensor.<br>每个Tensor是一个类型化的多维数组.<br>一个Tensorflow图描述了计算的过程,为了进行计算,图必须在会话里被启动,会话将图的op分发到诸如CPU或ＧＰＵ之类的设备上，同时提供执行后，将产生的tensor返回，（python）是一个numpy ndarray对象．<br>计算图:<br>Tensorflow程序通常被组织成一个构建阶段和一个执行阶段,在构建阶段中,op的执行步骤被描述成一个图.在执行阶段,使用会话执行执行图中的op.eg,通常在构建阶段创建一个图来表示和训练神经网络,然后在执行阶段反复执行图中的训练op.<br>构建图:<br>构建图的第一步,是创建源op(source op),源op不需要任何输入,例如常量(constant),源op的输出被传递给其他op做运算.<br>Python库中,op构造器的返回值代表被构造出来的op输出.这些返回值可以传递给其他op构造器作为输入.<br>TensorFlow Python库有一个默认图(default graph),op构造器可以为其增加节点.<br>在一个会话中启动图<br>构造阶段完成后,才能启动图.启动图的第一步是创建一个Session对象,如果无任何创建参数,会话构造器将启动默认图.<br>Tensor<br>TensorFlow 程序使用 tensor 数据结构来代表所有的数据, 计算图中, 操作间传递的数据都tensor. TensorFlow tensor 可以看作是一个 n 维的数组或列表. 一个 tensor 包含一个静态类型 rank, 和 一个 shape.<br>Fetch<br>为了取回操作的输出内容, 可以在使用 Session 对象的 run() 调用 执行图时, 传入一些 tensor, 这些 tensor 会取回结果.<br>Feed<br>该机制 可以临时替代图中的任意操作中的 tensor 可以对图中任何操作提交补丁, 直接插入一个tensor.</li>
+</ul>
+<p>constant</p>
+<p>tf.constant(value, dtype=None, shape=None,<br>name=’Const’, verify_shape=False)</p>
+<p>tf.zeros(shape, dtype=tf.float32, name=None) 类似与numpy.zeros()<br>creates a tensor of shape and all elements will be zeros (when ran in session)<br>eg:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tf.zeros([2, 3], tf.int32) ==&gt; [[0, 0, 0], [0, 0, 0]]</div></pre></td></tr></table></figure></p>
+<p>tf.zeros_like(input_tensor, dtype=None, name=None, optimize=True)<br>creates a tensor of shape and type (unless type is specified) as the input_tensor but all elements are zeros.<br>eg:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">input_tensor is [0, 1], [2, 3], [4, 5]]</div><div class="line">tf.zeros_like(input_tensor) ==&gt; [[0, 0], [0, 0], [0, 0]]</div></pre></td></tr></table></figure></p>
+<p>tf.fill(dims, value, name=None)<br>creates a tensor filled with a scalar value.<br>eg:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tf.fill([2, 3], 8) ==&gt; [[8, 8, 8], [8, 8, 8]]</div></pre></td></tr></table></figure></p>
+<p>tf.linspace(start, stop, num, name=None) # slightly different from np.linspace<br>tf.range(start, limit=None, delta=1, dtype=None, name=’range’)<br>eg:<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">tf.linspace(10.0, 13.0, 4) ==&gt; [10.0 11.0 12.0 13.0]</div><div class="line">tf.range(3, limit=18, delta=3) ==&gt; [3, 6, 9, 12, 15]</div><div class="line">	limit = 5</div><div class="line">tf.range(limit) ==&gt; [0, 1, 2, 3, 4] Tensor objects are not iterable</div><div class="line">for _ in tf.range(4): # TypeError</div></pre></td></tr></table></figure></p>
+<p>TensorFlow takes Python natives types: boolean, numeric (int, float), strings</p>
+<p>variables:</p>
+<pre><code># create variable a with scalar value
+a = tf.Variable(2, name=&quot;scalar&quot;)
+# create variable b as a vector
+b = tf.Variable([2, 3], name=&quot;vector&quot;)
+# create variable c as a 2x2 matrix
+c = tf.Variable([[0, 1], [2, 3]], name=&quot;matrix&quot;)
+# create variable W as 784 x 10 tensor, filled with zeros
+W = tf.Variable(tf.zeros([784,10]))
+</code></pre><p>Each session maintains its own copy of variable</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/02/21/tensorflow学习笔记/" data-id="cj61ts5jx001gi0reuanqd39t" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/02/PageRank基本介绍/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          PageRank简单介绍
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/01/10/pythonnote/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">python学习笔记</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

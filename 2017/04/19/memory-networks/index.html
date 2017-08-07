@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>memory networks | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http://blog.csdn.net/u011274209/article/details/53384232
+原理对于很多神经网络模型，缺乏了一个长时记忆的组件方便读取和写入。作为RNN，LSTM和其变种GRU使用了一定的记忆机制。在Memory Networks的作者看来，这些记忆都太小了，因为把状态（state，也就是cell的输出）及其权重全部都嵌入到一个低维空间，把这些知识压缩成一个稠">
+<meta property="og:type" content="article">
+<meta property="og:title" content="memory networks">
+<meta property="og:url" content="http://yoursite.com/2017/04/19/memory-networks/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="http://blog.csdn.net/u011274209/article/details/53384232
+原理对于很多神经网络模型，缺乏了一个长时记忆的组件方便读取和写入。作为RNN，LSTM和其变种GRU使用了一定的记忆机制。在Memory Networks的作者看来，这些记忆都太小了，因为把状态（state，也就是cell的输出）及其权重全部都嵌入到一个低维空间，把这些知识压缩成一个稠">
+<meta property="og:image" content="http://yoursite.com/img/memory_networks_1.png">
+<meta property="og:image" content="http://yoursite.com/img/memory_networks_2.png">
+<meta property="og:image" content="http://yoursite.com/img/memory_networks_3.png">
+<meta property="og:updated_time" content="2017-08-06T07:54:52.940Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="memory networks">
+<meta name="twitter:description" content="http://blog.csdn.net/u011274209/article/details/53384232
+原理对于很多神经网络模型，缺乏了一个长时记忆的组件方便读取和写入。作为RNN，LSTM和其变种GRU使用了一定的记忆机制。在Memory Networks的作者看来，这些记忆都太小了，因为把状态（state，也就是cell的输出）及其权重全部都嵌入到一个低维空间，把这些知识压缩成一个稠">
+<meta name="twitter:image" content="http://yoursite.com/img/memory_networks_1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-memory-networks" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/19/memory-networks/" class="article-date">
+  <time datetime="2017-04-19T02:42:58.000Z" itemprop="datePublished">2017-04-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      memory networks
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://blog.csdn.net/u011274209/article/details/53384232" target="_blank" rel="external">http://blog.csdn.net/u011274209/article/details/53384232</a></p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>对于很多神经网络模型，缺乏了一个长时记忆的组件方便读取和写入。作为RNN，LSTM和其变种GRU使用了一定的记忆机制。在Memory Networks的作者看来，这些记忆都太小了，因为把状态（state，也就是cell的输出）及其权重全部都嵌入到一个低维空间，把这些知识压缩成一个稠密的向量，丢失了不少信息。<br><a id="more"></a><br>对于memory Networks主要是增加了一个memory m模块。m是一个对象的数组（an array of objects，for example an array of vectors or an array of strings）,其实也是加了很多插槽（slot)。记忆一个事实（一般是对话组里的一句话），就是把它插到记忆（数组）里。<br> 一个记忆网络（memory networks，简称为MemNN），包括了上述的记忆m，还包括以下4个组件I、G、O、R：<br> 组件   名称                       描述<br> I     input              convert the incoming input to the internal feature representation<br> G     generalization     updates old memories given the new input.<br> O     output             produces a new output in the feature representation space given the new input and the current memory state<br> R     response           converts the output into the response format desired</p>
+<p>I：用于将输入转化为网络里内在的向量。作者使用了简单的向量空间模型，维度为3*lenW+3（熟悉VSM会问为什么不是lenW，下面会说具体）。<br>G：更新记忆。在作者的具体实现里，只是简单地插入记忆数组里。作者考虑了几种新的情况，虽然没有实现，包括了记忆的忘记，记忆的重新组织。<br>O：从记忆里结合输入，把合适的记忆抽取出来，返回一个向量。<br>R：将该向量转化回所需的格式，比如文字或者answer。对于R来说，最简单的是，直接返回o的第一个支撑记忆，也就是一句话。当然作者，打算弄复杂点，返回一个词汇w。<br><img src="/img/memory_networks_1.png" alt=""><br>所有组件都是神经网络的话，叫做记忆神经网络（MemNNs，多了个s）。<br><img src="/img/memory_networks_2.png" alt=""><br>例子：<br><img src="/img/memory_networks_3.png" alt=""><br>I：I输入的是一句话，简单地将I转换为一个频率的向量空间模型。<br>G：也是如上，简单地把读到的对话组里的每一句话的向量空间模型，插到记忆的list里，这里默认记忆插槽比对话组句子还多。<br>O：O干的事，就是输入一个问题x，将最合适的k个支撑记忆（the supporting memories，在下文的数据集里会举出例子），也就是top-k。做法就是把记忆数组遍历，挑出最大的值。最后，O返回一个长度为k的数组。<br>对于top1有o1=O1(x,m)=argmaxsO(x,mi)<br>对于top2有o2=O2(x,m)=argmaxsO([x,mo1],mi)<br>R：为了返回一个词汇w，设置公式r=argmaxw∈WsR([x,mo1,mo2],w)。这里对所有的词汇进行循环遍历，挑出最适合答案（分数最高）的结果。在论文里，词汇被转化为同一空间里的向量空间模型的向量。如“memory”=[0,0,0,0,1,0,0,0]，“network”=[1,0,0,0,0,0,0,0]，则句子“memory network”=[1,0,0,0,1,0,0,0]。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/19/memory-networks/" data-id="cj61ts5jf000oi0re65vvtjyb" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/30/句子相似度计算/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          句子相似度计算
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/18/keras-note/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">keras_note</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

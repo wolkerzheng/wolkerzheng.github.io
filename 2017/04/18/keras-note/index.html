@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>keras_note | 郑桂东的学习地</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="记录一些自己在平时使用Keras时候遇到的一些问题。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="keras_note">
+<meta property="og:url" content="http://yoursite.com/2017/04/18/keras-note/index.html">
+<meta property="og:site_name" content="郑桂东的学习地">
+<meta property="og:description" content="记录一些自己在平时使用Keras时候遇到的一些问题。">
+<meta property="og:updated_time" content="2017-08-06T07:54:52.913Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="keras_note">
+<meta name="twitter:description" content="记录一些自己在平时使用Keras时候遇到的一些问题。">
+  
+    <link rel="alternate" href="/atom.xml" title="郑桂东的学习地" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">郑桂东的学习地</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS-каналы"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Поиск"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-keras-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/18/keras-note/" class="article-date">
+  <time datetime="2017-04-18T11:31:59.000Z" itemprop="datePublished">2017-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      keras_note
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>记录一些自己在平时使用Keras时候遇到的一些问题。<br><a id="more"></a><br>关于定制层和attention层的定制：<br><a href="http://ben.bolte.cc/blog/2016/language.html" target="_blank" rel="external">http://ben.bolte.cc/blog/2016/language.html</a><br>keras blog:<br><a href="https://blog.keras.io/" target="_blank" rel="external">https://blog.keras.io/</a></p>
+<h3 id="Convolution1D-Convolution2D"><a href="#Convolution1D-Convolution2D" class="headerlink" title="Convolution1D,Convolution2D"></a>Convolution1D,Convolution2D</h3><p>Convolution1D一维卷积，主要用于过滤一维输入的相邻元素，官方文档是这样的:<br>  keras.layers.convolutional.Convolution1D(nb_filter, filter_length, init=’glorot_uniform’, activation=None, weights=None, border_mode=’valid’, subsample_length=1, W_regularizer=None, b_regularizer=None, activity_regularizer=None, W_constraint=None, b_constraint=None, bias=True, input_dim=None, input_length=None)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># apply a convolution 1d of length 3 to a sequence with 10 timesteps,</div><div class="line"># with 64 output filters</div><div class="line">model = Sequential()</div><div class="line">model.add(Convolution1D(64, 3, border_mode=&apos;same&apos;, input_shape=(10, 32)))</div><div class="line"># now model.output_shape == (None, 10, 64)</div><div class="line"></div><div class="line"># add a new conv1d on top</div><div class="line">model.add(Convolution1D(32, 3, border_mode=&apos;same&apos;))</div><div class="line"># now model.output_shape == (None, 10, 32)</div></pre></td></tr></table></figure>
+<p>input_shape=(10, 32)简而言之就是10个32维的向量了，nb_filter : 卷积核的数量，也是输出的维度。filter_length : 每个过滤器的长度。<br>首先我们先看第一个卷积层，输出shape很容易理解，因为有64个卷积核，所以输出也就是64，接下来我们看下参数：其实可以这么理解，我们把例子中（10，32）的信号进行1D卷积相当于对其进行卷积核为（filter_length, 32）的2D卷积</p>
+<p>1.Convolution1D主要用于nlp，Convolution2D主要用于cv。实际上，Convolution1D也可以用于cv，Convolution2D也可以用于nlp，只是那个时候不是标准的卷积方式，而是经过一定变形的卷积。</p>
+<p>2.可以看到Convolution1D的卷积只有3这一个参数，Convolution2D却有两个参数3（即长度为3，宽度为3的卷积）。表面上Convolution1D没有给出卷积的大小，Convolution2D给出了。实际上，在Convolution1D中，只要给出了句子中word的长度，宽度就是word中的dimension，宽度自动把整个tensor的宽度包裹住。</p>
+<p>3.Convolution1D的input_shape是长度为10，宽度为32的tensor。Convolution2D的input_shape是3个channel，长度为256，宽度为256的tensor。</p>
+<h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keras.layers.embeddings.Embedding(input_dim,output_dim, init=&apos;uniform&apos;, input_length=None, weights=None, W_regularizer=None, W_constraint=None, mask_zero=False)</div></pre></td></tr></table></figure>
+<p>将正整数转换为固定size的denses向量。比如[[4], [20]] -&gt; [[0.25, 0.1], [0.6, -0.2]]<br>Embedding层只能作为模型的第一层<br>参数：<br>    nput_dim：大或等于0的整数，字典长度，即输入数据最大下标+1<br>    output_dim：大于0的整数，代表全连接嵌入的维度<br>    embeddings_initializer: 嵌入矩阵的初始化方法，为预定义初始化方法名的字符串，或用于初始化权重的初始化器。参考initializers<br>    embeddings_regularizer: 嵌入矩阵的正则项，为Regularizer对象<br>    embeddings_constraint: 嵌入矩阵的约束项，为Constraints对象<br>    mask_zero：布尔值，确定是否将输入中的‘0’看作是应该被忽略的‘填充’（padding）值，该参数在使用递归层处理变长输入时有用。设置为True的话，模型中后续的层必须都支持masking，否则会抛出异常。如果该值为True，则下标0在字典中不可用，input_dim应设置为|vocabulary| + 2。<br>    input_length：当输入序列的长度固定时，该值为其长度。如果要在该层后接Flatten层，然后接Dense层，则必须指定该参数，否则Dense层的输出维度无法自动推断。</p>
+<h3 id="Dense"><a href="#Dense" class="headerlink" title="Dense"></a>Dense</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">keras.layers.core.Dense(output_dim, init=&apos;glorot_uniform&apos;, activation=&apos;linear&apos;, weights=None, W_regularizer=None, b_regularizer=None, activity_regularizer=None, W_constraint=None, b_constraint=None, input_dim=None)</div></pre></td></tr></table></figure>
+<p>Dense(就是隐藏层，dense是稠密的意思)<br>Dense就是常用的全连接层，所实现的运算是output = activation(dot(input, kernel)+bias)。其中activation是逐元素计算的激活函数，kernel是本层的权值矩阵，bias为偏置向量，只有当use_bias=True才会添加。</p>
+<h3 id="TimeDistributed"><a href="#TimeDistributed" class="headerlink" title="TimeDistributed"></a>TimeDistributed</h3><p>  早期版本的Keras中首先引入了TimeDistributedDense，以便对将序列应用与隐藏层。属于包装器Wrapper，把一个层应用到输入的每一个时间步上<br>  例如,考虑一个含有 32 个样本的 batch ,每个样本都是 10 个向量组成的序列,每个向量长为 16 ,则其输入维度为(32,10,16),其不包含batch大小的input_shape为(10,16)<br>  可以使用包装器TimeDistributed包装Dense,以产生针对各个时间步信号的独立全连接<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># as the first layer in a model</div><div class="line">model = Sequential()</div><div class="line">model.add(TimeDistributed(Dense(8), input_shape=(10, 16)))</div><div class="line"># now model.output_shape == (None, 10, 8)</div><div class="line"># subsequent layers: no need for input_shape</div><div class="line">model.add(TimeDistributed(Dense(32)))</div><div class="line"># now model.output_shape == (None, 10, 32)</div></pre></td></tr></table></figure></p>
+<p>  程序的输出数据shape为 (32,10,8)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/04/18/keras-note/" data-id="cj61ts5jb000fi0retq109iq0" class="article-share-link">Поделиться</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/19/memory-networks/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Следующий</strong>
+      <div class="article-nav-title">
+        
+          memory networks
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/17/深度学习和自然语言处理中的attention和memory/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Предыдущий</strong>
+      <div class="article-nav-title">深度学习和自然语言处理中的attention</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Категории</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Метки</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Облако меток</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 11.67px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Архив</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Недавние записи</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/08/06/推荐系统技术的简要了解/">推荐系统技术的简要了解</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/决策树/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/06/dataming/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Zheng GuiDong<br>
+      Создано с помощью <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
