@@ -3,20 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>文本分类 | HIT_CS_ITNLP_ZGD</title>
+  <title>HIT_CS_ITNLP_ZGD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语料库">
+  <meta name="description" content="#decision tree
+###决策树的工作原理在决策树中，每个叶节点都赋予一个类标号。非终结点(non-terminal node)（包括根结点和内部结点）包含属性测试条件，以分开具有不同特性的记录。一旦构造了决策树，对检验记录进行分类就相当容易了，从数的根节点开始，将测试条件用与检验记录，根据检测结果选择适当的分支。沿着该分支或者到达另一个内部结点，使用新的测试条件，或者到达一个叶节点。到">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文本分类">
-<meta property="og:url" content="http://yoursite.com/2017/03/14/文本分类/index.html">
+<meta property="og:title" content="HIT_CS_ITNLP_ZGD">
+<meta property="og:url" content="http://yoursite.com/2017/08/15/决策树/index.html">
 <meta property="og:site_name" content="HIT_CS_ITNLP_ZGD">
-<meta property="og:description" content="语料库">
-<meta property="og:image" content="http://yoursite.com/img/textclass_1.png">
-<meta property="og:updated_time" content="2017-08-06T07:54:53.000Z">
+<meta property="og:description" content="#decision tree
+###决策树的工作原理在决策树中，每个叶节点都赋予一个类标号。非终结点(non-terminal node)（包括根结点和内部结点）包含属性测试条件，以分开具有不同特性的记录。一旦构造了决策树，对检验记录进行分类就相当容易了，从数的根节点开始，将测试条件用与检验记录，根据检测结果选择适当的分支。沿着该分支或者到达另一个内部结点，使用新的测试条件，或者到达一个叶节点。到">
+<meta property="og:updated_time" content="2017-08-15T09:01:18.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文本分类">
-<meta name="twitter:description" content="语料库">
-<meta name="twitter:image" content="http://yoursite.com/img/textclass_1.png">
+<meta name="twitter:title" content="HIT_CS_ITNLP_ZGD">
+<meta name="twitter:description" content="#decision tree
+###决策树的工作原理在决策树中，每个叶节点都赋予一个类标号。非终结点(non-terminal node)（包括根结点和内部结点）包含属性测试条件，以分开具有不同特性的记录。一旦构造了决策树，对检验记录进行分类就相当容易了，从数的根节点开始，将测试条件用与检验记录，根据检测结果选择适当的分支。沿着该分支或者到达另一个内部结点，使用新的测试条件，或者到达一个叶节点。到">
   
     <link rel="alternate" href="/atom.xml" title="HIT_CS_ITNLP_ZGD" type="application/atom+xml">
   
@@ -65,59 +66,50 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-文本分类" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-决策树" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/03/14/文本分类/" class="article-date">
-  <time datetime="2017-03-14T14:02:10.000Z" itemprop="datePublished">2017-03-14</time>
+    <a href="/2017/08/15/决策树/" class="article-date">
+  <time datetime="2017-08-15T11:39:55.360Z" itemprop="datePublished">2017-08-15</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      文本分类
-    </h1>
-  
-
-      </header>
-    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>语料库<br><a id="more"></a></p>
-<h3 id="卡方检验（Chi-square"><a href="#卡方检验（Chi-square" class="headerlink" title="卡方检验（Chi-square)"></a>卡方检验（Chi-square)</h3><p>卡方检验的最基本思想是：通过观察观测值和理论值的偏差来确定理论的正确与否。<br>首先是假设两个变量是确实独立的（‘原假设’）。然后观测实际值（观察值）与理论值（这个理论值是指’如果两者独立’的情况下应有的值）的偏差程度，如果偏差过小，可以认为误差是很自然的样本误差，是测量手段不够精确导致或者偶然产生的，两者确实应该是独立的，此时接受原假设，如果偏差大到一定程度的话，使得这种误差不太可能是偶然发生或者测量不精确导致的，就可以认为两者实际傻姑娘是相关的，即否定原假设，接受备择假设。<br>理论值为E，实际值为X，偏差程度的计算公式为：<br><img src="/img/textclass_1.png" alt=""><br>该式子就是开方检验使用的差值衡量公式。当提供了数个样本的观察值x1，x2，……xi，……xn之后，代入到式中就可以求得开方值，用这个值与事先设定的阈值比较，如果大于阈值（即偏差很大），就认为原假设不成立，反之则认为原假设成立。在文本分类的特征选择阶段，一般使用“词t与类别c不相关”来做原假设，计算出的开方值越大，说明对原假设的偏离越大，我们越倾向于认为原假设的反面情况是正确的。选择的过程为每个词计算它与类别c的开方值，从大到小排个序（此时开方值越大越相关），取前k个就可以。当提供了数个样本的观察值x1，x2，……xi，……xn之后，代入到式中就可以求得开方值，用这个值与事先设定的阈值比较，如果大于阈值（即偏差很大），就认为原假设不成立，反之则认为原假设成立。在文本分类的特征选择阶段，一般使用“词t与类别c不相关”来做原假设，计算出的开方值越大，说明对原假设的偏离越大，我们越倾向于认为原假设的反面情况是正确的。选择的过程为每个词计算它与类别c的开方值，从大到小排个序（此时开方值越大越相关），取前k个就可以。</p>
-<p>卡方检验的缺点是：它只统计文档是否出现词，而不管出现了几次。这会使得他对低频词有所偏袒（因为它夸大了低频词的作用）。</p>
+        <p>#decision tree</p>
+<p>###决策树的工作原理<br>在决策树中，每个叶节点都赋予一个类标号。非终结点(non-terminal node)（包括根结点和内部结点）包含属性测试条件，以分开具有不同特性的记录。<br>一旦构造了决策树，对检验记录进行分类就相当容易了，从数的根节点开始，将测试条件用与检验记录，根据检测结果选择适当的分支。沿着该分支或者到达另一个内部结点，使用新的测试条件，或者到达一个叶节点。到达叶节点后，叶节点的类称号就被赋值给该检验记录<br><a id="more"></a></p>
+<p>###如何建立决策树<br>原则上讲，对于给定的数据集，可以构造的决策树的数目达指数级。为了能够在合理的时间内构造出具有一定准确率率的次最优决策树，开发了很多有效算法，这些算法一般都采用贪心策略，在选择划分数据的属性时，采取一系列局部最优决策来构造决策数，Hunt算法就是这种算法。由此衍生了一些：ID3,C4.5和CART<br><strong>1. Hunt算法</strong><br>在Hunt算法中，通过训练记录相继划分成较纯的子集，以递归方式建立决策树。设Dt是与结点t相关联的训练记录集，而y={y1,y2,…,y3}是类标号，hunt算法递归定义为：<br>    （1）如果Dt中所有记录都属于同一个类yt，则t是叶结点，用yt标记<br>    （2）如果Dt中包含属于多个类的记录，则选择一个属性测试条件（attribute test condition），将记录划分成较小的子集。对于测试条件的每个输出，创建一个子女结点，并根据测试结果将Dt中的记录分布到子女结点中。然后，对与每个子女结点，递归调用该算法。<br>如果属性值的每种组合都在训练数据中出现，且每种组合具有唯一的类标号，则Hunt是有效的。但这种条件过于苛刻，需要附加条件来处理：<br>    （1）算法的第二步所创建的子女结点可能为空，即不存在与这些结点相关联的记录。如果没有一个训练记录包含与这样的结点相关联的属性值组合，这种情形可能发生。这时，该结点成为叶结点，类标号为其父节点上训练记录中的多数类<br>    （2）在第二步中，如果与Dt相关联的所有记录都具有相同的属性值（目标属性除外），则不可能进一步划分这些记录。在这种情况下，该结点为叶节点，其标号为与该结点相关联的训练记录中的多数类。</p>
+<p><strong>2. 决策树的归纳的设计问题</strong><br>     （1）<strong>如何分裂训练记录？</strong>   树增长过程的每个递归步都必须选择一个属性测试条件，将记录划分成较小的子集。为了实现这个，算法必须提供为不同类型的属性指定测试条件的方法，并且提供评估每种测试条件的客观度量<br>    （2）<strong>如何停止分裂过程？</strong>   需要有结束条件，以终止决策树的生长过程。一个可能的决策是分裂结点，直到所有的记录都属于同一个类，或者所有的记录都具有相同的属性值。尽管两个结点结束条件对于结束决策树归纳算法都是充分的，但是可以使用其他的标准提前终止树的生长过程。</p>
+<p>###表示属性测试条件的方法<br>决策数归纳算法必须为不同类型的属性提供表示属性测试条件和对应输出的方法<br><strong>二元属性</strong>     二元属性的测试条件产生两个可能的输出<br><strong>标称属性</strong>     由于标称属性有多个属性值，它的测试条件可以用两种方法表示。<br><strong>序数属性</strong>     序数属性也可产生二元或多路划分，只要不违背序数属性值的有序性，就可对属性值进行分组。<br><strong>连续属性</strong>     对于连续属性来说，测试条件可以是二元输出的比较测试（A<v）或（a>=v）,也可以是具有形如Vi&lt;=A&lt;Vi+1(i=1,…,k)输出的范围查询。</v）或（a></p>
+<p>###选择最佳划分的度量<br>有很多度量可以用来确定划分记录的最佳方法，这些度量用划分前和划分后记录的类分布定义。<br>选择最佳的划分的度量通常是根据划分后子女结点不纯性的程度。不纯的程度越低，类分布就月倾斜。<br>信息熵，基尼指数，分类误差<br>基尼指数：选择小的</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/14/文本分类/" data-id="cj6dind6p001jnkre1qxam8km" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/08/15/决策树/" data-id="cj6dind5s000enkre6dodbk34" class="article-share-link">Partager</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2017/03/15/Linux常用的一些指令/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/08/15/dataming/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
-          Linux常用的一些指令
+          (no title)
         
       </div>
     </a>
   
   
-    <a href="/2017/03/14/tensorflow-learn-note3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/08/15/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Ancien</strong>
-      <div class="article-nav-title">tensorflow note3</div>
+      <div class="article-nav-title">Hello World</div>
     </a>
   
 </nav>
