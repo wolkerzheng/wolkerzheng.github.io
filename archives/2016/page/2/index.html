@@ -3,20 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>文本分类 | HIT_CS_ITNLP_ZGD</title>
+  <title>Archives: 2016 | HIT_CS_ITNLP_ZGD</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="语料库">
-<meta property="og:type" content="article">
-<meta property="og:title" content="文本分类">
-<meta property="og:url" content="http://yoursite.com/2017/03/14/文本分类/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="HIT_CS_ITNLP_ZGD">
+<meta property="og:url" content="http://yoursite.com/archives/2016/page/2/index.html">
 <meta property="og:site_name" content="HIT_CS_ITNLP_ZGD">
-<meta property="og:description" content="语料库">
-<meta property="og:image" content="http://yoursite.com/img/textclass_1.png">
-<meta property="og:updated_time" content="2017-08-06T07:54:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文本分类">
-<meta name="twitter:description" content="语料库">
-<meta name="twitter:image" content="http://yoursite.com/img/textclass_1.png">
+<meta name="twitter:title" content="HIT_CS_ITNLP_ZGD">
   
     <link rel="alternate" href="/atom.xml" title="HIT_CS_ITNLP_ZGD" type="application/atom+xml">
   
@@ -65,66 +59,44 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-文本分类" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/14/文本分类/" class="article-date">
-  <time datetime="2017-03-14T14:02:10.000Z" itemprop="datePublished">2017-03-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      文本分类
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/08/18/hello-world/" class="archive-article-date">
+  <time datetime="2016-08-18T11:31:59.000Z" itemprop="datePublished">Aug 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/08/18/hello-world/">Hello World</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>语料库<br><a id="more"></a></p>
-<h3 id="卡方检验（Chi-square"><a href="#卡方检验（Chi-square" class="headerlink" title="卡方检验（Chi-square)"></a>卡方检验（Chi-square)</h3><p>卡方检验的最基本思想是：通过观察观测值和理论值的偏差来确定理论的正确与否。<br>首先是假设两个变量是确实独立的（‘原假设’）。然后观测实际值（观察值）与理论值（这个理论值是指’如果两者独立’的情况下应有的值）的偏差程度，如果偏差过小，可以认为误差是很自然的样本误差，是测量手段不够精确导致或者偶然产生的，两者确实应该是独立的，此时接受原假设，如果偏差大到一定程度的话，使得这种误差不太可能是偶然发生或者测量不精确导致的，就可以认为两者实际傻姑娘是相关的，即否定原假设，接受备择假设。<br>理论值为E，实际值为X，偏差程度的计算公式为：<br><img src="/img/textclass_1.png" alt=""><br>该式子就是开方检验使用的差值衡量公式。当提供了数个样本的观察值x1，x2，……xi，……xn之后，代入到式中就可以求得开方值，用这个值与事先设定的阈值比较，如果大于阈值（即偏差很大），就认为原假设不成立，反之则认为原假设成立。在文本分类的特征选择阶段，一般使用“词t与类别c不相关”来做原假设，计算出的开方值越大，说明对原假设的偏离越大，我们越倾向于认为原假设的反面情况是正确的。选择的过程为每个词计算它与类别c的开方值，从大到小排个序（此时开方值越大越相关），取前k个就可以。当提供了数个样本的观察值x1，x2，……xi，……xn之后，代入到式中就可以求得开方值，用这个值与事先设定的阈值比较，如果大于阈值（即偏差很大），就认为原假设不成立，反之则认为原假设成立。在文本分类的特征选择阶段，一般使用“词t与类别c不相关”来做原假设，计算出的开方值越大，说明对原假设的偏离越大，我们越倾向于认为原假设的反面情况是正确的。选择的过程为每个词计算它与类别c的开方值，从大到小排个序（此时开方值越大越相关），取前k个就可以。</p>
-<p>卡方检验的缺点是：它只统计文档是否出现词，而不管出现了几次。这会使得他对低频词有所偏袒（因为它夸大了低频词的作用）。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/03/14/文本分类/" data-id="cj6divu8y0026wcreflsuzvob" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/03/15/Linux常用的一些指令/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Linux常用的一些指令
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/03/14/tensorflow-learn-note3/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">tensorflow note3</div>
-    </a>
-  
-</nav>
-
-  
 </article>
+  
+  
+    </div></section>
+  
 
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/archives/2016/">&laquo; __('prev')</a><a class="page-number" href="/archives/2016/">1</a><span class="page-number current">2</span>
+  </nav>
 </section>
         
           <aside id="sidebar">
