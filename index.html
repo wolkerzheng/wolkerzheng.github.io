@@ -50,7 +50,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -60,6 +60,91 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-面试总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/22/面试总结/" class="article-date">
+  <time datetime="2017-08-22T13:50:32.000Z" itemprop="datePublished">2017-08-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/22/面试总结/">面试总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>小泽给的京东面试总结</p>
+<h2 id="算法工程师"><a href="#算法工程师" class="headerlink" title="算法工程师"></a>算法工程师</h2><h3 id="一面："><a href="#一面：" class="headerlink" title="一面："></a>一面：</h3><p>计算机基础：</p>
+<p>进程线程区别<br>主键、外键、索引。<br>线程安全-静态变量、全局变量。同步、加时间锁。<br>还有···<br>机器学习算法：</p>
+<p>自己选几个熟悉的讲：</p>
+<p>gbdt基本原理。<br>在分类问题下，l1正则和l2正则如何求梯度的问题。l1正则的梯度应该是分段求导，对于前一棵树的叶子权值的正负情况分别求导。l2正则直接求导就可以。<br>决策树减枝。<br>word2vec.<br>lr基本原理。<br>问到了lr损失函数是否是凸函数，lr是否一定收敛，面试官给的答案是如果输入的数据中存在脏数据，如共线性，异或，或者随机数据则不一定会收敛。<br>逻辑回归与线性回归的区别。主要在于sigmoid函数映射使得结果可以作为概率值。另外求解方式也不同。记得还有一个重要的地方。<br>现实场景题：</p>
+<p>给定query，可以从中抽取关键字，比如手机砸坚果。如何区分手机和坚果哪个是搜索者想要购买的商品？<br>得不到用户历史数据。<br>回答方案：通过当前热度新闻匹配找到关于该query的新闻，从中抽取核心词。<br>面试官：通过近期购买记录，京东回复记录，从中判断哪个购买热度更大，或者某个商品评论的热度以及情感。<br>算法题：</p>
+<p>有序数组中找最接近的数。 二分查找，记录查找过的数，最后进行比较。</p>
+<h3 id="二面："><a href="#二面：" class="headerlink" title="二面："></a>二面：</h3><p>项目</p>
+<p>编程题</p>
+<p>道动态规划的问题，求数组中乘积最大的连续字数组。给定数组返回数组中乘积最大的字数组的积。</p>
+<p>定义问题。需要用到2个辅助数组mul_max，和mul_min，分别记录以第i个数结尾的连续字数组乘积的最大值和最小值。<br>类似连续数组求和最大的字数组的问题。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/22/面试总结/" data-id="cj6nnhj4h00037kre1eu6m0g3" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-deeplearnng-note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/08/16/deeplearnng-note/" class="article-date">
+  <time datetime="2017-08-16T11:51:38.000Z" itemprop="datePublished">2017-08-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/deeplearnng-note/">deeplearnng_note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/08/16/deeplearnng-note/" data-id="cj6nnhj4k00047krejgbedpj3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-20170815杂" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -92,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/15/20170815杂/" data-id="cj6divu7p0003wcrevb4dgo7n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/15/20170815杂/" data-id="cj6nnhj4m00077kre70r2np0y" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/杂/">杂</a></li></ul>
@@ -135,7 +220,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/08/06/推荐系统技术的简要了解/" data-id="cj6divu8x0024wcrec07yd5cj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/08/06/推荐系统技术的简要了解/" data-id="cj6nnhj5u00287kree3wpoppb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
@@ -179,7 +264,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/20/end2end-relation-extractio-lstm/" data-id="cj6divu7y000jwcrezbnkvxzi" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/20/end2end-relation-extractio-lstm/" data-id="cj6nnhj5p00207kres5w68j4o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deeplearning/">deeplearning</a></li></ul>
@@ -223,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/07/篇章结构/" data-id="cj6divu94002jwcre59hqelrc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/07/篇章结构/" data-id="cj6nnhj5y002g7krel50hlodd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
@@ -267,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/30/句子相似度计算/" data-id="cj6divu8v0022wcregmvup4mb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/30/句子相似度计算/" data-id="cj6nnhj5j001q7krepsnp9e95" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li></ul>
@@ -311,7 +396,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/19/memory-networks/" data-id="cj6divu8a000zwcren02easud" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/19/memory-networks/" data-id="cj6nnhj63002i7krebm4q6g6e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
@@ -354,7 +439,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/18/keras-note/" data-id="cj6divu80000mwcrecwhd7s39" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/18/keras-note/" data-id="cj6nnhj4p000a7kreyt8qqmub" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
@@ -398,96 +483,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/17/深度学习和自然语言处理中的attention和memory/" data-id="cj6divu92002fwcrey3jezl1p" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/17/深度学习和自然语言处理中的attention和memory/" data-id="cj6nnhj5v002a7kre9vdhzfjd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-lstm-for-sentiment-Analysis" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/17/lstm-for-sentiment-Analysis/" class="article-date">
-  <time datetime="2017-04-17T07:14:01.000Z" itemprop="datePublished">2017-04-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/17/lstm-for-sentiment-Analysis/">lstm for sentiment Analysis</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Brief-Introduction"><a href="#Brief-Introduction" class="headerlink" title="Brief Introduction"></a>Brief Introduction</h2><p>RNN机器变形：<br><a href="https://arxiv.org/pdf/1506.00019.pdf">https://arxiv.org/pdf/1506.00019.pdf</a><br>网址：<a href="http://deeplearning.net/tutorial/lstm.html">http://deeplearning.net/tutorial/lstm.html</a><br>使用Theano实现的LSTM框架。<br>数据使用IMDB数据集，数据：<a href="http://ai.stanford.edu/~amaas/data/sentiment/">http://ai.stanford.edu/~amaas/data/sentiment/</a><br>根据训练的模型来预测是positive或negative,本质是二分类任务。<br>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/17/lstm-for-sentiment-Analysis/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/17/lstm-for-sentiment-Analysis/" data-id="cj6divu83000swcregmsctlo7" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-l1-l2正则化" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/04/13/l1-l2正则化/" class="article-date">
-  <time datetime="2017-04-13T01:52:30.000Z" itemprop="datePublished">2017-04-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/13/l1-l2正则化/">l1,l2正则化</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>过拟合与规则化<br>规则化是结构风险最小化策略的实现，是在经验风险上加一个正则化项(regularizer)或惩罚项(penalty term).正则化的作用是让网络偏好学习更小的权值<br>W<em> = argmin sum{L(yi,f(xi;w))}+ λ</em>Ω(w)<br>L(yi,f(xi;w))损失函数衡量模型（分类或者回归）对第i个样本的预测值f(xi;w)和真实的标签yi之前的误差，第二项是对参数w的规则化函数Ω(w)去约束模型尽量的简单。当λ较小时，偏好最小化原本的代价函数，而λ较大时我们偏好更小的权值。<br>
-        
-          <p class="article-more-link">
-            <a href="/2017/04/13/l1-l2正则化/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/13/l1-l2正则化/" data-id="cj6divu84000uwcre3yr385dt" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
 
     </footer>
   </div>
@@ -507,7 +506,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">分类</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
     </div>
@@ -517,7 +516,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">标签</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
     </div>
@@ -527,7 +526,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
       <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/杂/" style="font-size: 11.67px;">杂</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
     </div>
@@ -536,7 +535,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">归档</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
     </div>
@@ -546,9 +545,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/08/22/面试总结/">面试总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/16/deeplearnng-note/">deeplearnng_note</a>
+          </li>
         
           <li>
             <a href="/2017/08/15/20170815杂/">20170815杂</a>
@@ -560,14 +567,6 @@
         
           <li>
             <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/07/篇章结构/">词法、句法、语法</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/30/句子相似度计算/">句子相似度计算</a>
           </li>
         
       </ul>

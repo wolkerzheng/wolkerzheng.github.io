@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/18/keras-note/index.html">
 <meta property="og:site_name" content="HIT_CS_ITNLP_ZGD">
 <meta property="og:description" content="记录一些自己在平时使用Keras时候遇到的一些问题。">
-<meta property="og:updated_time" content="2017-08-06T07:54:52.000Z">
+<meta property="og:updated_time" content="2017-08-16T08:45:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="keras_note">
 <meta name="twitter:description" content="记录一些自己在平时使用Keras时候遇到的一些问题。">
@@ -54,7 +54,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -98,11 +98,14 @@
 <p>Dense(就是隐藏层，dense是稠密的意思)<br>Dense就是常用的全连接层，所实现的运算是output = activation(dot(input, kernel)+bias)。其中activation是逐元素计算的激活函数，kernel是本层的权值矩阵，bias为偏置向量，只有当use_bias=True才会添加。</p>
 <h3 id="TimeDistributed"><a href="#TimeDistributed" class="headerlink" title="TimeDistributed"></a>TimeDistributed</h3><p>  早期版本的Keras中首先引入了TimeDistributedDense，以便对将序列应用与隐藏层。属于包装器Wrapper，把一个层应用到输入的每一个时间步上<br>  例如,考虑一个含有 32 个样本的 batch ,每个样本都是 10 个向量组成的序列,每个向量长为 16 ,则其输入维度为(32,10,16),其不包含batch大小的input_shape为(10,16)<br>  可以使用包装器TimeDistributed包装Dense,以产生针对各个时间步信号的独立全连接<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># as the first layer in a model</div><div class="line">model = Sequential()</div><div class="line">model.add(TimeDistributed(Dense(8), input_shape=(10, 16)))</div><div class="line"># now model.output_shape == (None, 10, 8)</div><div class="line"># subsequent layers: no need for input_shape</div><div class="line">model.add(TimeDistributed(Dense(32)))</div><div class="line"># now model.output_shape == (None, 10, 32)</div></pre></td></tr></table></figure></p>
 <p>  程序的输出数据shape为 (32,10,8)</p>
+<h3 id="RNN-amp-LSTM"><a href="#RNN-amp-LSTM" class="headerlink" title="RNN &amp; LSTM"></a>RNN &amp; LSTM</h3><p>  输入shape：(samples,timesteps,input_dim)的3D张量<br>  输出shape，如果有return_sequences=True)：返回形如（samples，timesteps，output_dim）的3D张量；否则返回的是一个形如（samples,output_dim)的2D张量</p>
+<pre><code>输入是一个三维向量。samples即为数据的条数.Input_dim是数据的表示形式的维度，timestep则为总的时间步数。例如这样一个数据，总共100条句子，每个句子20个词，每个词都由一个80维的向量表示。在RNN中，每一个timestep的输入是一个词（当然这不一定，你也可以调成两个词或者其他），从第一张RNN的图来看，t0时刻是第一个时间步，x0则为代表一条句子中第一个词的80维向量，t1是第二个时间步，x1表示句子中第二个词的80维向量。。。所以，输入数据的大小应当是（100, 20, 80） 
+</code></pre><p>  LSTM能够处理变长序列，在使用keras时候，如果直接使用LSTM作为网络的输入的第一层，需要指定输入大小的，如果使用变长序列，那么需要在LSTM层前加一个Masking层，或者embedding层。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/04/18/keras-note/" data-id="cj6divu80000mwcrecwhd7s39" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/04/18/keras-note/" data-id="cj6nnhj4p000a7kreyt8qqmub" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/deep-learning/">deep learning</a></li></ul>
@@ -139,7 +142,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">分类</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
     </div>
@@ -149,7 +152,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">标签</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
     </div>
@@ -159,7 +162,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
       <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/杂/" style="font-size: 11.67px;">杂</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
     </div>
@@ -168,7 +171,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">归档</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
     </div>
@@ -178,9 +181,17 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/08/22/面试总结/">面试总结</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/16/deeplearnng-note/">deeplearnng_note</a>
+          </li>
         
           <li>
             <a href="/2017/08/15/20170815杂/">20170815杂</a>
@@ -192,14 +203,6 @@
         
           <li>
             <a href="/2017/05/20/end2end-relation-extractio-lstm/">End-to-End Relation Extraction using LSTMs on Sequences and Tree Structures</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/07/篇章结构/">词法、句法、语法</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/30/句子相似度计算/">句子相似度计算</a>
           </li>
         
       </ul>
