@@ -15,7 +15,7 @@
 <meta property="og:description" content="CRF(conditional random field) 条件随机场是在最大熵模型和隐马尔科夫模型的基础上提出的一种无向图学习模型,是一种用于标注和切分有序数据的条件概率模型.这时一种判别式无向图模型.
 产生式模型和判别式模型
 产生(生成)式模型(Generative):构建o和s的联合分布p(s,o),如HMM,BNs,MRF产生式模型:样本→概率密度模型—产生模型→预测判别式模型(Discr">
-<meta property="og:updated_time" content="2017-08-06T07:54:52.000Z">
+<meta property="og:updated_time" content="2017-09-06T02:57:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="crf">
 <meta name="twitter:description" content="CRF(conditional random field) 条件随机场是在最大熵模型和隐马尔科夫模型的基础上提出的一种无向图学习模型,是一种用于标注和切分有序数据的条件概率模型.这时一种判别式无向图模型.
@@ -60,7 +60,7 @@
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -97,11 +97,15 @@
 <p>概率图模型:<br>这是一类用图的形式表示随机变量之间条件依赖关系的概率模型.是概率论与图论的结合.<br>G = (V,E)<br>V:顶点/结点,表示随机变量<br>E:边/弧,表示随机变量间的条件依赖关系</p>
 <p>有向图:也称贝叶斯网络(Bayesian Networks)或信念网络(Belief Networks,BN’s)</p>
 <p>无向图:也称马尔科夫随机场(Markov Random Fiels,MRF’s)或马尔科夫网络(Markov Networks)</p>
+<p>HMM做了两个基本假设：<br> （1）齐次马尔科夫假设，即假设隐藏的马尔科夫链在任意时刻t的状态只依赖与其前一时刻的状态，与其他状态以及观测状态无关，也与时刻t无关。<br>             P(i_t|i_t-1,O_t-1,…,i1,O1) = P(i_t|i_t-1)<br> (2)观测独立性假设，即假设任意时刻的观测只依赖于该时刻的马尔科夫链的假设，与其他观测及状态无关。</p>
+<p>在隐马尔科夫模型中，输出只与状态有关。<br>在一个隐马尔可夫模型中，以x1,x2,…xn表示观测值序列，以y1,y2,…yn表示隐含的状态序列，那么xi只取决于产生它们的状态yi和前后的状态yi-1和yi+1都无关。</p>
+<p>CRF是计算联合概率分布的有效模型。<br>CRF是HMM的一种扩展，保留了一些HMM的一些特性。</p>
+<p>CRF是给定输入随机变量X条件下，输出随机变量Y的条件概率分布模型，其形式为参数化的对数线性模型，条件随机场的最大特点是假设输出变量之间的联合概率分布构成概率无向图的模型，即马尔科夫随机场。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/12/29/crf/" data-id="cj74scwzd002qxkrenmcege7x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/12/29/crf/" data-id="cj78focam0001iore23cowf0i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/机器学习/">机器学习</a></li></ul>
@@ -138,7 +142,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">分類</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/dl/">dl</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/杂/">杂</a></li></ul>
     </div>
@@ -148,7 +152,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">標籤</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deeplearning/">deeplearning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/learn/">learn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/read/">read</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tensorflow-note/">tensorflow_note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/机器学习/">机器学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/杂/">杂</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/自然语言处理/">自然语言处理</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a></li></ul>
     </div>
@@ -158,7 +162,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">標籤雲</h3>
     <div class="widget tagcloud">
       <a href="/tags/deep-learning/" style="font-size: 16.67px;">deep learning</a> <a href="/tags/deeplearning/" style="font-size: 10px;">deeplearning</a> <a href="/tags/learn/" style="font-size: 10px;">learn</a> <a href="/tags/note/" style="font-size: 13.33px;">note</a> <a href="/tags/python/" style="font-size: 13.33px;">python</a> <a href="/tags/read/" style="font-size: 10px;">read</a> <a href="/tags/tensorflow-note/" style="font-size: 15px;">tensorflow_note</a> <a href="/tags/机器学习/" style="font-size: 20px;">机器学习</a> <a href="/tags/杂/" style="font-size: 10px;">杂</a> <a href="/tags/自然语言处理/" style="font-size: 18.33px;">自然语言处理</a> <a href="/tags/读书笔记/" style="font-size: 11.67px;">读书笔记</a>
     </div>
@@ -167,7 +171,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">彙整</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
     </div>
@@ -177,7 +181,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
         
