@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { legacyCategoryGroups } from '../data/site-profile';
+---
+
+<BaseLayout title="分类体系" description="ZGDisZhengguidong 的历史文章新分类与归档映射。">
+  <section class="page-hero">
+    <p class="section-kicker">Categories</p>
+    <h1>新的类别体系与历史文章映射</h1>
+    <p>
+      我把原先的文章内容按你现在的职业定位重新整理成 7 个类别。
+      这样后续新文章、旧内容和个人品牌表达会统一得多。
+    </p>
+  </section>
+
+  <section class="section-block">
+    <div class="featured-grid">
+      {legacyCategoryGroups.map((group) => (
+        <article class="surface-card category-map-card" id={group.slug}>
+          <span class="feature-tag">{group.articles.length} 篇文章</span>
+          <h2>{group.title}</h2>
+          <p>{group.description}</p>
+          <ul class="article-link-list">
+            {group.articles.map((article) => (
+              <li>
+                <a href={article.href}>{article.title}</a>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

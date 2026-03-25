@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="维护指南" description="GitHub Pages 博客维护、保鲜与 Astro + MDX 后续更新建议。">
+  <section class="page-hero">
+    <p class="section-kicker">Guide</p>
+    <h1>怎么把这个博客长期维护下去</h1>
+    <p>
+      现在这套仓库已经切到 Astro + MDX。以后你不需要再去手工维护一堆生成后的静态 HTML，
+      而是可以把页面、文章和资源分开管理，再由 GitHub Pages 负责最终托管。
+    </p>
+  </section>
+
+  <section class="guide-grid">
+    <article class="surface-card">
+      <p class="section-kicker">Weekly</p>
+      <h2>建议的轻量更新节奏</h2>
+      <ul class="checklist">
+        <li>每周补一条短笔记：工具、踩坑、阅读摘录都可以。</li>
+        <li>每月发一篇稍完整的主题文章，沉淀成可复用内容。</li>
+        <li>每季度更新一次首页精选文章和技术栈描述。</li>
+      </ul>
+    </article>
+
+    <article class="surface-card">
+      <p class="section-kicker">Content Buckets</p>
+      <h2>后续内容建议分成三类</h2>
+      <ul class="checklist">
+        <li><strong>深度文章</strong>：NLP、推荐系统、模型理解、工程专题。</li>
+        <li><strong>工作笔记</strong>：框架使用、数据处理、效率工具、实验经验。</li>
+        <li><strong>职业记录</strong>：项目复盘、成长总结、面试与求职经验。</li>
+      </ul>
+    </article>
+
+    <article class="surface-card">
+      <p class="section-kicker">Now Source-First</p>
+      <h2>这套仓库现在怎么分工</h2>
+      <ul class="checklist">
+        <li><code>src/pages/</code> 管站点页面。</li>
+        <li><code>src/content/posts/</code> 管新的 MDX 文章。</li>
+        <li><code>public/</code> 管静态资源和简历 PDF。</li>
+        <li><code>scripts/sync-legacy.mjs</code> 同步旧站文章和静态资源。</li>
+      </ul>
+    </article>
+
+    <article class="surface-card">
+      <p class="section-kicker">Keep It Fresh</p>
+      <h2>让博客看起来一直在更新</h2>
+      <ul class="checklist">
+        <li>首页精选内容至少保留一篇近 3 个月的新文章。</li>
+        <li>新技术短笔记优先发到 MDX 博客，不要等“大而全”的长文。</li>
+        <li>简历页、首页精选、博客列表同步更新，站点就会显得一直是活的。</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="section-kicker">Quick Checklist</p>
+      <h2>你后面每次更新时，最小动作清单</h2>
+    </div>
+
+    <article class="surface-card">
+      <ol class="path-list">
+        <li>把新文章写进 <code>src/content/posts/</code>。</li>
+        <li>如果需要，更新首页精选内容和技术栈描述。</li>
+        <li>如果简历有变化，替换 <code>public/assets/resume/zheng-guidong-resume.pdf</code>。</li>
+        <li>运行构建后提交并推送。</li>
+      </ol>
+      <p class="inline-note">
+        仓库根目录的 <a class="inline-link" href="/MAINTENANCE.md">维护说明</a> 也已经切换到 Astro 源码仓库视角。
+      </p>
+    </article>
+  </section>
+</BaseLayout>

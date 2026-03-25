@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { featuredLinks, legacyCategoryGroups, siteMeta, stackGroups, stats } from '../data/site-profile';
+import { getCollection } from 'astro:content';
+
+const latestPosts = (await getCollection('posts'))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout title="首页" description={`${siteMeta.siteName} - ${siteMeta.profile}`}>
+  <section class="hero-panel">
+    <p class="eyebrow">ZGDisZhengguidong</p>
+    <h1>大模型算法研究、智能体开发、对话系统架构师</h1>
+    <p class="hero-copy">
+      现在这套站点已经迁移到 Astro + MDX，并围绕你当前的职业定位重做了内容结构。
+      旧文章没有丢，新的内容体系也已经整理出来，后续你可以沿着“大模型、智能体、对话系统、工程落地”这几条主线持续更新。
+    </p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/categories/">查看新的分类体系</a>
+      <a class="button button-secondary" href="/blog/">查看 MDX 博客</a>
+      <a class="button button-secondary" href="/resume/">查看简历</a>
+    </div>
+  </section>
+
+  <section class="info-grid">
+    <article class="surface-card">
+      <p class="section-kicker">About</p>
+      <h2>新的站点定位</h2>
+      <p>
+        这个博客现在不再只是过去学习笔记的集合，而是一个围绕
+        “大模型算法研究、智能体开发、对话系统架构”来组织内容的个人技术站。
+        历史文章已经按新的主题体系完成重划分，后续新文章也可以直接沿着这套分类继续写。
+      </p>
+    </article>
+
+    <article class="surface-card stats-card">
+      {stats.map((item) => (
+        <div>
+          <span class="stat-value">{item.value}</span>
+          <span class="stat-label">{item.label}</span>
+        </div>
+      ))}
+    </article>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="section-kicker">New Taxonomy</p>
+      <h2>新的类别体系</h2>
+      <p>我把原先的历史文章重新整理为 7 条更适合你现在职业方向的内容主线。</p>
+    </div>
+
+    <div class="stack-grid">
+      {stackGroups.map((group) => (
+        <article class="surface-card stack-card">
+          <h3>{group.title}</h3>
+          <p>{group.description}</p>
+          <div class="chip-row">
+            {group.chips.map((chip) => (
+              <span class="chip">{chip}</span>
+            ))}
+          </div>
+          <div class="link-row">
+            {group.links.map((link) => (
+              <a href={link.href}>{link.label}</a>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="section-kicker">Category Mapping</p>
+      <h2>原有文章已重新归类</h2>
+      <p>45 篇历史文章已经按新分类完成整理，你可以在分类页里直接看到每个类别下对应的旧文列表。</p>
+    </div>
+
+    <div class="featured-grid">
+      {legacyCategoryGroups.map((group) => (
+        <a class="feature-link surface-card" href={`/categories/#${group.slug}`}>
+          <span class="feature-tag">{group.articles.length} 篇文章</span>
+          <h3>{group.title}</h3>
+          <p>{group.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="section-kicker">MDX Blog</p>
+      <h2>新的源码博客入口</h2>
+      <p>后续新增文章建议优先写进 `src/content/posts/`，让网站逐步从旧静态内容过渡到更现代的内容流。</p>
+    </div>
+
+    <div class="featured-grid">
+      {latestPosts.map((post) => (
+        <a class="feature-link surface-card" href={`/blog/${post.id}/`}>
+          <span class="feature-tag">{post.data.category}</span>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section-block">
+    <div class="section-heading">
+      <p class="section-kicker">Featured Legacy</p>
+      <h2>精选历史内容</h2>
+      <p>保留旧文章链接的同时，把更能代表你技术轨迹的内容提到前面。</p>
+    </div>
+
+    <div class="featured-grid">
+      {featuredLinks.map((item) => (
+        <a class="feature-link surface-card" href={item.href}>
+          <span class="feature-tag">{item.tag}</span>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

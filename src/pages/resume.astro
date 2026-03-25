@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="简历" description="在线简历页，可直接嵌入和下载 PDF 简历。">
+  <section class="page-hero">
+    <p class="section-kicker">Resume</p>
+    <h1>在线简历页</h1>
+    <p>
+      这个页面已经预留好了 PDF 展示位。你后面只需要把简历文件放到
+      <code>/public/assets/resume/zheng-guidong-resume.pdf</code>，
+      这个对外链接就会一直稳定可访问。
+    </p>
+    <div class="action-row">
+      <a class="button button-primary" href="/assets/resume/zheng-guidong-resume.pdf">下载 PDF</a>
+      <a class="button button-secondary" href="/guide/">查看维护方式</a>
+    </div>
+  </section>
+
+  <section class="info-grid">
+    <article class="surface-card">
+      <p class="section-kicker">Why This Page</p>
+      <h2>对外链接更稳定</h2>
+      <p>无论你后面换几版简历，只要文件名保持一致，招聘链接、社交主页和邮件签名都不用改。</p>
+    </article>
+
+    <article class="surface-card">
+      <p class="section-kicker">Update Rule</p>
+      <h2>后续维护方式很简单</h2>
+      <ul class="checklist">
+        <li>导出新的 PDF。</li>
+        <li>覆盖同一路径下的文件。</li>
+        <li>提交并推送到 GitHub Pages。</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="surface-card pdf-viewer">
+    <object data="/assets/resume/zheng-guidong-resume.pdf" type="application/pdf">
+      <div class="resume-placeholder">
+        <h2>PDF 还没放进来</h2>
+        <p class="viewer-note">
+          请把你的简历文件放到 <code>/public/assets/resume/zheng-guidong-resume.pdf</code>。
+          如果浏览器不支持内嵌预览，也可以直接使用上面的下载按钮。
+        </p>
+        <a class="text-link" href="/assets/resume/zheng-guidong-resume.pdf">直接打开 PDF</a>
+      </div>
+    </object>
+  </section>
+</BaseLayout>

@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('posts'))
+  .filter((entry) => !entry.data.draft)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
+---
+
+<BaseLayout title="MDX 博客" description="Astro + MDX 内容集合中的文章列表。">
+  <section class="page-hero">
+    <p class="section-kicker">Blog</p>
+    <h1>新的 MDX 博客</h1>
+    <p>以后建议把新增内容优先写在 `src/content/posts/`，这套结构会比手改静态 HTML 轻松得多。</p>
+  </section>
+
+  <section class="featured-grid">
+    {posts.map((post) => (
+      <a class="feature-link surface-card" href={`/blog/${post.id}/`}>
+        <span class="feature-tag">{post.data.category}</span>
+        <h3>{post.data.title}</h3>
+        <p>{post.data.description}</p>
+      </a>
+    ))}
+  </section>
+</BaseLayout>
