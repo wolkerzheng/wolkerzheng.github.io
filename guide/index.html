@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>维护指南 | Zheng Guidong</title>
+  <meta name="description" content="GitHub Pages 博客维护、保鲜与后续升级建议。">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="content-page">
+  <div class="site-shell">
+    <header class="subpage-header">
+      <a class="subpage-brand" href="/home/">ZG / AI Notes</a>
+      <nav class="subpage-nav" aria-label="Primary">
+        <a href="/home/">首页</a>
+        <a href="/archives/">博客归档</a>
+        <a href="/resume/">简历</a>
+        <a class="is-active" href="/guide/">维护指南</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="section-kicker">Guide</p>
+        <h1>怎么把这个博客长期维护下去</h1>
+        <p>
+          这次我先用“静态优先”的方式，把你现有的 GitHub Pages 站点整理成一个更现代、更清晰的内容入口。
+          如果你希望后续更新轻松、低成本、可持续，建议把维护节奏和栏目结构先固定下来，再决定是否做第二阶段技术升级。
+        </p>
+      </section>
+
+      <section class="guide-grid">
+        <article class="surface-card">
+          <p class="section-kicker">Weekly</p>
+          <h2>建议的轻量更新节奏</h2>
+          <ul class="checklist">
+            <li>每周补一条短笔记：工具、踩坑、阅读摘录都可以。</li>
+            <li>每月发一篇稍完整的主题文章，沉淀成可复用内容。</li>
+            <li>每季度更新一次首页精选文章和技术栈描述。</li>
+          </ul>
+        </article>
+
+        <article class="surface-card">
+          <p class="section-kicker">Content Buckets</p>
+          <h2>后续内容建议分成三类</h2>
+          <ul class="checklist">
+            <li><strong>深度文章</strong>：NLP、推荐系统、模型理解、工程专题。</li>
+            <li><strong>工作笔记</strong>：框架使用、数据处理、效率工具、实验经验。</li>
+            <li><strong>职业记录</strong>：项目复盘、成长总结、面试与求职经验。</li>
+          </ul>
+        </article>
+
+        <article class="surface-card">
+          <p class="section-kicker">Keep It Fresh</p>
+          <h2>让博客看起来一直在更新</h2>
+          <ul class="checklist">
+            <li>首页精选文章至少保留一篇近 3 个月内容。</li>
+            <li>新增一个“最近在做什么”的短内容栏目，哪怕每次只写 100 字。</li>
+            <li>简历页、精选文章、维护页三者一起更新，网站就会显得是活的。</li>
+          </ul>
+        </article>
+
+        <article class="surface-card">
+          <p class="section-kicker">Current Repo</p>
+          <h2>你现在这套仓库的现实情况</h2>
+          <p>
+            当前仓库保存的是已经生成好的静态页面，而不是 Hexo 或其他框架的源码仓库。
+            这意味着它部署很直接，但后续手工改博客会比较笨重，不适合长期高频写作。
+          </p>
+        </article>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="section-kicker">Recommended Phase 2</p>
+          <h2>下一阶段更推荐的技术栈</h2>
+          <p>如果你准备把它持续运营下去，我建议后面单独做一版源码仓库，再自动部署到这个 GitHub Pages 仓库。</p>
+        </div>
+
+        <div class="mini-grid">
+          <article class="surface-card">
+            <h3>内容层</h3>
+            <p>推荐 <strong>Astro + MDX</strong>。静态输出很适合博客，文章用 Markdown/MDX 写，维护成本低，加载也快。</p>
+          </article>
+
+          <article class="surface-card">
+            <h3>工程层</h3>
+            <p>推荐 <strong>TypeScript + Content Collections</strong>。文章元数据、标签、栏目会更清晰，后面做归档和专题页也方便。</p>
+          </article>
+
+          <article class="surface-card">
+            <h3>部署层</h3>
+            <p>推荐 <strong>GitHub Actions</strong> 自动构建并发布到 <code>github.io</code> 仓库，这样以后更新博客就是写文然后 push。</p>
+          </article>
+
+          <article class="surface-card">
+            <h3>运营层</h3>
+            <p>可以加一个 <strong>Now / Notes</strong> 轻笔记栏目，让网站不必等大文章写完才有更新。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="section-kicker">Quick Checklist</p>
+          <h2>你后面每次更新时，最小动作清单</h2>
+        </div>
+
+        <article class="surface-card">
+          <ol class="path-list">
+            <li>更新一篇文章，或者补一条简短近况。</li>
+            <li>如果内容值得展示，把首页“精选内容”替换一条。</li>
+            <li>如果工作经历有变化，同步替换简历 PDF。</li>
+            <li>每隔一段时间检查一下首页的技术栈表述有没有落后。</li>
+          </ol>
+          <p class="inline-note">
+            我也在仓库根目录补了一份
+            <a class="inline-link" href="/MAINTENANCE.md">维护说明</a>，
+            方便你以后直接在代码仓库里查看。
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>先把更新节奏跑起来，再决定要不要做第二阶段的源码化改造。</p>
+    </footer>
+  </div>
+</body>
+</html>

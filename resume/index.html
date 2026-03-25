@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>简历 | Zheng Guidong</title>
+  <meta name="description" content="郑贵东的在线简历页，可直接嵌入和下载 PDF 简历。">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="content-page">
+  <div class="site-shell">
+    <header class="subpage-header">
+      <a class="subpage-brand" href="/home/">ZG / AI Notes</a>
+      <nav class="subpage-nav" aria-label="Primary">
+        <a href="/home/">首页</a>
+        <a href="/archives/">博客归档</a>
+        <a class="is-active" href="/resume/">简历</a>
+        <a href="/guide/">维护指南</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero">
+        <p class="section-kicker">Resume</p>
+        <h1>在线简历页</h1>
+        <p>
+          这个页面已经预留好了 PDF 展示位。你后面只需要把简历文件放到
+          <code>/assets/resume/zheng-guidong-resume.pdf</code>，
+          这个链接就会一直稳定可访问。
+        </p>
+        <div class="action-row">
+          <a class="button button-primary" href="/assets/resume/zheng-guidong-resume.pdf">下载 PDF</a>
+          <a class="button button-secondary" href="/guide/">查看维护方式</a>
+        </div>
+      </section>
+
+      <section class="info-grid">
+        <article class="surface-card">
+          <p class="section-kicker">Why This Page</p>
+          <h2>对外链接更稳定</h2>
+          <p>
+            无论你后面换几版简历，只要文件名保持一致，招聘链接、社交主页、邮件签名和 GitHub 主页里的入口都不用改。
+          </p>
+        </article>
+
+        <article class="surface-card">
+          <p class="section-kicker">Update Rule</p>
+          <h2>后续维护方式很简单</h2>
+          <ul class="checklist">
+            <li>导出新的 PDF。</li>
+            <li>覆盖同一路径下的文件。</li>
+            <li>提交并推送到 GitHub Pages。</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="surface-card pdf-viewer">
+        <object data="/assets/resume/zheng-guidong-resume.pdf" type="application/pdf">
+          <div class="resume-placeholder">
+            <h2>PDF 还没放进来</h2>
+            <p class="viewer-note">
+              请把你的简历文件放到 <code>/assets/resume/zheng-guidong-resume.pdf</code>。
+              如果浏览器不支持内嵌预览，也可以直接使用上面的下载按钮。
+            </p>
+            <a class="text-link" href="/assets/resume/zheng-guidong-resume.pdf">直接打开 PDF</a>
+          </div>
+        </object>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>保持链接不变，比每次重新发简历链接更省心。</p>
+    </footer>
+  </div>
+</body>
+</html>

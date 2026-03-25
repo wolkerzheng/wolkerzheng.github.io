@@ -135,3 +135,32 @@
     $container.removeClass('mobile-nav-on');
   });
 })(jQuery);
+
+(function($){
+  var navItems = [
+    { href: '/resume/', label: 'Resume' },
+    { href: '/guide/', label: 'Guide' }
+  ];
+
+  var appendNavItems = function(selector, className){
+    var $nav = $(selector);
+    if (!$nav.length) return;
+
+    navItems.forEach(function(item){
+      if ($nav.find('[href="' + item.href + '"]').length) return;
+
+      $('<a>', {
+        href: item.href,
+        text: item.label,
+        class: className
+      }).appendTo($nav);
+    });
+  };
+
+  appendNavItems('#main-nav', 'main-nav-link');
+  appendNavItems('#mobile-nav', 'mobile-nav-link');
+
+  $('.search-form input[name="sitesearch"]').val(window.location.origin);
+
+  $('#footer-year').text(new Date().getFullYear());
+})(jQuery);
