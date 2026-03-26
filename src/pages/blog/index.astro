@@ -7,11 +7,11 @@ const posts = (await getCollection('posts'))
   .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 ---
 
-<BaseLayout title="MDX 博客" description="Astro + MDX 内容集合中的文章列表。">
+<BaseLayout title="MDX 博客" description="ZGDisZhengguidong 的 Astro + MDX 文章列表。">
   <section class="page-hero">
     <p class="section-kicker">Blog</p>
     <h1>新的 MDX 博客</h1>
-    <p>以后建议把新增内容优先写在 `src/content/posts/`，这套结构会比手改静态 HTML 轻松得多。</p>
+    <p>后续新增文章建议优先写进 `src/content/posts/`，让博客主题逐步向大模型、智能体和对话系统方向收拢。</p>
   </section>
 
   <section class="featured-grid">

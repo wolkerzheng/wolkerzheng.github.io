@@ -36,6 +36,18 @@ npm run preview
 
 `npm run dev` and `npm run build` both trigger the legacy sync script first, so the old article routes remain available.
 
+## GitHub Pages deployment
+
+The repository now includes a Pages workflow:
+
+`/.github/workflows/deploy.yml`
+
+After pushing to `main`, GitHub Actions will:
+
+1. install dependencies
+2. build the Astro site
+3. deploy `dist/` to GitHub Pages
+
 ## How to add a new blog post
 
 Create a file in `src/content/posts/`, for example:
@@ -62,3 +74,4 @@ Replace:
 
 - Legacy routes such as `/2017/...` and `/archives/` are kept for continuity.
 - New content should move to the MDX workflow instead of editing generated HTML directly.
+- The latest example post now includes `Attention Is All You Need 论文解读`.

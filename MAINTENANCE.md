@@ -17,6 +17,7 @@ This repository is now the Astro + MDX source for the site.
 - `src/layouts/`: shared layouts
 - `public/`: static assets
 - `scripts/sync-legacy.mjs`: copies legacy HTML posts and assets into the served output
+- `.github/workflows/deploy.yml`: GitHub Pages deployment workflow
 
 ## Keep the site fresh
 
