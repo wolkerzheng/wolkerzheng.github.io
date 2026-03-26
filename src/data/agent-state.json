@@ -1,0 +1,29 @@
+{
+  "updatedAt": "2026-03-26T09:20:00+08:00",
+  "states": [
+    {
+      "metric": "Planner Health",
+      "value": "Stable",
+      "tone": "ok",
+      "detail": "任务分解链路正常，长任务拆分成功率持续稳定。"
+    },
+    {
+      "metric": "Tool Router",
+      "value": "Adaptive",
+      "tone": "warn",
+      "detail": "根据上下文动态选择函数与知识源，仍在优化误触发率。"
+    },
+    {
+      "metric": "Context Memory",
+      "value": "Online",
+      "tone": "ok",
+      "detail": "多轮会话记忆层在线，支持摘要回写与策略回放。"
+    },
+    {
+      "metric": "Eval Pipeline",
+      "value": "Evolving",
+      "tone": "accent",
+      "detail": "正在扩展自动评测维度，覆盖事实性、工具利用与稳定性。"
+    }
+  ]
+}
