@@ -1,0 +1,41 @@
+name: Pages Source Guard
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+  guard:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Pages build type
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          response="$(curl -fsSL \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pages")"
+
+          build_type="$(echo "${response}" | jq -r '.build_type // "unknown"')"
+          source_branch="$(echo "${response}" | jq -r '.source.branch // "unknown"')"
+          source_path="$(echo "${response}" | jq -r '.source.path // "/"')"
+
+          echo "Detected Pages build_type: ${build_type}"
+          echo "Detected Pages source: ${source_branch}:${source_path}"
+
+          if [ "${build_type}" != "workflow" ]; then
+            echo "::error::GitHub Pages is not set to GitHub Actions. Current build_type=${build_type}."
+            echo "::error::Fix: Settings -> Pages -> Build and deployment -> Source -> GitHub Actions."
+            exit 1
+          fi
+
+          echo "Pages source is correctly configured to GitHub Actions."

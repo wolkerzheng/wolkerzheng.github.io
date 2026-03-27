@@ -42,11 +42,17 @@ The repository now includes a Pages workflow:
 
 `/.github/workflows/deploy.yml`
 
+And a safety guard:
+
+`/.github/workflows/pages-source-guard.yml`
+
 After pushing to `main`, GitHub Actions will:
 
 1. install dependencies
 2. build the Astro site
 3. deploy `dist/` to GitHub Pages
+
+The guard workflow will fail early if your repo Pages source is not configured to `GitHub Actions`.
 
 ## How to add a new blog post
 
