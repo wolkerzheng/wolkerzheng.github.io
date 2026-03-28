@@ -9,6 +9,7 @@ export const navItems = [
   { href: '/', label: '首页' },
   { href: '/categories/', label: '分类体系' },
   { href: '/blog/', label: 'MDX 博客' },
+  { href: '/agent-state/', label: 'Agent 状态' },
   { href: '/archives/', label: '历史归档' },
   { href: '/resume/', label: '简历' },
   { href: '/guide/', label: '维护指南' }

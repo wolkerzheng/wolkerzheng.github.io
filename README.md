@@ -76,6 +76,24 @@ Replace:
 
 `public/assets/resume/zheng-guidong-resume.pdf`
 
+## Agent State maintenance
+
+Update this file:
+
+`src/data/agent-state-history.json`
+
+Rules:
+
+- Keep newest snapshot at any position; pages sort by `updatedAt` automatically.
+- Use ISO datetime for `updatedAt`, for example `2026-03-28T21:10:00+08:00`.
+- Add 3-6 metrics per snapshot using `metric`, `value`, `tone`, and `detail`.
+- Valid `tone` values are: `ok`, `warn`, `accent`.
+
+Routes:
+
+- Homepage panel reads the latest snapshot.
+- `/agent-state/` shows the full timeline.
+
 ## Notes
 
 - Legacy routes such as `/2017/...` and `/archives/` are kept for continuity.

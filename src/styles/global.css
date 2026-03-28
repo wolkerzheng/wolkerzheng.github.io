@@ -600,6 +600,31 @@ code {
   color: #def0ff;
 }
 
+.timeline-list {
+  display: grid;
+  gap: 16px;
+}
+
+.timeline-card {
+  display: grid;
+  gap: 16px;
+  border-color: rgba(124, 140, 255, 0.42);
+}
+
+.timeline-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.timeline-head h3 {
+  margin: 0;
+  font-size: 1.6rem;
+  line-height: 1.1;
+}
+
 @keyframes pulseGlow {
   0% {
     box-shadow: 0 0 0 0 rgba(124, 140, 255, 0);

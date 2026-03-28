@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import agentStateHistory from '../data/agent-state-history.json';
+
+const snapshots = [...agentStateHistory.snapshots].sort(
+  (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+);
+const latestSnapshot = snapshots[0];
+const totalMetrics = latestSnapshot?.states.length ?? 0;
+---
+
+<BaseLayout title="Agent State Timeline" description="Agent state snapshots and timeline">
+  <article class="article-shell">
+    <section class="page-hero" data-reveal>
+      <p class="eyebrow">AGENT OBSERVABILITY</p>
+      <h1>Agent State Timeline</h1>
+      <p>
+        This page tracks how your agent capabilities evolve over time. Keep
+        <code>src/data/agent-state-history.json</code> updated, and the homepage
+        plus timeline will sync automatically.
+      </p>
+      <div class="signal-badges">
+        <span>{snapshots.length} snapshots</span>
+        <span>{totalMetrics} metrics</span>
+        <span>Latest: {latestSnapshot?.date ?? 'N/A'}</span>
+      </div>
+    </section>
+
+    <section class="section-block" data-reveal>
+      <div class="section-heading">
+        <p class="section-kicker">Historical Snapshots</p>
+        <h2>Reverse chronological timeline</h2>
+        <p>Add one snapshot weekly or biweekly to show clear system progress.</p>
+      </div>
+
+      <div class="timeline-list">
+        {snapshots.map((snapshot) => (
+          <article class="surface-card timeline-card" data-reveal>
+            <div class="timeline-head">
+              <div>
+                <p class="section-kicker">Snapshot</p>
+                <h3>{snapshot.date}</h3>
+              </div>
+              <p class="state-updated">
+                Updated: {new Date(snapshot.updatedAt).toLocaleString('zh-CN', { hour12: false })}
+              </p>
+            </div>
+
+            <div class="agent-state-grid">
+              {snapshot.states.map((item) => (
+                <article class="surface-card agent-state-card">
+                  <div class="agent-state-topline">
+                    <p class="section-kicker">{item.metric}</p>
+                    <span class={`state-pill state-${item.tone}`}>{item.value}</span>
+                  </div>
+                  <p>{item.detail}</p>
+                </article>
+              ))}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </article>
+
+  <script is:inline>
+    (() => {
+      const root = document.documentElement;
+      root.classList.add('js-motion');
+      const nodes = Array.from(document.querySelectorAll('[data-reveal]'));
+      if (!('IntersectionObserver' in window)) {
+        nodes.forEach((node) => node.classList.add('is-visible'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+      nodes.forEach((node) => observer.observe(node));
+    })();
+  </script>
+</BaseLayout>

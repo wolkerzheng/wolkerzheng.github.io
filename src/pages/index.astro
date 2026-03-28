@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { featuredLinks, legacyCategoryGroups, siteMeta, stackGroups, stats } from '../data/site-profile';
-import agentStateSource from '../data/agent-state.json';
+import agentStateHistory from '../data/agent-state-history.json';
 import { getCollection } from 'astro:content';
 
 const latestPosts = (await getCollection('posts'))
@@ -56,8 +56,14 @@ const frontierRoadmap = [
   }
 ];
 
-const agentStatePanel = agentStateSource.states;
-const agentStateUpdatedAt = new Date(agentStateSource.updatedAt).toLocaleString('zh-CN', { hour12: false });
+const agentStateSnapshots = [...agentStateHistory.snapshots].sort(
+  (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+);
+const latestAgentState = agentStateSnapshots[0];
+const agentStatePanel = latestAgentState?.states ?? [];
+const agentStateUpdatedAt = latestAgentState
+  ? new Date(latestAgentState.updatedAt).toLocaleString('zh-CN', { hour12: false })
+  : 'N/A';
 ---
 
 <BaseLayout title="首页" description={`${siteMeta.siteName} - ${siteMeta.profile}`}>
@@ -118,6 +124,7 @@ const agentStateUpdatedAt = new Date(agentStateSource.updatedAt).toLocaleString(
         <h2>在线智能体监控面板</h2>
         <p>用系统状态视角展示你正在推进的 Agent 能力，而不是只展示静态文章目录。</p>
         <p class="state-updated">数据更新时间：{agentStateUpdatedAt}</p>
+        <p><a class="text-link" href="/agent-state/">查看 Agent State 历史时间线</a></p>
       </div>
 
       <div class="agent-state-grid">
