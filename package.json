@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "sync:legacy": "node ./scripts/sync-legacy.mjs public",
+    "sync:legacy": "node ./scripts/sync-legacy.mjs",
     "dev": "npm run sync:legacy && astro dev",
     "build": "npm run sync:legacy && astro build",
     "preview": "npm run sync:legacy && astro preview",

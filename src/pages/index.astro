@@ -1,281 +1,79 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { featuredLinks, legacyCategoryGroups, siteMeta, stackGroups, stats } from '../data/site-profile';
-import agentStateHistory from '../data/agent-state-history.json';
 import { getCollection } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+import { siteConfig } from '../data/site-config';
 
-const latestPosts = (await getCollection('posts'))
-  .filter((entry) => !entry.data.draft)
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 3);
+const posts = (await getCollection('posts'))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime());
 
-const nowTs = Date.now();
-const newPostWindowMs = 14 * 24 * 60 * 60 * 1000;
-
-const realtimeSignals = [
-  {
-    label: 'Now Running',
-    title: 'Agentic Workflow Orchestration',
-    detail: '多工具调用链路、上下文路由和失败恢复策略。'
-  },
-  {
-    label: 'Research Focus',
-    title: 'LLM Planning + Tool Use',
-    detail: '规划-执行-反思闭环、任务分解与函数调用编排。'
-  },
-  {
-    label: 'System Track',
-    title: 'Dialog System Architecture',
-    detail: '记忆层、检索层、推理层与对话策略层的协同。'
-  }
-];
-
-const capabilityMap = [
-  'LLM reasoning and prompting strategy',
-  'Agent tool-calling and runtime design',
-  'Dialogue memory and context architecture',
-  'RAG integration and retrieval evaluation',
-  'Production workflow and observability'
-];
-
-const frontierRoadmap = [
-  {
-    phase: 'Q2',
-    title: 'Agent Control Plane',
-    detail: '构建可观测的 Agent 执行与回放机制。'
-  },
-  {
-    phase: 'Q3',
-    title: 'Multi-Agent Collaboration',
-    detail: '多角色分工、任务仲裁和结果融合策略。'
-  },
-  {
-    phase: 'Q4',
-    title: 'Dialogue-native Productization',
-    detail: '将对话架构与业务流程深度绑定，提升稳定性与可解释性。'
-  }
-];
-
-const agentStateSnapshots = [...agentStateHistory.snapshots].sort(
-  (a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-);
-const latestAgentState = agentStateSnapshots[0];
-const agentStatePanel = latestAgentState?.states ?? [];
-const agentStateUpdatedAt = latestAgentState
-  ? new Date(latestAgentState.updatedAt).toLocaleString('zh-CN', { hour12: false })
-  : 'N/A';
+const featured = posts.filter((item) => item.data.featured).slice(0, 3);
+const latest = posts.slice(0, 6);
+const categoryCount = posts.reduce<Record<string, number>>((acc, item) => {
+  acc[item.data.category] = (acc[item.data.category] ?? 0) + 1;
+  return acc;
+}, {});
+const categoryList = Object.entries(categoryCount).sort((a, b) => b[1] - a[1]);
+const now = Date.now();
+const isNewPost = (ts: number) => now - ts < 21 * 24 * 60 * 60 * 1000;
 ---
 
-<BaseLayout title="首页" description={`${siteMeta.siteName} - ${siteMeta.profile}`}>
-  <div class="home-future">
-    <section class="hero-panel hero-future-panel" data-reveal>
-      <p class="eyebrow">AGENT ERA // FRONTIER LOG</p>
-      <h1>在大模型 Agent 时代，持续输出可落地的前沿技术观察。</h1>
-      <p class="hero-copy">
-        这里不只是博客归档，而是一份持续演进的 AI Engineering Log。
-        重点关注大模型算法、Agent 系统设计、对话架构与工程化落地，让内容既有研究视角，也有真实可复用的实践路径。
-      </p>
-      <div class="signal-badges">
-        <span>LLM Systems</span>
-        <span>Agent Runtime</span>
-        <span>Dialogue Architecture</span>
-      </div>
-      <div class="hero-actions">
-        <a class="button button-primary" href="/blog/">进入前沿博客</a>
-        <a class="button button-secondary" href="/categories/">查看新分类体系</a>
-        <a class="button button-secondary" href="/resume/">查看简历</a>
-      </div>
-    </section>
+<MainLayout title="Home" description={siteConfig.description}>
+  <section class="panel hero">
+    <h1>New Blog Framework for Agent Era</h1>
+    <p>
+      The main site is rebuilt with Astro + MDX and now focuses on LLM systems,
+      agent engineering, and dialogue architecture. The old Hexo site is archived
+      as a standalone folder with a single entry link.
+    </p>
+    <div class="actions">
+      <a class="btn primary" href="/blog/">Read Blog</a>
+      <a class="btn secondary" href="/legacy/">Open Legacy Hexo</a>
+    </div>
+  </section>
 
-    <section class="realtime-grid" data-reveal>
-      {realtimeSignals.map((item) => (
-        <article class="surface-card realtime-card" data-reveal>
-          <p class="section-kicker">{item.label}</p>
-          <h3>{item.title}</h3>
-          <p>{item.detail}</p>
-        </article>
+  <section class="section">
+    <h2>Featured</h2>
+    <div class="grid cols-3">
+      {(featured.length ? featured : latest.slice(0, 3)).map((post) => (
+        <a class="card" href={`/blog/${post.id}/`}>
+          <span class="meta">{post.data.category}</span>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          {isNewPost(post.data.publishDate.getTime()) && <div class="chip-list"><span class="chip">NEW</span></div>}
+        </a>
       ))}
-    </section>
+    </div>
+  </section>
 
-    <section class="info-grid" data-reveal>
-      <article class="surface-card" data-reveal>
-        <p class="section-kicker">Positioning</p>
-        <h2>面向 Agent 时代的技术内容阵地</h2>
-        <p>
-          这个首页正在从“知识笔记目录”升级为“前沿技术控制台”。
-          我们保留历史积累，同时把新内容聚焦到 LLM + Agent + 对话系统架构，
-          让访问者一眼看到你的研究方向、工程能力与技术判断。
-        </p>
-      </article>
-
-      <article class="surface-card stats-card" data-reveal>
-        {stats.map((item) => (
-          <div>
-            <span class="stat-value">{item.value}</span>
-            <span class="stat-label">{item.label}</span>
+  <section class="section">
+    <h2>Latest Posts</h2>
+    <div class="grid cols-2">
+      {latest.map((post) => (
+        <a class="card" href={`/blog/${post.id}/`}>
+          <span class="meta">{post.data.publishDate.toISOString().slice(0, 10)}</span>
+          <h3>{post.data.title}</h3>
+          <p>{post.data.description}</p>
+          <div class="chip-list">
+            {post.data.tags.slice(0, 3).map((tag) => (
+              <span class="chip">{tag}</span>
+            ))}
           </div>
-        ))}
-      </article>
-    </section>
+        </a>
+      ))}
+    </div>
+  </section>
 
-    <section class="section-block" data-reveal>
-      <div class="section-heading">
-        <p class="section-kicker">Agent State Panel</p>
-        <h2>在线智能体监控面板</h2>
-        <p>用系统状态视角展示你正在推进的 Agent 能力，而不是只展示静态文章目录。</p>
-        <p class="state-updated">数据更新时间：{agentStateUpdatedAt}</p>
-        <p><a class="text-link" href="/agent-state/">查看 Agent State 历史时间线</a></p>
-      </div>
-
-      <div class="agent-state-grid">
-        {agentStatePanel.map((item) => (
-          <article class="surface-card agent-state-card" data-reveal>
-            <div class="agent-state-topline">
-              <p class="section-kicker">{item.metric}</p>
-              <span class={`state-pill state-${item.tone}`}>{item.value}</span>
-            </div>
-            <p>{item.detail}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-block" data-reveal>
-      <div class="section-heading">
-        <p class="section-kicker">Capability Map</p>
-        <h2>核心能力地图</h2>
-        <p>把你的技术能力从“会什么”提升为“能解决什么系统问题”。</p>
-      </div>
-
-      <div class="capability-grid">
-        {capabilityMap.map((item) => (
-          <article class="surface-card capability-card" data-reveal>
-            <h3>{item}</h3>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-block" data-reveal>
-      <div class="section-heading">
-        <p class="section-kicker">Roadmap</p>
-        <h2>Agent 研发路线图</h2>
-        <p>首页直接展示你正在推进的方向，让博客具有“持续进化中”的技术氛围。</p>
-      </div>
-
-      <div class="realtime-grid">
-        {frontierRoadmap.map((item) => (
-          <article class="surface-card roadmap-card" data-reveal>
-            <p class="section-kicker">{item.phase}</p>
-            <h3>{item.title}</h3>
-            <p>{item.detail}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-block" data-reveal>
-      <div class="section-heading">
-        <p class="section-kicker">New Taxonomy</p>
-        <h2>新的类别体系</h2>
-        <p>我把原先的历史文章重新整理为 7 条更适合你现在职业方向的内容主线。</p>
-      </div>
-
-      <div class="stack-grid">
-        {stackGroups.map((group) => (
-          <article class="surface-card stack-card" data-reveal>
-            <h3>{group.title}</h3>
-            <p>{group.description}</p>
-            <div class="chip-row">
-              {group.chips.map((chip) => (
-                <span class="chip">{chip}</span>
-              ))}
-            </div>
-            <div class="link-row">
-              {group.links.map((link) => (
-                <a href={link.href}>{link.label}</a>
-              ))}
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-block" data-reveal>
-      <div class="section-heading">
-        <p class="section-kicker">Category Mapping</p>
-        <h2>原有文章已重新归类</h2>
-        <p>45 篇历史文章已经按新分类完成整理，你可以在分类页里直接看到每个类别下对应的旧文列表。</p>
-      </div>
-
-      <div class="featured-grid">
-        {legacyCategoryGroups.map((group) => (
-          <a class="feature-link surface-card" href={`/categories/#${group.slug}`} data-reveal>
-            <span class="feature-tag">{group.articles.length} 篇文章</span>
-            <h3>{group.title}</h3>
-            <p>{group.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-block" data-reveal>
-      <div class="section-heading">
-        <p class="section-kicker">MDX Blog</p>
-        <h2>新的源码博客入口</h2>
-        <p>后续新增文章建议优先写进 `src/content/posts/`，让网站逐步从旧静态内容过渡到更现代的内容流。</p>
-      </div>
-
-      <div class="featured-grid">
-        {latestPosts.map((post) => (
-          <a class="feature-link surface-card" href={`/blog/${post.id}/`} data-reveal>
-            <span class="feature-tag">{post.data.category}</span>
-            {(nowTs - post.data.publishDate.getTime()) <= newPostWindowMs && (
-              <span class="new-pulse-mark">NEW</span>
-            )}
-            <h3>{post.data.title}</h3>
-            <p>{post.data.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-
-    <section class="section-block" data-reveal>
-      <div class="section-heading">
-        <p class="section-kicker">Featured Legacy</p>
-        <h2>精选历史内容</h2>
-        <p>保留旧文章链接的同时，把更能代表你技术轨迹的内容提到前面。</p>
-      </div>
-
-      <div class="featured-grid">
-        {featuredLinks.map((item) => (
-          <a class="feature-link surface-card" href={item.href} data-reveal>
-            <span class="feature-tag">{item.tag}</span>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </a>
-        ))}
-      </div>
-    </section>
-  </div>
-
-  <script is:inline>
-    (() => {
-      const root = document.documentElement;
-      root.classList.add('js-motion');
-      const nodes = Array.from(document.querySelectorAll('[data-reveal]'));
-      if (!('IntersectionObserver' in window)) {
-        nodes.forEach((node) => node.classList.add('is-visible'));
-        return;
-      }
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target);
-        });
-      }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
-      nodes.forEach((node) => observer.observe(node));
-    })();
-  </script>
-</BaseLayout>
+  <section class="section">
+    <h2>Categories</h2>
+    <div class="grid cols-3">
+      {categoryList.map(([name, count]) => (
+        <div class="card">
+          <span class="meta">CATEGORY</span>
+          <h3>{name}</h3>
+          <p>{count} posts</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</MainLayout>

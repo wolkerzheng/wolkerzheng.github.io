@@ -1,28 +1,24 @@
-# wolkerzheng.github.io
+# ZGDisZhengguidong Blog
 
-This repository now uses **Astro + MDX** as the source stack for the site.
+This is the rebuilt main site using **Astro + MDX**.
 
-## What changed
+The original Hexo site is archived in `legacy-hexo/`, and published under `/legacy-hexo/`.
 
-- The homepage, resume page, guide page, and new blog pages are now authored in Astro.
-- New posts should be written in `src/content/posts/` as MDX files.
-- Legacy static HTML posts from the old GitHub Pages site are preserved through `scripts/sync-legacy.mjs`.
-- Resume files live in `public/assets/resume/`.
-
-## Project structure
+## Structure
 
 ```text
-.
-├─ public/                  # static assets served as-is
-├─ scripts/                 # helper scripts
-├─ src/
-│  ├─ content/posts/        # new MDX posts
-│  ├─ data/                 # homepage and navigation data
-│  ├─ layouts/              # shared Astro layouts
-│  ├─ pages/                # routes
-│  └─ styles/               # global styles
-├─ 2016/ 2017/ archives/    # legacy exported site content used by sync script
-└─ package.json
+src/
+  content/posts/          # MDX posts
+  layouts/MainLayout.astro
+  pages/
+    index.astro
+    blog/index.astro
+    blog/[slug].astro
+    about.astro
+    legacy.astro
+  styles/site.css
+legacy-hexo/              # full legacy Hexo content
+scripts/sync-legacy.mjs   # copies legacy site to static/legacy-hexo before build
 ```
 
 ## Commands
@@ -34,68 +30,31 @@ npm run build
 npm run preview
 ```
 
-`npm run dev` and `npm run build` both trigger the legacy sync script first, so the old article routes remain available.
+## Add a new post
 
-## GitHub Pages deployment
-
-The repository now includes a Pages workflow:
-
-`/.github/workflows/deploy.yml`
-
-And a safety guard:
-
-`/.github/workflows/pages-source-guard.yml`
-
-After pushing to `main`, GitHub Actions will:
-
-1. install dependencies
-2. build the Astro site
-3. deploy `dist/` to GitHub Pages
-
-The guard workflow will fail early if your repo Pages source is not configured to `GitHub Actions`.
-
-## How to add a new blog post
-
-Create a file in `src/content/posts/`, for example:
+Create a file in `src/content/posts/`:
 
 ```mdx
 ---
-title: "Your Post Title"
-description: "A short summary."
-publishDate: 2026-03-25
-tags: ["ai", "notes"]
-category: "nlp"
+title: "Post title"
+description: "Short summary"
+publishDate: 2026-03-28
+tags: ["llm", "agent"]
+category: "agent-systems"
+featured: false
+draft: false
 ---
 
-Write your post here.
+Post content...
 ```
 
-## Resume update
+## Legacy links
 
-Replace:
+- Entry page: `/legacy/`
+- Archived site: `/legacy-hexo/`
 
-`public/assets/resume/zheng-guidong-resume.pdf`
+## Maintenance notes
 
-## Agent State maintenance
-
-Update this file:
-
-`src/data/agent-state-history.json`
-
-Rules:
-
-- Keep newest snapshot at any position; pages sort by `updatedAt` automatically.
-- Use ISO datetime for `updatedAt`, for example `2026-03-28T21:10:00+08:00`.
-- Add 3-6 metrics per snapshot using `metric`, `value`, `tone`, and `detail`.
-- Valid `tone` values are: `ok`, `warn`, `accent`.
-
-Routes:
-
-- Homepage panel reads the latest snapshot.
-- `/agent-state/` shows the full timeline.
-
-## Notes
-
-- Legacy routes such as `/2017/...` and `/archives/` are kept for continuity.
-- New content should move to the MDX workflow instead of editing generated HTML directly.
-- The latest example post now includes `Attention Is All You Need 论文解读`.
+- Publish all new content in MDX only.
+- Keep Hexo as historical archive.
+- Run `npm run build` locally before pushing.
