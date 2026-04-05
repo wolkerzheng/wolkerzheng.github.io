@@ -1,10 +1,10 @@
 window.WOLKER_POSTS = [
   {
-    title: "Hardness 工程：为什么下一代智能体系统，竞争点不只是模型，而是“抗复杂度能力”",
-    slug: "hardness-engineering",
+    title: "Harness Engineering：为什么下一代智能体系统，竞争点不只是模型，而是“抗复杂度能力”",
+    slug: "harness-engineering",
     date: "2026-04-05",
     categories: ["AI", "智能体"],
-    summary: "从稳定性、可恢复性、可观测性、边界控制与系统交付视角出发，讨论 Hardness 工程为何会成为 AI 与智能体落地的新主战场。",
+    summary: "从稳定性、可恢复性、可观测性、边界控制与系统交付视角出发，讨论 Harness Engineering 为何会成为 AI 与智能体落地的新主战场。",
     featured: true
   },
   {
