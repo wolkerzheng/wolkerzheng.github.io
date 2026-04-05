@@ -17,8 +17,10 @@ Wolker Lab 站点维护说明
 
 - `index.html`
   站点首页，包含 Hero、文章列表、分类、站点方向等内容
-- `posts/hardness-engineering.html`
-  具体文章页面。后续每篇文章都新增一个独立 html 文件
+- `posts/*.html`
+  具体文章页面。每篇文章一个独立 html 文件，负责文章 SEO、侧边栏、评论区和 Markdown 挂载点
+- `content/posts/*.md`
+  文章正文内容。以后发布新文章，正文主要写在这里
 - `styles/site.css`
   全站样式
 - `scripts/site.js`
@@ -37,7 +39,13 @@ Wolker Lab 站点维护说明
 
 每新增一篇文章，做这 2 步：
 
-第 1 步：在 `posts/` 目录下新增一个 html 文件。
+第 1 步：在 `content/posts/` 下新增一个 Markdown 文件。
+
+例如：
+- `content/posts/agent-memory-design.md`
+- `content/posts/multi-agent-runtime.md`
+
+第 2 步：在 `posts/` 目录下新增一个对应的 html 文章页。
 
 例如：
 - `posts/agent-memory-design.html`
@@ -45,7 +53,7 @@ Wolker Lab 站点维护说明
 
 建议文件名全部使用英文或英文连字符，便于 URL 稳定。
 
-第 2 步：在 `data/posts.js` 里新增一条文章数据。
+第 3 步：在 `data/posts.js` 里新增一条文章数据。
 
 示例：
 
@@ -62,6 +70,7 @@ Wolker Lab 站点维护说明
 
 这里的 `slug` 要和文章文件名对应：
 - `slug: "agent-memory-design"`
+- Markdown 路径：`content/posts/agent-memory-design.md`
 - 文件路径：`posts/agent-memory-design.html`
 
 4. 图文系列怎么发布
@@ -79,15 +88,12 @@ Wolker Lab 站点维护说明
   例如：
   - `assets/series/agent-engineering/cover-01.jpg`
   - `assets/series/agent-engineering/memory-arch.png`
-- 在文章 html 里直接用 `<img>` 引用
+- 在 Markdown 正文里直接用 `![]()` 引用图片
 
 示例：
 
-```html
-<figure class="article-figure">
-  <img src="../assets/series/agent-engineering/memory-arch.png" alt="Agent 记忆架构图">
-  <figcaption>Agent 记忆系统示意图</figcaption>
-</figure>
+```md
+![Agent 记忆架构图](../assets/series/agent-engineering/memory-arch.png)
 ```
 
 一个系列建议保持统一：
@@ -175,11 +181,12 @@ git push origin master
 ---------------
 
 每次发文建议按这个顺序：
-1. 在 `posts/` 新建文章文件
-2. 在 `data/posts.js` 新增列表记录
-3. 如果文章用了配图，把图放到 `assets/` 对应目录
-4. 检查文章里的标题、摘要、分类、日期
-5. 推送到 GitHub
+1. 在 `content/posts/` 新建正文 Markdown
+2. 在 `posts/` 新建对应文章页
+3. 在 `data/posts.js` 新增列表记录
+4. 如果文章用了配图，把图放到 `assets/` 对应目录
+5. 检查文章里的标题、摘要、分类、日期
+6. 推送到 GitHub
 
 10. 后续可继续扩展
 ------------------

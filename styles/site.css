@@ -119,10 +119,16 @@ h3 {
   color: var(--accent);
 }
 
-.hero,
-.article-layout {
+.hero {
   display: grid;
   grid-template-columns: 1.08fr 0.92fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.article-layout {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
   gap: 28px;
   align-items: stretch;
 }
@@ -375,9 +381,21 @@ h1 {
 }
 
 .article-card h1 {
-  max-width: 14ch;
+  max-width: 18ch;
   font-size: clamp(2.3rem, 4vw, 4.3rem);
   margin-bottom: 18px;
+}
+
+.article-card h2 {
+  font-size: 1.5rem;
+  margin-top: 34px;
+  margin-bottom: 12px;
+}
+
+.article-card h3 {
+  font-size: 1.18rem;
+  margin-top: 24px;
+  margin-bottom: 10px;
 }
 
 .article-lead {
@@ -387,10 +405,6 @@ h1 {
 
 .article-card section {
   margin-top: 34px;
-}
-
-.article-card h2 {
-  margin-bottom: 12px;
 }
 
 .article-footer {
@@ -420,6 +434,46 @@ h1 {
 
 .keyword-list li + li {
   margin-top: 8px;
+}
+
+.markdown-article [data-markdown-content] > p,
+.markdown-article [data-markdown-content] > ul,
+.markdown-article [data-markdown-content] > blockquote,
+.markdown-article [data-markdown-content] > pre {
+  font-size: 1.06rem;
+  line-height: 2;
+}
+
+.markdown-article [data-markdown-content] > ul {
+  padding-left: 22px;
+  color: var(--muted);
+}
+
+.markdown-article [data-markdown-content] li + li {
+  margin-top: 10px;
+}
+
+.markdown-article [data-markdown-content] blockquote {
+  margin: 22px 0;
+  padding: 18px 20px;
+  border-left: 3px solid var(--accent);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 18px 18px 0;
+  color: #dff6f3;
+}
+
+.markdown-article [data-markdown-content] pre {
+  overflow-x: auto;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.markdown-article [data-markdown-content] img {
+  width: 100%;
+  border-radius: 18px;
+  margin: 18px 0;
 }
 
 .comment-placeholder {

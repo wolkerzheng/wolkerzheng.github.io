@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hardness 工程 | Wolker Lab</title>
-  <meta name="description" content="Hardness 工程是一种面向复杂 AI 系统与智能体的工程方法，关注稳定性、可恢复性、可观测性与长期执行能力。">
-  <meta name="keywords" content="Hardness 工程, AI, 智能体, Agent Engineering, 系统稳定性">
+  <title>Attention Is All You Need 解读 | Wolker Lab</title>
+  <meta name="description" content="从工程和架构视角解读 Attention Is All You Need，理解 Transformer 为什么改写了 AI 的主干架构。">
+  <meta name="keywords" content="Transformer, Attention Is All You Need, 论文解读, AI, NLP">
   <meta name="author" content="Wolker Lab">
   <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://wolkerzheng.github.io/posts/hardness-engineering.html">
+  <link rel="canonical" href="https://wolkerzheng.github.io/posts/attention-is-all-you-need.html">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Hardness 工程：为什么下一代智能体系统，竞争点不只是模型，而是抗复杂度能力">
-  <meta property="og:description" content="讨论 Hardness 工程为何会成为 AI 与智能体落地的新主战场。">
-  <meta property="og:url" content="https://wolkerzheng.github.io/posts/hardness-engineering.html">
+  <meta property="og:title" content="Attention Is All You Need：为什么 Transformer 改写了 AI 的主干架构">
+  <meta property="og:description" content="从工程和架构视角解读 Transformer 论文。">
+  <meta property="og:url" content="https://wolkerzheng.github.io/posts/attention-is-all-you-need.html">
   <meta property="og:site_name" content="Wolker Lab">
   <meta property="og:image" content="https://wolkerzheng.github.io/assets/og-cover.jpg">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Hardness 工程 | Wolker Lab">
-  <meta name="twitter:description" content="讨论 Hardness 工程为何会成为 AI 与智能体落地的新主战场。">
+  <meta name="twitter:title" content="Attention Is All You Need 解读 | Wolker Lab">
+  <meta name="twitter:description" content="从工程和架构视角解读 Transformer 论文。">
   <meta name="twitter:image" content="https://wolkerzheng.github.io/assets/og-cover.jpg">
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "Hardness 工程：为什么下一代智能体系统，竞争点不只是模型，而是抗复杂度能力",
+      "headline": "Attention Is All You Need：为什么 Transformer 改写了 AI 的主干架构",
       "datePublished": "2026-04-05",
       "dateModified": "2026-04-05",
       "author": {
@@ -34,9 +34,9 @@
         "@type": "Organization",
         "name": "Wolker Lab"
       },
-      "mainEntityOfPage": "https://wolkerzheng.github.io/posts/hardness-engineering.html",
+      "mainEntityOfPage": "https://wolkerzheng.github.io/posts/attention-is-all-you-need.html",
       "inLanguage": "zh-CN",
-      "description": "Hardness 工程是一种面向复杂 AI 系统与智能体的工程方法，关注稳定性、可恢复性、可观测性与长期执行能力。"
+      "description": "从工程和架构视角解读 Attention Is All You Need，理解 Transformer 为什么改写了 AI 的主干架构。"
     }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,13 +62,13 @@
     </header>
 
     <main class="article-layout">
-      <article class="article-card markdown-article" id="article-body" data-markdown="../content/posts/hardness-engineering.md">
+      <article class="article-card markdown-article" id="article-body" data-markdown="../content/posts/attention-is-all-you-need.md">
         <div class="article-meta">
           <span class="tag">AI</span>
-          <span class="tag">智能体</span>
-          <span class="tag muted">首发文章</span>
+          <span class="tag">论文解读</span>
+          <span class="tag muted">2026-04-05</span>
         </div>
-        <p class="eyebrow">Hardness Engineering</p>
+        <p class="eyebrow">Paper Reading</p>
         <div data-markdown-content></div>
 
         <section class="comments-section" id="comments">
@@ -87,17 +87,17 @@
       <aside class="article-sidebar">
         <div class="sidebar-card">
           <span class="sidebar-label">分类</span>
-          <strong>AI / 智能体</strong>
-          <p>主题围绕模型系统、Agent 执行链、评估与工程落地。</p>
+          <strong>AI / 论文解读</strong>
+          <p>聚焦 Transformer、架构设计与经典论文的工程化理解。</p>
         </div>
         <div class="sidebar-card">
           <span class="sidebar-label">关键词</span>
           <ul class="keyword-list">
-            <li>复杂任务</li>
-            <li>长链路执行</li>
-            <li>可观测性</li>
-            <li>系统稳定性</li>
-            <li>Agent Engineering</li>
+            <li>Transformer</li>
+            <li>Self-Attention</li>
+            <li>Multi-Head Attention</li>
+            <li>位置编码</li>
+            <li>架构演进</li>
           </ul>
         </div>
       </aside>
