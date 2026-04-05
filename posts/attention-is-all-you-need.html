@@ -62,14 +62,64 @@
     </header>
 
     <main class="article-layout">
-      <article class="article-card markdown-article" id="article-body" data-markdown="../content/posts/attention-is-all-you-need.md">
+      <article class="article-card markdown-article" id="article-body">
         <div class="article-meta">
           <span class="tag">AI</span>
           <span class="tag">论文解读</span>
           <span class="tag muted">2026-04-05</span>
         </div>
         <p class="eyebrow">Paper Reading</p>
-        <div data-markdown-content></div>
+        <div><h1>Attention Is All You Need：为什么 Transformer 改写了 AI 的主干架构</h1>
+<p>《Attention Is All You Need》是 2017 年最重要的 AI 论文之一。它不只是提出了一个新模型，而是直接改变了之后整个自然语言处理，乃至更广泛 AI 模型设计的默认范式。今天我们熟悉的大语言模型，几乎都建立在这篇论文提出的 Transformer 架构之上。</p>
+<h2>这篇论文到底解决了什么问题</h2>
+<p>在 Transformer 出现之前，主流序列建模方法还是 RNN、LSTM 和 GRU。它们的问题并不是完全不能用，而是在长序列处理中存在明显瓶颈：</p>
+<ul><li>计算难以并行</li><li>长距离依赖建模困难</li><li>序列越长，训练越慢</li><li>信息在时间步之间传递时容易衰减</li></ul>
+<p>论文作者的核心判断非常激进：既然循环结构是瓶颈，那是否可以完全去掉循环，只保留注意力机制？</p>
+<p>答案就是 Transformer。</p>
+<h2>Transformer 的核心思想</h2>
+<p>这篇论文最重要的一句话，可以简化理解为：</p>
+<blockquote>序列建模不一定要按时间一步步处理，只要能让每个位置直接看到其它位置，就能建立依赖关系。</blockquote>
+<p>这就是 Self-Attention 的价值。对一个句子里的每个 token，模型都可以直接计算它和其它 token 的相关性，再决定该从哪里聚合信息。</p>
+<p>相比 RNN 逐步传递状态，Self-Attention 有两个决定性优势：</p>
+<ul><li>可以并行计算</li><li>更容易捕捉长距离依赖</li></ul>
+<p>这两个优点几乎直接决定了它后来成为大模型主干。</p>
+<h2>编码器和解码器分别在做什么</h2>
+<p>原始 Transformer 是一个 Encoder-Decoder 结构。</p>
+<h3>Encoder</h3>
+<p>Encoder 的任务是把输入序列编码成一组上下文化表示。它由多层完全相同的模块堆叠而成，每层主要有两部分：</p>
+<ul><li>Multi-Head Self-Attention</li><li>Position-wise Feed Forward Network</li></ul>
+<p>Self-Attention 负责让每个词和其它词交互，前馈网络负责在每个位置上做更强的非线性变换。</p>
+<h3>Decoder</h3>
+<p>Decoder 负责根据已经生成的内容，一步步输出目标序列。它比 Encoder 多了一个关键模块：</p>
+<ul><li>Encoder-Decoder Attention</li></ul>
+<p>也就是说，Decoder 不仅会看自己已经生成的 token，还会去读取 Encoder 输出的整段输入表示。</p>
+<h2>为什么要有 Multi-Head Attention</h2>
+<p>单个注意力头只能学到一种关系模式，而 Multi-Head Attention 的想法是：把表示空间切成多个子空间，让不同的头分别学习不同类型的关系。</p>
+<p>比如一个头可能更关注语法依赖，一个头更关注指代关系，另一个头更关注位置相关性。虽然我们不能简单地给每个头贴上固定语义标签，但多头机制确实提升了表达能力。</p>
+<p>它的重要意义在于：</p>
+<ul><li>增加模型表示的多样性</li><li>让不同关系可以并行建模</li><li>在不改变总体框架的情况下提升容量</li></ul>
+<h2>位置编码为什么必要</h2>
+<p>Self-Attention 本身不带顺序概念。对于它来说，输入是一组 token，而不是天然有先后顺序的序列。因此必须额外告诉模型“谁在前、谁在后”。</p>
+<p>原论文使用的是正弦和余弦位置编码。这样做有两个好处：</p>
+<ul><li>不需要为每个位置单独学习参数</li><li>对不同长度的序列有一定泛化性</li></ul>
+<p>今天很多模型已经改用可学习位置编码、RoPE 或其它更先进的方法，但“必须给注意力系统补上位置信息”这个原则，正是从这篇论文开始变得清晰。</p>
+<h2>这篇论文为什么影响这么大</h2>
+<p>Transformer 的影响力，远不止 BLEU 分数提升。它真正改变的是 AI 工程里的“可扩展性”。</p>
+<p>因为当模型变得更容易并行，训练更适合现代硬件，长距离依赖处理也更自然时，你就可以把规模越做越大。后来的 BERT、GPT、T5、ViT，乃至多模态模型，本质上都在沿着 Transformer 这条主干继续扩展。</p>
+<p>可以说，这篇论文最伟大的地方不只是提出了一个有效结构，而是提出了一个极其适合放大规模的结构。</p>
+<h2>论文也不是没有代价</h2>
+<p>当然，Attention 并不是没有问题。标准 Self-Attention 的计算和显存复杂度会随着序列长度平方增长，因此在超长上下文里成本很高。这也是后续各种稀疏注意力、线性注意力、分块注意力不断出现的原因。</p>
+<p>所以这篇论文不是终点，而是一个起点。它定义了主干架构，也把新的优化问题留给了后续研究。</p>
+<h2>读完这篇论文后最值得记住的三点</h2>
+<h3>1. 它证明了“去循环化”是成立的</h3>
+<p>很多时候，范式切换不是把旧东西改好一点，而是直接拿掉那个曾经被认为不可替代的核心部件。Transformer 把循环拿掉，反而让序列建模进入了更高的上限。</p>
+<h3>2. 它让模型规模扩展更顺滑</h3>
+<p>如果没有这种更适合并行训练的结构，后来的大模型扩张不会这么快。</p>
+<h3>3. 它为大语言模型时代打下了结构基础</h3>
+<p>今天我们讨论上下文长度、KV Cache、推理效率、多头注意力优化，本质上都还在和这篇论文打开的世界对话。</p>
+<h2>一个适合工程视角的结论</h2>
+<p>从工程角度看，《Attention Is All You Need》之所以伟大，不只是因为它提出了更好的精度结果，而是因为它找到了一个更适合现代计算基础设施、更适合规模化训练、更适合持续扩展的架构方向。</p>
+<p>这也是为什么一篇论文能影响这么多年。它不是一次局部改良，而是一次底层范式重写。</p></div>
 
         <section class="comments-section" id="comments">
           <div class="section-heading">

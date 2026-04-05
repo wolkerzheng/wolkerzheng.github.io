@@ -14,6 +14,7 @@ function parseFrontmatter(fileContent) {
   if (end === -1) throw new Error("Frontmatter block is not closed.");
 
   const rawFrontmatter = fileContent.slice(3, end).trim();
+  const body = fileContent.slice(end + 4).trimStart();
   const meta = {};
 
   for (const line of rawFrontmatter.split(/\r?\n/)) {
@@ -22,7 +23,7 @@ function parseFrontmatter(fileContent) {
     meta[line.slice(0, idx).trim()] = line.slice(idx + 1).trim();
   }
 
-  return meta;
+  return { meta, body };
 }
 
 function parseList(value = "") {
@@ -35,6 +36,111 @@ function escHtml(value = "") {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function renderInlineMarkdown(text) {
+  return text
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+    .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function markdownToHtml(markdown) {
+  const lines = markdown.replace(/\r\n/g, "\n").split("\n");
+  const blocks = [];
+  let paragraph = [];
+  let listItems = [];
+  let inCodeBlock = false;
+  let codeBuffer = [];
+
+  function flushParagraph() {
+    if (!paragraph.length) return;
+    blocks.push(`<p>${renderInlineMarkdown(paragraph.join(" "))}</p>`);
+    paragraph = [];
+  }
+
+  function flushList() {
+    if (!listItems.length) return;
+    blocks.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`);
+    listItems = [];
+  }
+
+  function flushCode() {
+    if (!codeBuffer.length) return;
+    blocks.push(`<pre><code>${escHtml(codeBuffer.join("\n"))}</code></pre>`);
+    codeBuffer = [];
+  }
+
+  for (const rawLine of lines) {
+    const line = rawLine.trimEnd();
+
+    if (line.startsWith("```")) {
+      flushParagraph();
+      flushList();
+      if (inCodeBlock) {
+        flushCode();
+        inCodeBlock = false;
+      } else {
+        inCodeBlock = true;
+      }
+      continue;
+    }
+
+    if (inCodeBlock) {
+      codeBuffer.push(rawLine);
+      continue;
+    }
+
+    if (!line.trim()) {
+      flushParagraph();
+      flushList();
+      continue;
+    }
+
+    if (/^###\s+/.test(line)) {
+      flushParagraph();
+      flushList();
+      blocks.push(`<h3>${renderInlineMarkdown(line.replace(/^###\s+/, ""))}</h3>`);
+      continue;
+    }
+
+    if (/^##\s+/.test(line)) {
+      flushParagraph();
+      flushList();
+      blocks.push(`<h2>${renderInlineMarkdown(line.replace(/^##\s+/, ""))}</h2>`);
+      continue;
+    }
+
+    if (/^#\s+/.test(line)) {
+      flushParagraph();
+      flushList();
+      blocks.push(`<h1>${renderInlineMarkdown(line.replace(/^#\s+/, ""))}</h1>`);
+      continue;
+    }
+
+    if (/^>\s+/.test(line)) {
+      flushParagraph();
+      flushList();
+      blocks.push(`<blockquote>${renderInlineMarkdown(line.replace(/^>\s+/, ""))}</blockquote>`);
+      continue;
+    }
+
+    if (/^-\s+/.test(line)) {
+      flushParagraph();
+      listItems.push(line.replace(/^-\s+/, ""));
+      continue;
+    }
+
+    paragraph.push(line.trim());
+  }
+
+  flushParagraph();
+  flushList();
+  flushCode();
+
+  return blocks.join("\n");
 }
 
 function buildPostHtml(post) {
@@ -99,13 +205,13 @@ function buildPostHtml(post) {
     </header>
 
     <main class="article-layout">
-      <article class="article-card markdown-article" id="article-body" data-markdown="../content/posts/${post.slug}.md">
+      <article class="article-card markdown-article" id="article-body">
         <div class="article-meta">
 ${tagsHtml}
           <span class="tag muted">${escHtml(post.date)}</span>
         </div>
         <p class="eyebrow">${escHtml(post.eyebrow)}</p>
-        <div data-markdown-content></div>
+        <div>${post.html}</div>
 
         <section class="comments-section" id="comments">
           <div class="section-heading">
@@ -146,7 +252,7 @@ ${keywordHtml}
 const markdownFiles = fs.readdirSync(contentDir).filter((file) => file.endsWith(".md"));
 const posts = markdownFiles.map((file) => {
   const raw = fs.readFileSync(path.join(contentDir, file), "utf8");
-  const meta = parseFrontmatter(raw);
+  const { meta, body } = parseFrontmatter(raw);
   return {
     title: meta.title,
     slug: meta.slug || path.basename(file, ".md"),
@@ -160,7 +266,8 @@ const posts = markdownFiles.map((file) => {
     seoKeywords: parseList(meta.seo_keywords || meta.categories || ""),
     sidebarTitle: meta.sidebar_title || parseList(meta.categories).join(" / "),
     sidebarDescription: meta.sidebar_description || meta.summary,
-    sidebarKeywords: parseList(meta.sidebar_keywords || meta.seo_keywords || "")
+    sidebarKeywords: parseList(meta.sidebar_keywords || meta.seo_keywords || ""),
+    html: markdownToHtml(body)
   };
 }).sort((a, b) => b.date.localeCompare(a.date));
 
