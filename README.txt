@@ -17,14 +17,17 @@ Wolker Lab 站点维护说明
 
 - `index.html`
   站点首页，包含 Hero、文章列表、分类、站点方向等内容
-- `posts/*.html`
-  具体文章页面。每篇文章一个独立 html 文件，负责文章 SEO、侧边栏、评论区和 Markdown 挂载点
 - `content/posts/*.md`
-  文章正文内容。以后发布新文章，正文主要写在这里
+  文章正文内容和文章元信息。以后发布新文章，主要写在这里
 - `styles/site.css`
   全站样式
 - `scripts/site.js`
   全站前端逻辑，负责渲染首页博客列表、注入统计脚本和初始化评论区
+- `scripts/build-posts.mjs`
+  文章生成脚本。会根据 `content/posts/*.md` 自动生成：
+  - `posts/*.html`
+  - `data/posts.js`
+  - `sitemap.xml`
 - `data/site-config.js`
   站点统一配置，主要放网站标题和域名、评论系统配置、统计系统配置
 - `data/posts.js`
@@ -45,33 +48,40 @@ Wolker Lab 站点维护说明
 - `content/posts/agent-memory-design.md`
 - `content/posts/multi-agent-runtime.md`
 
-第 2 步：在 `posts/` 目录下新增一个对应的 html 文章页。
-
-例如：
-- `posts/agent-memory-design.html`
-- `posts/multi-agent-runtime.html`
-
 建议文件名全部使用英文或英文连字符，便于 URL 稳定。
 
-第 3 步：在 `data/posts.js` 里新增一条文章数据。
+第 2 步：执行生成命令。
+
+```bash
+node scripts/build-posts.mjs
+```
+
+这个命令会自动生成文章 html、首页文章列表和 sitemap。
 
 示例：
 
-```js
-{
-  title: "Agent 记忆系统设计：从上下文到长期记忆",
-  slug: "agent-memory-design",
-  date: "2026-04-08",
-  categories: ["AI", "智能体"],
-  summary: "讨论智能体系统中的短期记忆、长期记忆、检索策略与成本控制。",
-  featured: false
-}
+```md
+---
+title: Agent 记忆系统设计：从上下文到长期记忆
+slug: agent-memory-design
+date: 2026-04-08
+categories: AI, 智能体
+summary: 讨论智能体系统中的短期记忆、长期记忆、检索策略与成本控制。
+featured: false
+eyebrow: Agent Systems
+seo_title: Agent 记忆系统设计
+description: 讨论智能体系统中的短期记忆、长期记忆、检索策略与成本控制。
+seo_keywords: Agent, 记忆系统, AI, 智能体
+sidebar_title: AI / 智能体
+sidebar_description: 聚焦智能体架构、记忆与执行链设计。
+sidebar_keywords: Agent, 记忆, 检索, 执行链
+---
 ```
 
-这里的 `slug` 要和文章文件名对应：
+这里的 `slug` 要和 Markdown 文件名对应：
 - `slug: "agent-memory-design"`
 - Markdown 路径：`content/posts/agent-memory-design.md`
-- 文件路径：`posts/agent-memory-design.html`
+- 生成页面：`posts/agent-memory-design.html`
 
 4. 图文系列怎么发布
 -------------------
@@ -182,11 +192,10 @@ git push origin master
 
 每次发文建议按这个顺序：
 1. 在 `content/posts/` 新建正文 Markdown
-2. 在 `posts/` 新建对应文章页
-3. 在 `data/posts.js` 新增列表记录
-4. 如果文章用了配图，把图放到 `assets/` 对应目录
-5. 检查文章里的标题、摘要、分类、日期
-6. 推送到 GitHub
+2. 如果文章用了配图，把图放到 `assets/` 对应目录
+3. 执行 `node scripts/build-posts.mjs`
+4. 检查生成后的文章页和首页列表
+5. 推送到 GitHub
 
 10. 后续可继续扩展
 ------------------

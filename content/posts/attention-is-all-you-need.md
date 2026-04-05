@@ -1,3 +1,19 @@
+---
+title: Attention Is All You Need：为什么 Transformer 改写了 AI 的主干架构
+slug: attention-is-all-you-need
+date: 2026-04-05
+categories: AI, 论文解读
+summary: 从工程与架构视角拆解 Transformer 论文，理解 Self-Attention、Multi-Head Attention 和位置编码为什么改变了后续大模型路线。
+featured: false
+eyebrow: Paper Reading
+seo_title: Attention Is All You Need 解读
+description: 从工程和架构视角解读 Attention Is All You Need，理解 Transformer 为什么改写了 AI 的主干架构。
+seo_keywords: Transformer, Attention Is All You Need, 论文解读, AI, NLP
+sidebar_title: AI / 论文解读
+sidebar_description: 聚焦 Transformer、架构设计与经典论文的工程化理解。
+sidebar_keywords: Transformer, Self-Attention, Multi-Head Attention, 位置编码, 架构演进
+---
+
 # Attention Is All You Need：为什么 Transformer 改写了 AI 的主干架构
 
 《Attention Is All You Need》是 2017 年最重要的 AI 论文之一。它不只是提出了一个新模型，而是直接改变了之后整个自然语言处理，乃至更广泛 AI 模型设计的默认范式。今天我们熟悉的大语言模型，几乎都建立在这篇论文提出的 Transformer 架构之上。

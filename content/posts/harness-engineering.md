@@ -1,3 +1,19 @@
+---
+title: Harness Engineering：为什么下一代智能体系统，竞争点不只是模型，而是“抗复杂度能力”
+slug: harness-engineering
+date: 2026-04-05
+categories: AI, 智能体
+summary: 从稳定性、可恢复性、可观测性、边界控制与系统交付视角出发，讨论 Harness Engineering 为何会成为 AI 与智能体落地的新主战场。
+featured: true
+eyebrow: Harness Engineering
+seo_title: Harness Engineering
+description: Harness Engineering 是一种面向复杂 AI 系统与智能体的工程方法，关注稳定性、可恢复性、可观测性与长期执行能力。
+seo_keywords: Harness Engineering, AI, 智能体, Agent Engineering, 系统稳定性
+sidebar_title: AI / 智能体
+sidebar_description: 主题围绕模型系统、Agent 执行链、评估与工程落地。
+sidebar_keywords: 复杂任务, 长链路执行, 可观测性, 系统稳定性, Agent Engineering
+---
+
 # Harness Engineering：为什么下一代智能体系统，竞争点不只是模型，而是“抗复杂度能力”
 
 如果说过去几年 AI 的核心问题是“模型够不够强”，那么接下来更关键的问题会变成“系统够不够硬”。这里的“硬”，不是界面更炫，不是参数更多，而是面对复杂任务时，是否仍能稳定、可控地完成目标。
