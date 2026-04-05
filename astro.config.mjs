@@ -1,9 +1,0 @@
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-
-export default defineConfig({
-  site: 'https://wolkerzheng.github.io',
-  output: 'static',
-  publicDir: './static',
-  integrations: [mdx()]
-});

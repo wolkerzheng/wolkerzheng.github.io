@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hardness 工程是一种面向复杂 AI 系统与智能体的工程方法，关注稳定性、可恢复性、可观测性与长期执行能力。">
+  <title>Hardness 工程 | Wolker Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/site.css">
+</head>
+<body>
+  <div class="page-shell article-shell">
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>Wolker Lab</strong>
+          <small>AI Native Blog</small>
+        </span>
+      </a>
+      <nav class="topnav">
+        <a href="../index.html">首页</a>
+        <a href="#article-body">正文</a>
+      </nav>
+    </header>
+
+    <main class="article-layout">
+      <article class="article-card" id="article-body">
+        <div class="article-meta">
+          <span class="tag">AI</span>
+          <span class="tag">智能体</span>
+          <span class="tag muted">首发文章</span>
+        </div>
+        <p class="eyebrow">Hardness Engineering</p>
+        <h1>Hardness 工程：为什么下一代智能体系统，竞争点不只是模型，而是“抗复杂度能力”</h1>
+        <p class="article-lead">
+          如果说过去几年 AI 的核心问题是“模型够不够强”，那么接下来更关键的问题会变成“系统够不够硬”。这里的“硬”，不是界面更炫，不是参数更多，而是面对复杂任务时，是否仍能稳定、可控地完成目标。
+        </p>
+
+        <section>
+          <h2>Hardness 工程到底在解决什么</h2>
+          <p>
+            Hardness 工程可以理解为一套面向复杂场景的 AI 系统设计方法。它关注的不是模型单次答题表现，而是整个系统在真实环境里的承压能力。一个智能体在实验环境中跑通，并不代表它能在生产中持续运行；一个 Demo 成功，也不代表它能在 1000 次任务里维持一致质量。
+          </p>
+          <p>
+            当任务变长、上下文变脏、工具变多、用户意图变模糊、外部 API 变得不稳定时，系统会迅速暴露出脆弱性。Hardness 工程的核心，就是针对这种脆弱性做设计，把“偶尔成功”变成“高概率稳定成功”。
+          </p>
+        </section>
+
+        <section>
+          <h2>为什么它在 AI 与智能体时代变得重要</h2>
+          <p>
+            传统软件系统面对的是相对确定的逻辑，而 AI 系统天然带有概率性。智能体则更进一步，它不只是在回答问题，而是在执行任务。它会规划，会拆解步骤，会调用工具，会读取历史记忆，也会在中间犯错。随着执行链拉长，误差不会消失，反而会层层累积。
+          </p>
+          <p>
+            这意味着下一代系统竞争，重点不再只是“模型有多聪明”，而是“系统能不能承受复杂度”。真正优秀的智能体，不是最会炫技的那个，而是在高噪声环境里依然有边界感、有恢复能力、有审计能力的那个。
+          </p>
+        </section>
+
+        <section>
+          <h2>Hardness 工程的四个关键维度</h2>
+          <p>
+            第一是稳定性。系统要能在长任务中保持一致输出，避免被局部异常带偏。
+          </p>
+          <p>
+            第二是可恢复性。执行失败不是终点，系统应能回滚、重试、降级，甚至重新规划路线。
+          </p>
+          <p>
+            第三是可观测性。每一步调用、每个中间状态、每次工具执行结果都需要被记录和解释，否则团队无法定位问题。
+          </p>
+          <p>
+            第四是评估能力。不能只看用户主观感受，还要建立覆盖多场景、多任务阶段的结构化评估指标，持续验证系统是否真的在变强。
+          </p>
+        </section>
+
+        <section>
+          <h2>它不是单一技术，而是一种工程组织方式</h2>
+          <p>
+            很多人会误以为 Hardness 工程是某个框架、某个 Agent SDK，或者某套 prompt 模板。其实都不是。它更像一种工程哲学，要求团队从系统边界、失败模式、监控指标、任务分层和人工介入策略这些维度同时思考。
+          </p>
+          <p>
+            在这种思路下，Prompt 不再是唯一核心，工作流、状态机、工具协议、缓存、日志、回放机制、评估集以及人工接管链路，都会成为系统设计的重要组成部分。模型是引擎，但工程系统决定这台机器能不能真正上路。
+          </p>
+        </section>
+
+        <section>
+          <h2>一个值得重视的判断</h2>
+          <p>
+            随着基础模型越来越强，越来越多公司的护城河不会只来自模型接入能力，而是来自对复杂任务的工程驯化能力。谁更早把智能体做成可靠基础设施，谁就更容易把 AI 从“演示价值”推进到“生产价值”。
+          </p>
+          <p>
+            所以，Hardness 工程不是锦上添花，而是下一阶段 AI 产品化与智能体落地的主战场。它决定系统能否从一次惊艳的输出，成长为一个真正可信赖、可扩展、可经营的能力平台。
+          </p>
+        </section>
+
+        <footer class="article-footer">
+          <a class="button button-primary" href="../index.html">返回首页</a>
+        </footer>
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="sidebar-card">
+          <span class="sidebar-label">分类</span>
+          <strong>AI / 智能体</strong>
+          <p>主题围绕模型系统、Agent 执行链、评估与工程落地。</p>
+        </div>
+        <div class="sidebar-card">
+          <span class="sidebar-label">关键词</span>
+          <ul class="keyword-list">
+            <li>复杂任务</li>
+            <li>长链路执行</li>
+            <li>可观测性</li>
+            <li>系统稳定性</li>
+            <li>Agent Engineering</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+</body>
+</html>

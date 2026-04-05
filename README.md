@@ -1,60 +1,13 @@
-# ZGDisZhengguidong Blog
+# Wolker Lab
 
-This is the rebuilt main site using **Astro + MDX**.
+一个部署在 GitHub Pages 上的中文科技风博客站，当前首篇文章主题为 `Hardness 工程`，分类为 `AI` 与 `智能体`。
 
-The original Hexo site is archived in `legacy-hexo/`, and published under `/legacy-hexo/`.
+## 结构
 
-## Structure
+- `index.html`：首页
+- `posts/hardness-engineering.html`：文章详情页
+- `styles/site.css`：全站样式
 
-```text
-src/
-  content/posts/          # MDX posts
-  layouts/MainLayout.astro
-  pages/
-    index.astro
-    blog/index.astro
-    blog/[slug].astro
-    about.astro
-    legacy.astro
-  styles/site.css
-legacy-hexo/              # full legacy Hexo content
-scripts/sync-legacy.mjs   # copies legacy site to static/legacy-hexo before build
-```
+## 发布
 
-## Commands
-
-```bash
-npm install
-npm run dev
-npm run build
-npm run preview
-```
-
-## Add a new post
-
-Create a file in `src/content/posts/`:
-
-```mdx
----
-title: "Post title"
-description: "Short summary"
-publishDate: 2026-03-28
-tags: ["llm", "agent"]
-category: "agent-systems"
-featured: false
-draft: false
----
-
-Post content...
-```
-
-## Legacy links
-
-- Entry page: `/legacy/`
-- Archived site: `/legacy-hexo/`
-
-## Maintenance notes
-
-- Publish all new content in MDX only.
-- Keep Hexo as historical archive.
-- Run `npm run build` locally before pushing.
+这是一个纯静态站点，推送到 `wolkerzheng.github.io` 仓库默认分支后即可作为 GitHub Pages 站点使用。
