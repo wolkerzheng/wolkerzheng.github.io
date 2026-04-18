@@ -1,5 +1,28 @@
 window.WOLKER_POSTS = [
   {
+    "title": "智能体中的sandbox是什么",
+    "slug": "智能体研究",
+    "date": "2026-04-17",
+    "categories": [
+      "AI",
+      "智能体",
+      "sandbox"
+    ],
+    "summary": "智能体（Agent）作为人工智能领域的重要发展方向，正经历从单一问答工具向复杂自主系统的深刻变革。智能体中的sandbox沙盒到底是一个什么概念，从不同的架构来看，其sandbox是怎么实现的",
+    "featured": true
+  },
+  {
+    "title": "智能体演进三阶段：从“人机对话（Chatbot）”向“自主智能体（Autonomous Agents）”的质变",
+    "slug": "智能体演进",
+    "date": "2026-04-07",
+    "categories": [
+      "AI",
+      "智能体"
+    ],
+    "summary": "智能体（Agent）作为人工智能领域的重要发展方向，正经历从单一问答工具向复杂自主系统的深刻变革。智能体架构从第一代Chatbot到第三代Autonomous Agent的三代演进历程，深入分析了各代际的技术特征、代表性产品和生态格局。",
+    "featured": true
+  },
+  {
     "title": "Attention Is All You Need：为什么 Transformer 改写了 AI 的主干架构",
     "slug": "attention-is-all-you-need",
     "date": "2026-04-05",

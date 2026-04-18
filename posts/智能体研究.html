@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智能体（Agent） | Wolker Lab</title>
+  <meta name="description" content="智能体中的sandbox沙盒到底是一个什么概念，从不同的架构来看，其sandbox是怎么实现的">
+  <meta name="keywords" content="AI, 智能体, Sandbox">
+  <meta name="author" content="Wolker Lab">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://wolkerzheng.github.io/posts/智能体研究.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="智能体中的sandbox是什么">
+  <meta property="og:description" content="智能体中的sandbox沙盒到底是一个什么概念，从不同的架构来看，其sandbox是怎么实现的">
+  <meta property="og:url" content="https://wolkerzheng.github.io/posts/智能体研究.html">
+  <meta property="og:site_name" content="Wolker Lab">
+  <meta property="og:image" content="https://wolkerzheng.github.io/assets/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="智能体（Agent） | Wolker Lab">
+  <meta name="twitter:description" content="智能体中的sandbox沙盒到底是一个什么概念，从不同的架构来看，其sandbox是怎么实现的">
+  <meta name="twitter:image" content="https://wolkerzheng.github.io/assets/og-cover.jpg">
+  <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "智能体中的sandbox是什么",
+    "datePublished": "2026-04-17",
+    "dateModified": "2026-04-17",
+    "author": {
+        "@type": "Organization",
+        "name": "Wolker Lab"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wolker Lab"
+    },
+    "mainEntityOfPage": "https://wolkerzheng.github.io/posts/智能体研究.html",
+    "inLanguage": "zh-CN",
+    "description": "智能体中的sandbox沙盒到底是一个什么概念，从不同的架构来看，其sandbox是怎么实现的"
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/site.css">
+</head>
+<body>
+  <div class="page-shell article-shell">
+    <header class="topbar">
+      <a class="brand" href="https://wolkerzheng.github.io/">
+        <span class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>Wolker Lab</strong>
+          <small>AI Native Blog</small>
+        </span>
+      </a>
+      <nav class="topnav">
+        <a href="https://wolkerzheng.github.io/">首页</a>
+        <a href="#article-body">正文</a>
+        <a href="#comments">评论</a>
+      </nav>
+    </header>
+
+    <main class="article-layout">
+      <article class="article-card markdown-article" id="article-body">
+        <div class="article-meta">
+          <span class="tag">AI</span>
+          <span class="tag">智能体</span>
+          <span class="tag">sandbox</span>
+          <span class="tag muted">2026-04-17</span>
+        </div>
+        <p class="eyebrow">智能体（Agent）</p>
+        <div><p>Agent 能力边界 = Sandbox 设计能力。 OpenClaw、Manus、Claude Code、Dify，其实代表了 4种完全不同的 sandbox 架构路线。 一、先把 Sandbox 讲透（核心认知） 在 Agent 里，sandbox 本质是： 给 LLM 一个“可控的行动世界” 它解决 3 个核心问题： 1️⃣ 安全边界（Security Boundary）</p>
+<p>2️⃣ 执行环境（Execution Runtime）</p>
+<p>3️⃣ 状态容器（State Container）</p>
+<p>👉 简单一句话总结： Sandbox = Agent 的“操作系统”</p>
+<ul><li>防止模型执行危险操作（删库 / 发请求 / 乱调用API）</li><li>权限隔离（文件 / 网络 / 系统）</li><li>代码运行（Python / Bash / Node）</li><li>工具调用（API / DB / 浏览器）</li><li>文件系统（workspace）</li><li>运行上下文（memory / artifacts）</li></ul>
+<p>--- 二、四大系统 Sandbox 架构对比（重点） 我给你直接上一个“架构级对比”： 暂时无法在飞书文档外展示此内容</p>
+<p>--- 三、逐个拆解（重点差异）</p>
+<p>--- 1️⃣ OpenClaw：“本地可控操作系统型 Sandbox” 👉 核心设计：</p>
+<p>- 文件读写 - Shell - Python执行</p>
+<p>👉 本质： 一个“可编程的自动化执行环境” 👉 特点：</p>
+<p>👉 优点：</p>
+<p>👉 缺点：</p>
+<ul><li>本地运行（Docker / CLI）</li><li>有完整 workspace</li><li>支持：</li><li>Memory + Tool 强绑定</li><li>sandbox ≈ 本地 Linux 子系统</li><li>强状态（文件持续存在）</li><li>可做复杂任务链（编译、爬虫、分析）</li><li>可控性极强</li><li>可扩展（你可以自己加工具）</li><li>安全要自己兜底</li><li>运维复杂</li></ul>
+<p>--- 2️⃣ Manus：“云端虚拟人 Sandbox” 👉 核心设计：</p>
+<p>- 打开网页 - 写代码 - 下载文件 👉 本质： 模拟“一个人在电脑前工作” 👉 特点：</p>
+<p>👉 优点：</p>
+<p>👉 缺点：</p>
+<ul><li>云端 VM / Browser / Tools</li><li>Agent 像“真人”一样操作：</li><li>sandbox ≈ 云电脑</li><li>多模态（浏览器 + 文件 + API）</li><li>强 autonomy（自主决策）</li><li>最接近 AGI 形态</li><li>通用性极强</li><li>成本高</li><li>可控性弱（容易乱跑）</li></ul>
+<p>--- 3️⃣ Claude Code：“IDE内嵌 Sandbox” 👉 核心设计：</p>
+<p>- 读写文件 - 修改代码 - 运行测试 👉 本质： 一个“安全的代码操作代理环境” 👉 特点：</p>
+<p>- 不允许随便访问系统 - 不允许任意网络 👉 优点：</p>
+<p>👉 缺点：</p>
+<ul><li>嵌入开发环境（类似 VSCode）</li><li>操作代码仓库：</li><li>sandbox ≈ Git repo + limited runtime</li><li>强约束：</li><li>安全性高</li><li>对开发者友好</li><li>不通用（偏 coding）</li><li>工具受限</li></ul>
+<p>--- 4️⃣ Dify：“函数调用型 Sandbox（最轻）” 👉 核心设计：</p>
+<p>- Tool（API） - Workflow 👉 本质： 把 Sandbox 抽象成“函数调用” 👉 特点：</p>
+<p>👉 优点：</p>
+<p>👉 缺点：</p>
+<ul><li>没有真正 sandbox</li><li>只有：</li><li>sandbox ≈ API 调用集合</li><li>无文件系统</li><li>无真实执行环境</li><li>企业级稳定</li><li>安全（因为啥都不给）</li><li>能力弱</li><li>不支持复杂任务（如多步代码执行）</li></ul>
+<p>--- 四、本质差异总结（最关键） 👉 1. Sandbox 抽象层级不同 暂时无法在飞书文档外展示此内容</p>
+<p>--- 👉 2. “Agent 能力上限”取决于 Sandbox 这点非常关键： 暂时无法在飞书文档外展示此内容</p>
+<p>--- 👉 3. 控制 vs 自由（核心 trade-off） 暂时无法在飞书文档外展示此内容</p>
+<p>--- 五、一个更深层的理解（你可以重点看这个） 未来 Agent 架构会分成两派：</p>
+<p>--- 🅰️ “可控工具派”（Dify / Claude Code）</p>
+<p>- 安全 - 可预测 - 可审计</p>
+<p>- 企业 - 金融 - SaaS 👉 本质： Agent = 工作流引擎 + API</p>
+<ul><li>强调：</li><li>适合：</li></ul>
+<p>--- 🅱️ “自主智能派”（OpenClaw / Manus）</p>
+<p>- 自主决策 - 多步推理 - 长任务执行 👉 本质： Agent = 数字人</p>
+<ul><li>强调：</li></ul>
+<p>--- 六、一个工程落地方案</p>
+<p>👉 最优架构其实是： ✅ “双 Sandbox 架构” Dify（控制层） ↓ OpenClaw（执行层） ↓ 云 sandbox（扩展，如 Manus） 👉 各自分工：</p>
+<ul><li>Dify</li><li>OpenClaw</li><li>多Agent系统</li><li>Dify：流程编排 / 权限控制</li><li>OpenClaw：执行复杂任务</li><li>云 sandbox：高阶任务（浏览器/多模态）</li></ul>
+<p>--- 七、一句话总结 Sandbox 是 Agent 的“手和脚”执行的环境，模型只负责“大脑”。</p></div>
+
+        <section class="comments-section" id="comments">
+          <div class="section-heading">
+            <p class="eyebrow">Comments</p>
+            <h2>评论</h2>
+          </div>
+          <div data-comments></div>
+        </section>
+
+        <footer class="article-footer">
+          <a class="button button-primary" href="https://wolkerzheng.github.io/">返回首页</a>
+        </footer>
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="sidebar-card">
+          <span class="sidebar-label">分类</span>
+          <strong>AI / 智能体</strong>
+          <p>主题围绕智能体的sandbox展开介绍。</p>
+        </div>
+        <div class="sidebar-card">
+          <span class="sidebar-label">关键词</span>
+          <ul class="keyword-list">
+            <li>sandbox</li>
+            <li>安全边界</li>
+            <li>状态执行</li>
+            <li>Agent Engineering</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+  <script src="../data/site-config.js"></script>
+  <script src="../data/posts.js"></script>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>
