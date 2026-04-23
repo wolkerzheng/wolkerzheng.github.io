@@ -1,0 +1,628 @@
+.love-body {
+  background:
+    radial-gradient(circle at 15% 18%, rgba(255, 112, 166, 0.24), transparent 24%),
+    radial-gradient(circle at 82% 16%, rgba(122, 247, 255, 0.22), transparent 24%),
+    radial-gradient(circle at 50% 100%, rgba(255, 168, 205, 0.16), transparent 28%),
+    linear-gradient(180deg, #120916 0%, #0b1220 46%, #070d15 100%);
+}
+
+.love-body::before {
+  background-image:
+    linear-gradient(rgba(255, 174, 211, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 247, 255, 0.05) 1px, transparent 1px);
+}
+
+.love-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.love-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.love-glow,
+.love-grid {
+  position: absolute;
+}
+
+.love-glow {
+  border-radius: 999px;
+  filter: blur(30px);
+  opacity: 0.8;
+}
+
+.love-glow-a {
+  top: 10%;
+  left: -6%;
+  width: 320px;
+  height: 320px;
+  background: rgba(255, 106, 160, 0.32);
+  animation: loveFloat 10s ease-in-out infinite;
+}
+
+.love-glow-b {
+  right: -4%;
+  top: 22%;
+  width: 360px;
+  height: 360px;
+  background: rgba(96, 236, 255, 0.22);
+  animation: loveFloat 14s ease-in-out infinite reverse;
+}
+
+.love-grid {
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0 1px, transparent 1.5px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 18%);
+  background-size: 26px 26px, 100% 100%;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.92), transparent 88%);
+  opacity: 0.2;
+}
+
+.love-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding-top: 18px;
+  backdrop-filter: blur(20px);
+}
+
+.love-main {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.love-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+  gap: 26px;
+  padding: 24px 0 12px;
+}
+
+.love-intro,
+.love-console,
+.love-stage-card,
+.love-note,
+.love-footer-grid article {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(22, 29, 46, 0.82), rgba(11, 18, 31, 0.86));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.love-intro {
+  padding: 42px;
+  position: relative;
+  overflow: hidden;
+}
+
+.love-intro::after {
+  content: "";
+  position: absolute;
+  right: 24px;
+  top: 22px;
+  width: 168px;
+  height: 168px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 130, 183, 0.26), transparent 68%);
+}
+
+.love-intro h1 {
+  max-width: 8ch;
+  margin-bottom: 18px;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  background: linear-gradient(135deg, #fff8fb 12%, #ff8ebe 48%, #87f8ff 88%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.love-lead {
+  max-width: 60ch;
+  margin: 0;
+  color: rgba(238, 241, 255, 0.82);
+  line-height: 1.95;
+  font-size: 1.04rem;
+}
+
+.love-status-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.love-status-card {
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.love-status-card span,
+.love-stage-meta span,
+.love-note-label {
+  display: block;
+  color: rgba(255, 194, 223, 0.84);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+}
+
+.love-status-card strong {
+  display: block;
+  margin-top: 8px;
+  color: #fff9fc;
+  font-size: 0.98rem;
+}
+
+.love-console {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.love-console-card,
+.love-console-grid article {
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.love-console-card {
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.love-console-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -30% -54% auto;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(122, 247, 255, 0.16), transparent 68%);
+}
+
+.love-console-card strong {
+  display: block;
+  margin: 10px 0 12px;
+  font-size: 1.5rem;
+}
+
+.love-console-card p,
+.love-console-grid p,
+.love-note p,
+.love-footer-grid p {
+  margin: 0;
+  color: rgba(222, 228, 242, 0.72);
+  line-height: 1.86;
+}
+
+.love-console-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.love-console-grid article {
+  padding: 18px;
+}
+
+.love-console-grid span {
+  color: #87f8ff;
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+}
+
+.love-console-grid h2 {
+  margin: 12px 0 8px;
+  font-size: 1.08rem;
+}
+
+.love-gallery-section {
+  display: grid;
+  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr) minmax(250px, 0.72fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.love-column {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.love-note {
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.love-note::after {
+  content: "";
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  border-radius: 999px;
+  right: -68px;
+  top: -68px;
+  opacity: 0.45;
+  filter: blur(4px);
+}
+
+.love-note-sweet::after {
+  background: radial-gradient(circle, rgba(255, 123, 177, 0.22), transparent 70%);
+}
+
+.love-note-joke::after {
+  background: radial-gradient(circle, rgba(125, 245, 255, 0.18), transparent 70%);
+}
+
+.love-note-large h2 {
+  margin: 14px 0 12px;
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.love-note p {
+  position: relative;
+  z-index: 1;
+}
+
+.love-stage-wrap {
+  min-width: 0;
+}
+
+.love-stage-card {
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.love-stage-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 28%),
+    radial-gradient(circle at bottom, rgba(255, 129, 182, 0.12), transparent 32%);
+  pointer-events: none;
+}
+
+.love-stage-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.love-stage-head strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 1.28rem;
+}
+
+.love-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(255, 110, 162, 0.12);
+  border: 1px solid rgba(255, 110, 162, 0.24);
+  color: #ffc3dc;
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+  letter-spacing: 0.1em;
+}
+
+.love-live-pill::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ff88b9;
+  box-shadow: 0 0 14px rgba(255, 136, 185, 0.8);
+}
+
+.love-stage {
+  position: relative;
+  aspect-ratio: 1 / 1.08;
+  border-radius: 28px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(8, 17, 30, 0.2), rgba(8, 17, 30, 0.58)),
+    #080f18;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.love-stage::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.love-stage-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.08) contrast(1.02);
+  transition: opacity 0.55s ease, transform 0.7s ease;
+}
+
+.love-stage-image.is-switching {
+  opacity: 0.38;
+  transform: scale(1.035);
+}
+
+.love-stage-scan {
+  position: absolute;
+  inset: -20% auto 0 -18%;
+  width: 46%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+  transform: skewX(-22deg);
+  animation: loveScan 7s linear infinite;
+  z-index: 1;
+}
+
+.love-stage-meta {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  z-index: 3;
+}
+
+.love-stage-meta div {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(7, 12, 24, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.love-stage-meta strong {
+  display: block;
+  margin-top: 7px;
+  color: #fff6fb;
+  font-size: 1rem;
+}
+
+.love-orbit {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  max-width: min(42vw, 220px);
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  line-height: 1.4;
+  text-align: center;
+  backdrop-filter: blur(14px);
+  z-index: 3;
+  animation: lovePulse 6s ease-in-out infinite;
+}
+
+.love-orbit-a {
+  top: 18px;
+  left: 20px;
+  color: #ffe6f2;
+  background: rgba(255, 116, 174, 0.15);
+  border: 1px solid rgba(255, 150, 195, 0.25);
+}
+
+.love-orbit-b {
+  top: 20px;
+  right: 22px;
+  color: #e6fdff;
+  background: rgba(96, 236, 255, 0.12);
+  border: 1px solid rgba(96, 236, 255, 0.24);
+  animation-delay: -1.6s;
+}
+
+.love-orbit-c {
+  left: 18px;
+  bottom: 122px;
+  color: #fff2f8;
+  background: rgba(255, 160, 205, 0.14);
+  border: 1px solid rgba(255, 160, 205, 0.22);
+  animation-delay: -0.8s;
+}
+
+.love-orbit-d {
+  right: 18px;
+  bottom: 122px;
+  color: #f0fbff;
+  background: rgba(153, 243, 255, 0.12);
+  border: 1px solid rgba(153, 243, 255, 0.22);
+  animation-delay: -2.4s;
+}
+
+.love-controls {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.love-control-button {
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f3f6ff;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
+}
+
+.love-control-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 157, 202, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.love-progress {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.love-progress button {
+  min-width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(233, 239, 255, 0.75);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.love-progress button.is-active {
+  background: linear-gradient(135deg, rgba(255, 132, 190, 0.95), rgba(126, 245, 255, 0.9));
+  border-color: transparent;
+  color: #08111d;
+  box-shadow: 0 8px 22px rgba(255, 122, 180, 0.26);
+}
+
+.love-footer-panel {
+  padding: 10px 0 20px;
+}
+
+.love-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.love-footer-grid article {
+  padding: 24px;
+}
+
+.love-footer-grid h3 {
+  margin: 0 0 10px;
+  font-size: 1.16rem;
+}
+
+@keyframes loveFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, 24px, 0);
+  }
+}
+
+@keyframes lovePulse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -6px, 0) scale(1.02);
+  }
+}
+
+@keyframes loveScan {
+  0% {
+    transform: translateX(-140%) skewX(-22deg);
+  }
+
+  100% {
+    transform: translateX(360%) skewX(-22deg);
+  }
+}
+
+@media (max-width: 1120px) {
+  .love-status-row,
+  .love-footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .love-gallery-section {
+    grid-template-columns: 1fr;
+  }
+
+  .love-column {
+    order: 2;
+  }
+
+  .love-stage-wrap {
+    order: 1;
+  }
+}
+
+@media (max-width: 920px) {
+  .love-hero,
+  .love-console-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .love-intro,
+  .love-console,
+  .love-stage-card,
+  .love-note,
+  .love-footer-grid article {
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 720px) {
+  .love-intro,
+  .love-stage-card,
+  .love-note,
+  .love-console,
+  .love-footer-grid article {
+    padding: 20px;
+  }
+
+  .love-stage {
+    aspect-ratio: 1 / 1.2;
+  }
+
+  .love-stage-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .love-orbit {
+    max-width: 45%;
+    font-size: 0.8rem;
+  }
+
+  .love-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .love-control-button {
+    width: 100%;
+  }
+}
