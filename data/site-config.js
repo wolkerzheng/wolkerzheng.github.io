@@ -5,9 +5,7 @@ window.WOLKER_SITE_CONFIG = {
   siteDescription: "聚焦 AI、智能体与 Harness Engineering 的中文科技博客。",
   defaultOgImage: "https://wolkerzheng.github.io/assets/og-cover.jpg",
   loveGallery: {
-    repo: "wolkerzheng/wolkerzheng.github.io",
-    branch: "master",
-    folder: "imgs",
+    manifestPath: "data/love-gallery.json",
     autoplayDelayMs: 4600
   },
   analytics: {

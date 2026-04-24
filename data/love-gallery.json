@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "generatedAt": "2026-04-24T01:06:26.628Z",
+  "kdf": {
+    "algorithm": "PBKDF2",
+    "hash": "SHA-256",
+    "iterations": 180000,
+    "salt": "VAr4tSiF5Keq5NztKo/GfA=="
+  },
+  "verifier": {
+    "value": "love-daily-access-v1",
+    "iv": "Dn1kvwTdYBWG6bdX",
+    "data": "QKR3kv+ykrnIsnFgGy5wO5Mk6bTYFFEbvEDk4+BtfdgEYEfG"
+  },
+  "files": [
+    {
+      "name": "3286ee5d55afb83683bec59b27cb7a43.jpg",
+      "path": "data/love-gallery/image-01.bin",
+      "type": "image/jpeg",
+      "size": 241370,
+      "caption": "甜心合照 01",
+      "iv": "8p4SXRgUgeyKOQQJ"
+    },
+    {
+      "name": "94da5fae34abc07b5785019f0e66f4b7.jpg",
+      "path": "data/love-gallery/image-02.bin",
+      "type": "image/jpeg",
+      "size": 270631,
+      "caption": "甜心合照 02",
+      "iv": "DlVucsiqgy+IGAOg"
+    },
+    {
+      "name": "c4dd2c50fe2fcbdc540be159852b134a.jpg",
+      "path": "data/love-gallery/image-03.bin",
+      "type": "image/jpeg",
+      "size": 254605,
+      "caption": "甜心合照 03",
+      "iv": "mD3BXpEGT3yB7HlO"
+    }
+  ]
+}

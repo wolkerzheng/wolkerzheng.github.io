@@ -74,21 +74,21 @@
 .love-main {
   display: flex;
   flex-direction: column;
-  gap: 34px;
+  gap: 28px;
 }
 
 .love-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
-  gap: 26px;
-  padding: 24px 0 12px;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+  gap: 24px;
+  align-items: stretch;
+  padding: 24px 0 4px;
 }
 
 .love-intro,
-.love-console,
+.love-gate-card,
 .love-stage-card,
-.love-note,
-.love-footer-grid article {
+.love-note {
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 30px;
   background: linear-gradient(180deg, rgba(22, 29, 46, 0.82), rgba(11, 18, 31, 0.86));
@@ -97,7 +97,7 @@
 }
 
 .love-intro {
-  padding: 42px;
+  padding: 40px;
   position: relative;
   overflow: hidden;
 }
@@ -124,28 +124,32 @@
 }
 
 .love-lead {
-  max-width: 60ch;
+  max-width: 34ch;
   margin: 0;
   color: rgba(238, 241, 255, 0.82);
-  line-height: 1.95;
-  font-size: 1.04rem;
+  line-height: 1.9;
+  font-size: 1.06rem;
 }
 
-.love-status-row {
+.love-gate-card {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.love-gate-card h2 {
+  margin: 0;
+  font-size: 1.85rem;
+}
+
+.love-pass-form {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 28px;
+  gap: 12px;
 }
 
-.love-status-card {
-  padding: 16px 18px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.love-status-card span,
+.love-pass-label,
 .love-stage-meta span,
 .love-note-label {
   display: block;
@@ -156,82 +160,49 @@
   font-family: "Space Grotesk", "Noto Sans SC", sans-serif;
 }
 
-.love-status-card strong {
-  display: block;
-  margin-top: 8px;
-  color: #fff9fc;
-  font-size: 0.98rem;
+.love-pass-input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  font: inherit;
 }
 
-.love-console {
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+.love-pass-input:focus {
+  outline: none;
+  border-color: rgba(255, 132, 190, 0.45);
+  box-shadow: 0 0 0 4px rgba(255, 132, 190, 0.12);
 }
 
-.love-console-card,
-.love-console-grid article {
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+.love-pass-button {
+  width: 100%;
 }
 
-.love-console-card {
-  padding: 24px;
-  position: relative;
-  overflow: hidden;
-}
-
-.love-console-card::after {
-  content: "";
-  position: absolute;
-  inset: auto -30% -54% auto;
-  width: 220px;
-  height: 220px;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(122, 247, 255, 0.16), transparent 68%);
-}
-
-.love-console-card strong {
-  display: block;
-  margin: 10px 0 12px;
-  font-size: 1.5rem;
-}
-
-.love-console-card p,
-.love-console-grid p,
-.love-note p,
-.love-footer-grid p {
+.love-gate-message {
+  min-height: 1.8em;
   margin: 0;
   color: rgba(222, 228, 242, 0.72);
-  line-height: 1.86;
+  line-height: 1.7;
 }
 
-.love-console-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+.love-gate-message.is-error {
+  color: #ffb7c9;
 }
 
-.love-console-grid article {
-  padding: 18px;
+.love-gate-message.is-success {
+  color: #a8fff7;
 }
 
-.love-console-grid span {
-  color: #87f8ff;
-  font-size: 0.9rem;
-  letter-spacing: 0.16em;
-}
-
-.love-console-grid h2 {
-  margin: 12px 0 8px;
-  font-size: 1.08rem;
+.love-protected[hidden] {
+  display: none;
 }
 
 .love-gallery-section {
   display: grid;
-  grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.28fr) minmax(250px, 0.72fr);
+  grid-template-columns: minmax(250px, 0.74fr) minmax(0, 1.3fr) minmax(250px, 0.74fr);
   gap: 18px;
   align-items: stretch;
 }
@@ -269,14 +240,15 @@
 }
 
 .love-note-large h2 {
-  margin: 14px 0 12px;
-  font-size: clamp(1.7rem, 3vw, 2.4rem);
-  line-height: 1.2;
+  margin: 14px 0 0;
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  line-height: 1.22;
 }
 
 .love-note p {
-  position: relative;
-  z-index: 1;
+  margin: 0;
+  color: rgba(222, 228, 242, 0.72);
+  line-height: 1.86;
 }
 
 .love-stage-wrap {
@@ -367,7 +339,7 @@
 }
 
 .love-stage-image.is-switching {
-  opacity: 0.38;
+  opacity: 0.34;
   transform: scale(1.035);
 }
 
@@ -405,6 +377,23 @@
   margin-top: 7px;
   color: #fff6fb;
   font-size: 1rem;
+}
+
+.love-loading {
+  position: absolute;
+  inset: auto 22px 122px auto;
+  min-height: 40px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(8, 17, 30, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #eaf8ff;
+  z-index: 4;
+  backdrop-filter: blur(12px);
+}
+
+.love-loading[hidden] {
+  display: none;
 }
 
 .love-orbit {
@@ -511,25 +500,6 @@
   box-shadow: 0 8px 22px rgba(255, 122, 180, 0.26);
 }
 
-.love-footer-panel {
-  padding: 10px 0 20px;
-}
-
-.love-footer-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.love-footer-grid article {
-  padding: 24px;
-}
-
-.love-footer-grid h3 {
-  margin: 0 0 10px;
-  font-size: 1.16rem;
-}
-
 @keyframes loveFloat {
   0%,
   100% {
@@ -563,11 +533,6 @@
 }
 
 @media (max-width: 1120px) {
-  .love-status-row,
-  .love-footer-grid {
-    grid-template-columns: 1fr;
-  }
-
   .love-gallery-section {
     grid-template-columns: 1fr;
   }
@@ -582,26 +547,23 @@
 }
 
 @media (max-width: 920px) {
-  .love-hero,
-  .love-console-grid {
+  .love-hero {
     grid-template-columns: 1fr;
   }
 
   .love-intro,
-  .love-console,
+  .love-gate-card,
   .love-stage-card,
-  .love-note,
-  .love-footer-grid article {
+  .love-note {
     border-radius: 24px;
   }
 }
 
 @media (max-width: 720px) {
   .love-intro,
+  .love-gate-card,
   .love-stage-card,
-  .love-note,
-  .love-console,
-  .love-footer-grid article {
+  .love-note {
     padding: 20px;
   }
 
