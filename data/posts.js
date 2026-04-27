@@ -1,5 +1,17 @@
 window.WOLKER_POSTS = [
   {
+    "title": "从Chat到Agent：AI范式转变与罗福莉的判断",
+    "slug": "AI范式",
+    "date": "2026-04-27",
+    "categories": [
+      "AI",
+      "智能体",
+      "行业观察"
+    ],
+    "summary": "小米大模型负责人罗福莉在3.5小时深度访谈中系统阐述了AI从\"预训练Chat时代\"到\"后训练Agent时代\"的范式转变，以及她对AGI时间表、中美差距、组织管理的核心判断。",
+    "featured": true
+  },
+  {
     "title": "智能体中的sandbox是什么",
     "slug": "智能体研究",
     "date": "2026-04-17",

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>从Chat到Agent：AI范式转变与罗福莉的核心判断 | Wolker Lab</title>
+  <meta name="description" content="2026年是AI发展的分水岭。小米大模型负责人罗福莉在深度访谈中提出，AI行业正从以预训练为主的Chat时代，进入以后训练为主的Agent时代。本文系统梳理了她对OpenClaw框架、中美竞争格局、MiMo技术路线、AGI时间表及组织管理的核心观点。">
+  <meta name="keywords" content="AI范式, Agent, 智能体, 罗福莉, 小米MiMo, OpenClaw, AGI, 后训练, 长上下文">
+  <meta name="author" content="Wolker Lab">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://wolkerzheng.github.io/posts/AI范式.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="从Chat到Agent：AI范式转变与罗福莉的判断">
+  <meta property="og:description" content="2026年是AI发展的分水岭。小米大模型负责人罗福莉在深度访谈中提出，AI行业正从以预训练为主的Chat时代，进入以后训练为主的Agent时代。本文系统梳理了她对OpenClaw框架、中美竞争格局、MiMo技术路线、AGI时间表及组织管理的核心观点。">
+  <meta property="og:url" content="https://wolkerzheng.github.io/posts/AI范式.html">
+  <meta property="og:site_name" content="Wolker Lab">
+  <meta property="og:image" content="https://wolkerzheng.github.io/assets/og-cover.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="从Chat到Agent：AI范式转变与罗福莉的核心判断 | Wolker Lab">
+  <meta name="twitter:description" content="2026年是AI发展的分水岭。小米大模型负责人罗福莉在深度访谈中提出，AI行业正从以预训练为主的Chat时代，进入以后训练为主的Agent时代。本文系统梳理了她对OpenClaw框架、中美竞争格局、MiMo技术路线、AGI时间表及组织管理的核心观点。">
+  <meta name="twitter:image" content="https://wolkerzheng.github.io/assets/og-cover.jpg">
+  <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "从Chat到Agent：AI范式转变与罗福莉的判断",
+    "datePublished": "2026-04-27",
+    "dateModified": "2026-04-27",
+    "author": {
+        "@type": "Organization",
+        "name": "Wolker Lab"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Wolker Lab"
+    },
+    "mainEntityOfPage": "https://wolkerzheng.github.io/posts/AI范式.html",
+    "inLanguage": "zh-CN",
+    "description": "2026年是AI发展的分水岭。小米大模型负责人罗福莉在深度访谈中提出，AI行业正从以预训练为主的Chat时代，进入以后训练为主的Agent时代。本文系统梳理了她对OpenClaw框架、中美竞争格局、MiMo技术路线、AGI时间表及组织管理的核心观点。"
+}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/site.css">
+</head>
+<body>
+  <div class="page-shell article-shell">
+    <header class="topbar">
+      <a class="brand" href="https://wolkerzheng.github.io/">
+        <span class="brand-mark"></span>
+        <span class="brand-text">
+          <strong>Wolker Lab</strong>
+          <small>AI Native Blog</small>
+        </span>
+      </a>
+      <nav class="topnav">
+        <a href="https://wolkerzheng.github.io/">首页</a>
+        <a href="#article-body">正文</a>
+        <a href="#comments">评论</a>
+      </nav>
+    </header>
+
+    <main class="article-layout">
+      <article class="article-card markdown-article" id="article-body">
+        <div class="article-meta">
+          <span class="tag">AI</span>
+          <span class="tag">智能体</span>
+          <span class="tag">行业观察</span>
+          <span class="tag muted">2026-04-27</span>
+        </div>
+        <p class="eyebrow">AI范式转变</p>
+        <div><h2>一个时代正在翻篇</h2>
+<p>2026年3月，小米大模型负责人罗福莉接受张小珺的3.5小时深度访谈，抛出了一个判断：<strong>AI战争进入第二幕</strong>。</p>
+<p>她认为，行业正从以<strong>预训练（Pre-train）</strong> 为主的"Chat时代"，全面转向以<strong>后训练（Post-train）</strong> 为主的"Agent时代"。这个转变的标志，是Anthropic推出的<strong>OpenClaw框架</strong>。这不是一次渐进式升级，而是底层范式的根本切换——竞争的核心赛点，从"谁的模型参数更大"，变成了"谁的Agent框架更强、RL规模化更狠、长上下文更稳"。</p>
+<p>这期访谈信息密度极高，涵盖技术路线、竞争格局、组织管理、AGI预判等多个维度。以下是核心内容的系统梳理。</p>
+<h2>范式巨变：从Chat到Agent</h2>
+<h3>时代切换的标志</h3>
+<p>罗福莉将2026年定义为分水岭。Chat时代的逻辑是"堆参数、刷Benchmark"，谁的基座模型大，谁就赢。而Agent时代的逻辑完全不同——核心赛点转移到<strong>Agent框架编排能力、强化学习（RL）规模化、长上下文（Long Context）、持久记忆、自主行动</strong>这五个维度。</p>
+<p>这个转变的标志性事件是OpenClaw的出现。</p>
+<h3>OpenClaw：不是工具，是划时代框架</h3>
+<p>罗福莉对OpenClaw的评价极高，她个人试用后兴奋得睡不着，并称赞其有"灵魂感"。但她的评价并非停留在体验层面，而是给出了三个硬核判断：</p>
+<p><strong>模型能力越级</strong>。接入OpenClaw后，小米MiMo模型在<strong>85%的任务上可接近Claude Sonnet的水平</strong>。这意味着一个中层模型，通过精心编排的Agent框架，就能大幅弥补自身能力短板，接近顶流表现。</p>
+<p><strong>技术本质不是"Claude Code + IM"</strong>。OpenClaw的核心是<strong>系统编排</strong>——通过分层记忆体系、精细上下文管理等工程手段，让模型的实际输出远超其裸跑能力。这是用"框架设计"来弥补"模型能力"的路径，对国内模型追赶尤其有价值。</p>
+<p><strong>开源加速迭代</strong>。OpenClaw的开源特性让所有人都可以修改和适配，极大加快了Agent生态的迭代速度。罗福莉甚至一天花掉1000美元的Tokens来测试，称其为"改变世界的AI工具"。</p>
+<h3>Harness Engineering：新工种诞生</h3>
+<p>罗福莉提出了一个值得关注的概念——<strong>Harness Engineering</strong>。AI工程化的演进路径正在经历三阶段跃迁：</p>
+<p>1. <strong>写提示词（Prompt）</strong>：早期阶段，通过优化单次输入获得更好回答。 2. <strong>管上下文（Context）</strong>：中期阶段，学会组织多轮对话的信息结构。 3. <strong>设计稳定工作的系统（Harness）</strong>：当前阶段，核心目标变成<strong>让AI从聪明个体变成可靠工程系统</strong>。</p>
+<p>这本质上是从"炼丹"到"工程"的转变。一个能稳定工作的Agent系统，需要考虑错误恢复、状态管理、工具编排、成本控制等一系列工程问题，这已经远远超出"写好Prompt"的范畴。</p>
+<h2>竞争格局：中美差距正在消失</h2>
+<h3>预训练代差已基本抹平</h3>
+<p>罗福莉给出了一个大胆但具体的判断：<strong>中美在预训练上的代差已经缩至2-3个月</strong>。国内小米MiMo、Kimi等模型，与Claude Opus 4.6的差距仅在这个范围内。这意味着在预训练层面，大家基本站在同一起跑线上。</p>
+<p>但她同时指出了一个门槛：<strong>1T参数基座</strong>是接近Claude 4.6水平的必要入场券。参数规模和上下文长度共同决定智能上限，而<strong>激活参数效率比总参数量更重要</strong>。</p>
+<h3>算力分配的逆转</h3>
+<p>罗福莉透露了一组关键数据——算力配置比例的逆转：</p>
+<p>| 时代 | 研究 : 预训练 : 后训练 | |------|----------------------| | Chat时代 | 3 : <strong>5</strong> : 1 | | Agent时代 | <strong>3</strong> : 1 : 1 |</p>
+<p>在Chat时代，预训练占据绝对主导地位（占比约55%）。而进入Agent时代，预训练和后训练的投入已经持平，研究投入反而成为最大的单项。这个数据直接印证了"后训练主导"的判断。</p>
+<h3>行业共识与路径判断</h3>
+<p>罗福莉认为<strong>Anthropic的路径是正确的</strong>——长上下文 + RL + 安全对齐。国内团队在这一点上已经形成共识，真正的胜负手在于：<strong>Agent拥抱速度、研究敏捷度、新范式落地能力</strong>。</p>
+<p>换句话说，模型层面的差距正在快速缩小，真正的竞争壁垒将建立在谁能更快地把Agent能力转化为可用的产品和场景。</p>
+<h2>技术路线：MiMo-V2的架构选择</h2>
+<h3>Hybrid Attention：不走主流路</h3>
+<p>MiMo-V2在架构上做了一个关键的差异化选择——放弃当时主流的MLA（全注意力），转而采用<strong>Hybrid Attention（混合注意力）</strong>架构。</p>
+<p>具体实现是<strong>局部滑动窗口 + 全局注意力</strong>的混合方案，稀疏比达到<strong>7:1</strong>（全局:滑动窗口），比Flash的5:1更加极致。这个选择的核心考量是<strong>长文效率和成本</strong>——在Agent场景下，模型需要处理大量上下文信息，长文效率直接决定了Agent的实际可用性和经济可行性。</p>
+<h3>MTP：多Token预测的工程价值</h3>
+<p>MiMo还适配了<strong>MTP（Multi-Token Prediction，多Token预测）</strong>架构。MTP的核心价值不是提升模型智能，而是<strong>工程效率</strong>：</p>
+<ul><li>不增加幻觉</li><li>降低单token推理成本</li><li>提升GPU利用率</li></ul>
+<p>当MTP的命中率高时，它成为推理加速的核心引擎，可带来<strong>1.5-2倍的推理速度提升</strong>。这对于Agent场景尤为重要——Agent需要频繁调用模型，推理速度和成本直接决定了系统的可行性。</p>
+<h3>Agent能力的真实检验标准</h3>
+<p>罗福莉提出了一个务实的判断标准：<strong>能否接入Claude Code/OpenClaw稳定工作</strong>。她强调Benchmark高分不等于真实场景好用，真正检验Agent能力的，是它在复杂任务中的稳定性和可靠性。</p>
+<h2>组织管理：无层级、无Deadline的平权团队</h2>
+<h3>极致扁平的实验</h3>
+<p>罗福莉管理着一个约100人的MiMo团队（含数据、训练、推理、产品、多模态），核心迭代仅20-30人，实习生占比很高。但最引人注目的不是规模，而是组织方式：</p>
+<p><strong>无职级、无小组、无leader、无deadline、无固定分工</strong>。她一个人直接与100人沟通。</p>
+<p>这套管理哲学的核心是<strong>平权有利于创新</strong>——在她看来，层级等于约束，约束压制创造力。人随项目自然流动，预训练人员转做后训练，反而带来了数据多样性的优势。</p>
+<h3>"每天和AI对话100次，否则辞职"</h3>
+<p>这是罗福莉对团队的要求。她的逻辑很简单：<strong>点燃团队对AI的直觉和热情，比任何管理手段都有效</strong>。</p>
+<p>结果也验证了这个判断——团队被点燃后，<strong>3-4周就完成了以前可能需要30-40周的研究量</strong>，效率提升近10倍。</p>
+<h3>招人标准：好奇心 > 经验</h3>
+<p>罗福莉的用人标准很特别：不看大模型经验，招有好奇心、数据直觉、跨领域思考能力的人。她甚至偏爱大二大三的本科生，因为他们的想象力未被固化。很多人没有大模型背景，完全从零培养。</p>
+<p>这个选择背后是一个判断：在范式快速切换的时期，<strong>学习能力和想象力比存量经验更有价值</strong>。</p>
+<h2>AGI时间表：2年内落地</h2>
+<p>罗福莉给出了明确的AGI时间表：</p>
+<ul><li><strong>当前</strong>：AGI已实现约<strong>20%</strong></li><li><strong>2026年底</strong>：预计达到<strong>60%-70%</strong>，生产力开始爆发，大量工作被替代</li><li><strong>2年内</strong>：实现AGI，定义是"大部分人工作模式被颠覆，先工作、后生活"</li></ul>
+<p>关键节点是<strong>AI训AI</strong>——当模型能够自主做研究、自主迭代、自主提效时，就是AGI真正到来的标志。她认为届时效率提升可达<strong>10倍以上</strong>。</p>
+<p>另一个值得关注的推论是：Agent普及后，<strong>推理芯片需求将暴涨5-10倍</strong>，低成本推理将成为核心命题。这也解释了为什么MiMo在架构上如此看重长上下文的效率——这是Agent时代的基础设施级需求。</p>
+<h2>开源与闭源的战略选择</h2>
+<p>罗福莉对这个问题的态度很鲜明：</p>
+<p><strong>开源的目的</strong>是加速AGI进程——分散算力负担、繁荣生态、推动芯片和框架的协同创新。</p>
+<p><strong>闭源的原因</strong>通常只有一个——缺乏不可替代的战略生态位，只能把模型本身当作唯一壁垒。</p>
+<p>小米的选择是<strong>开源+生态</strong>。依托小米的硬件生态，走"模型 + 框架 + 终端"的协同路径，快速落地Agent应用。这不是纯粹的利他主义，而是基于自身生态优势的战略选择。</p>
+<h2>对研究者和个人的启示</h2>
+<p>访谈最后，罗福莉谈到了一个很多人不愿面对但必须面对的现实：</p>
+<p><strong>AI已经能做研究、写代码、设计实验、验证想法</strong>。创造力工作也会被Skill化和Workflow化。她认为，人类的核心价值将重新定义——AI替代的是无想象力的重复性工作，而<strong>想象、判断、创造、定义问题</strong>这些能力，才是人类真正的护城河。</p>
+<p>2026年的主旋律，是<strong>高生产力场景的突破</strong>。AI正在从"写文案"升级为"做复杂任务、替代专业工作"。</p>
+<h2>一句话总结</h2>
+<p>罗福莉的核心判断可以浓缩为一句话：<strong>AI战争进入第二幕，Agent是唯一解；中国追上美国就在这两三个月；平权小团队加强研究投入是胜出关键；2年内AGI落地，重塑一切。</strong></p>
+<p>至于这个判断是对是错，时间会给我们答案。但有一点是确定的——<strong>范式已经切换</strong>，还用Chat时代的思维打Agent时代的仗，注定会被甩在后面。</p>
+<p>---</p>
+<blockquote>本文内容整理自2026年3月张小珺对小米大模型负责人罗福莉的3.5小时深度访谈。</blockquote></div>
+
+        <section class="comments-section" id="comments">
+          <div class="section-heading">
+            <p class="eyebrow">Comments</p>
+            <h2>评论</h2>
+          </div>
+          <div data-comments></div>
+        </section>
+
+        <footer class="article-footer">
+          <a class="button button-primary" href="https://wolkerzheng.github.io/">返回首页</a>
+        </footer>
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="sidebar-card">
+          <span class="sidebar-label">分类</span>
+          <strong>AI / 行业观察</strong>
+          <p>围绕罗福莉访谈，系统梳理AI从Chat时代到Agent时代的范式转变。</p>
+        </div>
+        <div class="sidebar-card">
+          <span class="sidebar-label">关键词</span>
+          <ul class="keyword-list">
+            <li>范式转变</li>
+            <li>Agent时代</li>
+            <li>OpenClaw</li>
+            <li>中美差距</li>
+            <li>AGI时间表</li>
+            <li>组织管理</li>
+          </ul>
+        </div>
+      </aside>
+    </main>
+  </div>
+  <script src="../data/site-config.js"></script>
+  <script src="../data/posts.js"></script>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>
